@@ -92,7 +92,7 @@ export default function CleanCtaSection() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#1C1B19] shrink-0" />
-                <span>Guaranteed &lt; 24h response</span>
+                <span>Direct engineer reply within 24–48h</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#1C1B19] shrink-0" />

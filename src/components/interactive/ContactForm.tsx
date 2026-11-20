@@ -105,7 +105,7 @@ export default function ContactForm() {
               Thanks {formData.name}. I personally review every technical brief. You will receive a detailed response with preliminary thoughts within <strong>24 hours</strong>.
             </p>
             <div className="pt-3 font-mono text-xs font-semibold text-[#1C1B19] bg-[#E3DEFA] p-3 rounded-xl border border-[#1C1B19]/10">
-              SLA: &lt; 24h response guaranteed • Direct email: bhanot1054@gmail.com
+              Direct engineer response: 1–2 business days • Direct email: bhanot1054@gmail.com
             </div>
             <button
               type="button"
@@ -221,7 +221,7 @@ export default function ContactForm() {
 
             <div className="text-[11px] font-mono text-[#57534E] text-center flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#1C1B19]/40"></span>
-              <span>Direct engineer response within 24h • Strictly zero spam</span>
+              <span>Direct engineer response within 1–2 business days • Strictly zero spam</span>
             </div>
           </form>
         )}

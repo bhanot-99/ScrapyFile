@@ -18,21 +18,21 @@ const PROJECTS: ProjectProof[] = [
   {
     id: 'agent-radar',
     title: 'Zero-Overhead Agent Observability',
-    tagline: 'Building unprivileged Linux telemetry for autonomous coding agents with 0.00% idle CPU and inotify event correlation in Rust.',
+    tagline: 'Building unprivileged Linux telemetry for autonomous coding agents with kernel epoll_wait and inotify event correlation in Rust.',
     deliverable: 'Shipped Project // Deep-Dive',
     badgeVariant: 'Rust / Linux epoll',
     badgeBg: 'bg-[#E3DEFA]',
     repoUrl: 'https://github.com/bhanot1054/agent-radar',
     metrics: [
-      { label: 'Idle CPU (epoll_wait)', value: '0.00% Flat' },
-      { label: 'Memory Footprint', value: '4.2 MB VmRSS' },
+      { label: 'Idle CPU (epoll_wait)', value: 'Measurement Pending' },
+      { label: 'Memory Footprint (LRU Cache)', value: 'Measurement Pending' },
     ],
-    howMeasured: 'Measured via Linux /proc/[pid]/stat & ps -o rss during epoll_wait blocked wait state.'
+    howMeasured: 'Release benchmark pending. Verified event-driven epoll_wait sleep via Linux /proc/[pid]/stat.'
   },
   {
     id: 'neuroos-sandbox',
     title: 'Zero-Egress On-Device AI Sandbox',
-    tagline: 'Mathematical isolation of local language model runtimes on Linux using Landlock LSM and systemd namespaces.',
+    tagline: 'Kernel-enforced isolation of local language model runtimes on Linux using Landlock LSM and systemd namespaces.',
     deliverable: 'Spec Sample // Security Whitepaper',
     badgeVariant: 'C++20 / Landlock LSM',
     badgeBg: 'bg-[#FADEC9]',

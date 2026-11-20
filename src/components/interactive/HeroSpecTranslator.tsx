@@ -35,8 +35,8 @@ const DOMAINS: DomainSpec[] = [
     tag: 'LINUX OBSERVABILITY',
     rawSpec: {
       command: 'cargo run --release -p agent-radar -- --proc-interval 0ms --landlock-enforce',
-      kernelMechanism: 'Single-threaded epoll_wait(-1) multiplexing inotify masks + /proc/[pid]/stat starttime correlation. Fixed LRU bounded slab.',
-      metrics: ['0.00% Idle CPU', '4.2MB RSS', 'Zero Root Needed'],
+      kernelMechanism: 'Single-threaded epoll_wait(-1) multiplexing inotify masks + /proc/[pid]/stat starttime correlation. Bounded LRU cache with TTL eviction.',
+      metrics: ['Measurement Pending (Idle CPU)', 'Measurement Pending (RSS)', 'Zero Root Needed'],
       technicalExcerpt: `struct KernelCorrelator {
     epoll_fd: RawFd,
     inotify_wd: HashMap<WatchDescriptor, PathBuf>,
@@ -48,16 +48,16 @@ const DOMAINS: DomainSpec[] = [
     convertedCopy: {
       badge: 'Zero-Privilege Linux Telemetry',
       headline: 'Monitor Autonomous Coding Agents in Real Time—Without Draining a Single Core.',
-      subhead: 'Zero-overhead Linux kernel observability that tracks transient bash spawns, hidden socket connects, and runaway file writes before PID reuse masks them. Idle CPU stays flat at 0.00%.',
+      subhead: 'Zero-overhead Linux kernel observability that tracks transient bash spawns, hidden socket connects, and runaway file writes before PID reuse masks them without polling loops.',
       primaryCta: 'Install CLI in 5 Seconds',
       secondaryCta: 'Inspect epoll Benchmark',
-      proofBar: '4.2MB RSS • Zero Root Permissions • Tested on Linux x86_64',
+      proofBar: 'LRU Cache TTL Eviction • Zero Root Permissions • Tested on Linux x86_64',
       annotations: [
         {
           id: 'headline-pin',
           title: 'The Counter-Intuitive Pain Point',
           target: 'Headline',
-          explanation: 'Engineers hate background daemons that steal CPU cycles from their compiler. Calling out "0.00% Idle CPU" directly neutralises their #1 installation objection.'
+          explanation: 'Engineers hate background daemons that steal CPU cycles from their compiler. Highlighting non-polling epoll_wait directly neutralises their #1 installation objection.'
         },
         {
           id: 'subhead-pin',

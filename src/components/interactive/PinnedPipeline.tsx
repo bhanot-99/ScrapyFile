@@ -9,7 +9,7 @@ const STEPS = [
     phaseBg: 'bg-[#F7D6DE]',
     title: 'Code Teardown & VoC Mining',
     icon: Search,
-    description: 'I clone your repository, run your CLI locally, inspect your AST and syscalls, and mine 100+ raw developer objections across Hacker News, GitHub Issues, and Reddit.',
+    description: 'I clone your repository, run your CLI locally, inspect your AST and syscalls, and mine genuine developer objections across Hacker News, GitHub Issues, and Reddit.',
     bullets: [
       'GitHub repository & AST inspection',
       'Cynical developer objection mining',

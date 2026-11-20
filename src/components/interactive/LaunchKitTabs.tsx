@@ -30,7 +30,7 @@ export default function LaunchKitTabs() {
   const emails = [
     {
       day: 'Day 0 (Immediate)',
-      subject: 'Agent-Radar: Your first trace on Linux (0.00% idle CPU)',
+      subject: 'Agent-Radar: Your first trace on Linux (epoll multiplexing)',
       preview: 'Run your first epoll process capture in 30 seconds without root...',
       body: `Hey {{name}},
 
@@ -44,7 +44,7 @@ $ agent-radar --target ~/.anthropic/workspaces
 
 Within 3 seconds, you will see real-time inotify file descriptors mapped to the exact PID that executed them—even if that PID only lived for 4 milliseconds.
 
-If your idle CPU climbs above 0.05%, reply directly to this email with your kernel version (uname -r). I will fix the epoll poll loop personally.
+If you encounter unexpected CPU wakeups under idle states, reply directly to this email with your kernel version (uname -r). I will inspect the epoll loop personally.
 
 Best,
 Jatin`
@@ -71,19 +71,19 @@ Jatin`
     },
     {
       day: 'Day 5',
-      subject: 'Benchmarking 10,000 concurrent transient processes without crashing RSS',
-      preview: 'How we keep memory bounded at 4.2MB with a fixed slab allocator...',
+      subject: 'Benchmarking concurrent transient processes without unbounded RSS',
+      preview: 'How we keep memory bounded with an LRU cache with TTL eviction...',
       body: `Hey {{name}},
 
 One common objection we get from DevOps teams:
 "What happens to Agent-Radar when an agent script creates 1,000 subshells per second?"
 
-The answer: Nothing.
+The answer: Memory stays strictly bounded.
 
-Because we pre-allocate a fixed LRU ring buffer in Rust, memory never exceeds 4.2MB RSS. No dynamic heap allocations in the critical path.
+Because we maintain an LRU cache with TTL eviction in Rust, memory cannot grow unbounded. No unmetered heap allocations in the critical path.
 
-Here is our reproducible benchmark repo:
-github.com/bhanot1054/agent-radar-benchmarks
+Here is our benchmark harness repo:
+github.com/bhanot1054/agent-radar
 
 Have questions on setting this up in your CI container? Just hit reply.
 
@@ -163,7 +163,7 @@ Jatin`
                     Know Exactly What Your AI Coding Agents Touch on Linux.
                   </h3>
                   <p className="text-[#57534E] text-sm sm:text-base max-w-2xl leading-relaxed font-sans font-medium">
-                    Multiplexing epoll and inotify to track microsecond subshells, file writes, and outbound sockets—without root permissions and 0.00% idle CPU overhead.
+                    Multiplexing epoll and inotify to track microsecond subshells, file writes, and outbound sockets—without root permissions and with event-driven sleeping.
                   </p>
                 </div>
 
@@ -187,11 +187,11 @@ Jatin`
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-[#1C1B19]/8 text-xs font-mono">
                   <div className="p-3.5 rounded-xl bg-white border border-[#1C1B19]/8 shadow-sm">
                     <div className="text-[#8A857D] font-medium">Memory Envelope</div>
-                    <div className="text-[#1C1B19] font-bold text-sm mt-0.5">4.2MB RSS Bounded</div>
+                    <div className="text-[#1C1B19] font-bold text-sm mt-0.5">LRU Cache / TTL Eviction</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-white border border-[#1C1B19]/8 shadow-sm">
                     <div className="text-[#8A857D] font-medium">Idle CPU Drain</div>
-                    <div className="text-[#16A34A] font-bold text-sm mt-0.5">0.00% Flat</div>
+                    <div className="text-[#1C1B19] font-bold text-sm mt-0.5">epoll_wait (Pending)</div>
                   </div>
                   <div className="p-3.5 rounded-xl bg-white border border-[#1C1B19]/8 shadow-sm">
                     <div className="text-[#8A857D] font-medium">Security Model</div>
@@ -219,7 +219,7 @@ Jatin`
                     </span>
                     <span className="text-[#1C1B19] font-bold font-sans">Hacker News Submission Copy</span>
                   </div>
-                  <span className="text-[#1C1B19] font-semibold bg-[#EAF57A] px-2.5 py-0.5 rounded-full text-[11px]">Ranked #2 on Show HN</span>
+                  <span className="text-[#1C1B19] font-semibold bg-[#EAF57A] px-2.5 py-0.5 rounded-full text-[11px]">Spec Sample // Show HN</span>
                 </div>
 
                 <div className="text-sm font-bold text-[#1C1B19] font-sans">
@@ -241,7 +241,7 @@ Jatin`
                     I built <strong>Agent-Radar</strong> in Rust to solve this cleanly. It uses an <code>epoll_wait(-1)</code> reactor multiplexing Linux <code>inotify</code> file descriptor masks with correlation against <code>/proc/[pid]/stat</code> starttime. It runs entirely as an unprivileged user process.
                   </p>
                   <p>
-                    Idle CPU stays at exactly 0.00%, memory is bounded to 4.2MB via fixed ring buffers, and you can compile it with a single <code>cargo build --release</code>.
+                    Idle CPU avoids active polling via epoll_wait sleep, memory is strictly bounded via LRU caches with TTL eviction, and you can compile it with a single <code>cargo build --release</code>.
                   </p>
                   <p>
                     Source code: github.com/bhanot1054/agent-radar<br />
@@ -326,9 +326,9 @@ Jatin`
                   <div>
                     <h4 className="text-[#1C1B19] font-bold mb-2">🚀 Architectural Highlights</h4>
                     <ul className="list-disc pl-5 space-y-1 text-[#57534E]">
-                      <li><strong>Landlock LSM Integration:</strong> Added unprivileged network isolation flag <code>--deny-net</code>, mathematically blocking <code>socket(AF_INET, ...)</code> syscalls without root.</li>
+                      <li><strong>Landlock LSM Integration:</strong> Added unprivileged network isolation flag <code>--deny-net</code>, blocking <code>socket(AF_INET, ...)</code> syscalls without root.</li>
                       <li><strong>PID Reuse Race Hardening:</strong> Replaced naive stat polling with atomic <code>btime</code> checks against Linux <code>/proc/sys/kernel/pid_max</code> bounds.</li>
-                      <li><strong>Ring Buffer Slab Allocator:</strong> Memory overhead reduced by another 18% (down to 4.2MB RSS under heavy load).</li>
+                      <li><strong>LRU Cache with TTL Eviction:</strong> Memory overhead bounded under heavy load with zero unbounded dynamic allocations.</li>
                     </ul>
                   </div>
 

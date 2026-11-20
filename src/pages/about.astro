@@ -15,7 +15,7 @@ const techStack = {
       { name: 'Rust (tokio, nix, ratatui, aya)', proof: 'Production daemons, zero-allocation event handling' },
       { name: 'C++20 (Concepts, Coroutines, SIMD)', proof: 'SIMD vector routines, clean systems architecture' },
       { name: 'Linux Kernel Internals', proof: 'epoll, inotify, /proc, Landlock LSM, seccomp-bpf' },
-      { name: 'Concurrency & Memory', proof: 'Bounded ring buffers, cache-line alignment' }
+      { name: 'Concurrency & Memory', proof: 'LRU caches with TTL eviction, cache-line alignment' }
     ]
   },
   ai: {
@@ -116,7 +116,7 @@ const techStack = {
     <div class="space-y-8">
       <div class="border-b border-[#1C1B19]/8 pb-4">
         <span class="text-xs font-mono uppercase tracking-wider text-[#57534E] font-semibold block mb-2">
-          // AUDITED CAPABILITIES
+          // SYSTEMS CAPABILITIES
         </span>
         <h2 class="text-2xl sm:text-3xl font-bold font-sans tracking-tight text-[#1C1B19]">
           Structured Technical Stack Matrix
@@ -133,7 +133,7 @@ const techStack = {
           >
             <div>
               <div class="flex items-center justify-between mb-2">
-                <Badge text="AUDITED" variant={cat.badgeVariant} />
+                <Badge text="SHIPPED / VERIFIED" variant={cat.badgeVariant} />
               </div>
               <h3 class="text-lg font-bold font-sans tracking-tight text-[#1C1B19]">
                 {cat.category}

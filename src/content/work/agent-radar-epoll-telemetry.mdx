@@ -1,6 +1,6 @@
 ---
 title: "Zero-Overhead Agent Observability: Correlating /proc and inotify via epoll"
-tagline: "Building unprivileged Linux telemetry for autonomous coding agents with 0.00% idle CPU and inotify event correlation in Rust."
+tagline: "Building unprivileged Linux telemetry for autonomous coding agents with kernel epoll and inotify event correlation in Rust."
 description: "A code-backed systems deep-dive explaining how to detect transient agent subshells, socket connections, and file writes before PID reuse masks them."
 category: "systems-deep-dive"
 categoryLabel: "Systems Deep-Dive"
@@ -14,9 +14,9 @@ order: 2
 repoUrl: "https://github.com/bhanot1054/agent-radar"
 metrics:
   - label: "Idle CPU (epoll wait)"
-    value: "0.00% Flat"
+    value: "Measurement Pending"
   - label: "Memory Footprint (VmRSS)"
-    value: "4.2 MB"
+    value: "Measurement Pending"
   - label: "Root Privileges Required"
     value: "0 (Unprivileged)"
   - label: "Event Detection Method"
@@ -42,7 +42,7 @@ Traditional observability stacks run into challenges:
 1. **Periodic polling (`/proc` scanners every 100ms):** Frequently miss short-lived subshells that fork, write to disk, open a network socket, and exit between poll intervals.
 2. **`auditd` & root-level kernel tracepoints:** Flood system logs (`dmesg`), require `CAP_SYS_ADMIN` root privileges, and impose severe CPU throttling penalties on developer workstations.
 
-We engineered **Agent-Radar** in Rust to explore an unprivileged approach: kernel event multiplexing using `epoll` and `inotify` with **flat 0.00% idle CPU overhead** during blocked wait states.
+We engineered **Agent-Radar** in Rust to explore an unprivileged approach: kernel event multiplexing using `epoll` and `inotify` with **kernel-level non-polling event sleep** during blocked wait states.
 
 ---
 
@@ -71,7 +71,7 @@ When presenting observability tools to senior systems and security engineers, th
   rows={[
     {
       mechanism: "Event-driven Linux epoll_wait multiplexing over inotify file descriptor queues.",
-      benefit: "Consumes 0.00% CPU when no filesystem events occur—kernel blocks the thread without spinning."
+      benefit: "Kernel blocks thread without spinning when no filesystem events occur—measurement pending on release builds."
     },
     {
       mechanism: "Pure user-space parsing of /proc/<pid>/stat and /proc/<pid>/net/tcp via zero-allocation buffers.",
@@ -79,11 +79,11 @@ When presenting observability tools to senior systems and security engineers, th
     },
     {
       mechanism: "Rust async runtime using tokio and nix bindings with statically bounded heap allocations.",
-      benefit: "Maintains a compact ~4.2 MB RSS footprint that won't compete with compiler memory."
+      benefit: "Maintains a bounded memory footprint via LRU caches with TTL eviction (release build measurement pending)."
     },
     {
       mechanism: "Linux Landlock LSM sandbox integration dropping socket syscalls post-initialization.",
-      benefit: "Guarantees mathematically that the telemetry daemon cannot exfiltrate captured command strings."
+      benefit: "Enforces at the kernel level that the telemetry daemon cannot exfiltrate captured command strings over sockets."
     }
   ]}
 />
@@ -109,7 +109,7 @@ pub fn listen_events(inotify_fd: RawFd) -> Result<(), Box<dyn std::error::Error>
 
     let mut events = [EpollEvent::empty(); 16];
     loop {
-        // Blocks thread in kernel space until inotify reports an event: 0.00% CPU on idle
+        // Blocks thread in kernel space until inotify reports an event (non-spinning sleep)
         let num_events = epoll_wait(epoll_fd, &mut events, -1)?;
         for ev in &events[..num_events] {
             handle_event(ev)?;
@@ -122,7 +122,7 @@ pub fn listen_events(inotify_fd: RawFd) -> Result<(), Box<dyn std::error::Error>
 
 ## 5. Telemetry & Measurement Verification
 
-- **Idle CPU:** Measured at `0.00%` using `/proc/[pid]/stat` and `perf top` during idle wait states.
-- **Memory Footprint:** Measured at `~4.2 MB` VmRSS on standard Linux x86_64 distributions.
+- **Idle CPU:** Benchmark verification pending release-build hardware runs (will measure via `/proc/[pid]/stat` and `perf top` during idle wait states).
+- **Memory Footprint:** Benchmark verification pending release-build hardware runs (will measure via `ps -o rss` on Linux x86_64).
 - **Privilege Level:** Validated with zero capability flags (`CAP_SYS_ADMIN` not required).
 - **Companion Code:** Runnable code and benchmark harness available in the public [GitHub Repository](https://github.com/bhanot1054/agent-radar).

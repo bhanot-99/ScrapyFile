@@ -1,6 +1,6 @@
 ---
 title: "Spec Sample // Zero-Egress On-Device AI: Sandboxing Local Runtimes with Landlock & BitNet"
-tagline: "Mathematical isolation of small language models on Linux using Landlock LSM, systemd namespaces, and ternary integer weights."
+tagline: "Kernel-enforced isolation of small language models on Linux using Landlock LSM, systemd namespaces, and ternary integer weights."
 description: "A formal technical spec whitepaper architecting an air-gapped on-device AI runtime that guarantees zero data exfiltration and zero cloud dependencies."
 category: "launches-whitepapers"
 categoryLabel: "Technical Whitepaper"
@@ -36,7 +36,7 @@ As organisations deploy AI assistants onto workstations and edge environments, s
 
 Standard containerisation (Docker, Podman) has operational trade-offs: containers require root daemons or elevated user namespace privileges, and a misconfigured port forward or environment variable can expose internal inference streams to external actors.
 
-**NeuroOS** proposes a zero-trust, kernel-enforced runtime architecture designed specifically for on-device Small Language Models (SLMs). By combining **Linux Landlock LSM**, strict **seccomp-bpf filters**, and **BitNet b1.58 ternary quantization**, NeuroOS provides mathematically verifiable isolation with zero GPU requirement.
+**NeuroOS** proposes a zero-trust, kernel-enforced runtime architecture designed specifically for on-device Small Language Models (SLMs). By combining **Linux Landlock LSM**, strict **seccomp-bpf filters**, and **BitNet b1.58 ternary quantization**, NeuroOS provides strict kernel-level egress isolation with zero GPU requirement.
 
 <PdfDownloadModal
   documentTitle="NeuroOS: Zero-Egress On-Device AI Architecture (Spec Whitepaper)"

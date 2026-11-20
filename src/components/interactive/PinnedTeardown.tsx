@@ -83,7 +83,7 @@ export default function PinnedTeardown() {
                 style={{ opacity: strike1Progress }}
                 className="mt-2 text-[11px] font-mono text-[#FF3B30] font-bold"
               >
-                ✕ Solved: Replaced polling with kernel epoll_wait (0.00% CPU on idle).
+                ✕ Solved: Replaced polling with kernel epoll_wait (non-polling event sleep).
               </motion.div>
             </div>
 
@@ -173,7 +173,7 @@ done`}
               style={{ opacity: cleanSubheadOpacity, y: cleanSubheadY }}
               className="text-[#57534E] text-xs sm:text-sm leading-relaxed font-sans"
             >
-              Zero-overhead Linux kernel observability that tracks transient bash spawns, hidden socket connects, and runaway file writes before PID reuse masks them. Idle CPU stays flat at 0.00%.
+              Zero-overhead Linux kernel observability that tracks transient bash spawns, hidden socket connects, and runaway file writes before PID reuse masks them without polling loops.
             </motion.p>
 
             {/* Proof Telemetry Bar */}
@@ -183,17 +183,17 @@ done`}
             >
               <div className="flex flex-wrap gap-2">
                 <span className="px-2.5 py-1 rounded-full bg-[#FAF7F0] border border-[#1C1B19]/10 font-bold text-[#1C1B19]">
-                  0.00% CPU on idle
+                  epoll_wait blocking (idle benchmark pending)
                 </span>
                 <span className="px-2.5 py-1 rounded-full bg-[#FAF7F0] border border-[#1C1B19]/10 font-bold text-[#1C1B19]">
-                  4.2MB RSS
+                  LRU cache TTL eviction (RSS benchmark pending)
                 </span>
                 <span className="px-2.5 py-1 rounded-full bg-[#FAF7F0] border border-[#1C1B19]/10 font-bold text-[#1C1B19]">
                   0 Root Required
                 </span>
               </div>
               <div className="text-[10px] text-[#8A857D] italic">
-                How measured: Process state verified via Linux /proc/[pid]/stat on idle wait.
+                How measured: Release-build hardware benchmarks pending. Unprivileged execution verified via unshare/non-root user.
               </div>
             </motion.div>
 

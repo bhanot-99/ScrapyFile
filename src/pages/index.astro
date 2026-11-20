@@ -183,22 +183,22 @@ import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
             </h3>
 
             <p class="text-xs text-[#57534E] leading-relaxed">
-              Standard agency copywriters do not know the difference between user-space ring buffers and kernel-level epoll multiplexing. They write vague fluff that turns off senior staff engineers.
+              Standard agency copywriters do not know the difference between user-space polling and kernel-level epoll multiplexing. They write vague fluff that turns off senior staff engineers.
             </p>
 
             <!-- Pastel Highlight Strips -->
             <div class="space-y-2 pt-2">
               <div class="p-2.5 rounded-xl bg-[#E3DEFA] text-xs font-mono text-[#1C1B19] border border-[#1C1B19]/10">
-                <strong>Kernel Landlock & epoll:</strong> Zero CPU idle wakeups on wait
+                <strong>Kernel Landlock & epoll:</strong> Non-polling event sleep on idle
               </div>
               <div class="p-2.5 rounded-xl bg-[#FADEC9] text-xs font-mono text-[#1C1B19] border border-[#1C1B19]/10">
                 <strong>BitNet b1.58:</strong> 1.58-bit ternary matrix kernels on CPU
               </div>
               <div class="p-2.5 rounded-xl bg-[#F7D6DE] text-xs font-mono text-[#1C1B19] border border-[#1C1B19]/10">
-                <strong>MicroVM Isolation:</strong> Egress lockdown without hypervisor overhead
+                <strong>Landlock LSM Isolation:</strong> Egress lockdown without hypervisor overhead
               </div>
               <div class="p-2.5 rounded-xl bg-[#EAF57A] text-xs font-mono text-[#1C1B19] border border-[#1C1B19]/10">
-                <strong>Audited Repositories:</strong> Shipped systems and AI tools available on GitHub
+                <strong>Shipped Repositories:</strong> Open-source systems and AI tools on GitHub
               </div>
             </div>
 
@@ -224,7 +224,7 @@ import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
                 Zero-Egress On-Device AI Agent Runner
               </h4>
               <p class="text-xs text-[#57534E] leading-relaxed">
-                Spec sample demonstrating strict Linux Landlock LSM policies blocking socket creation (<code class="bg-[#F4F1EA] px-1 py-0.5 rounded text-[11px] font-mono">AF_INET = EACCES</code>). Mathematical isolation proving zero network egress at the kernel level.
+                Spec sample demonstrating strict Linux Landlock LSM policies blocking socket creation (<code class="bg-[#F4F1EA] px-1 py-0.5 rounded text-[11px] font-mono">AF_INET = EACCES</code>). Kernel-enforced policy restricting socket creation and outbound network egress.
               </p>
             </div>
             <div class="text-right shrink-0">
@@ -246,12 +246,12 @@ import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
                 Real-Time Linux Kernel Ingestion Pipeline
               </h4>
               <p class="text-xs text-[#57534E] leading-relaxed">
-                Replaced polling loops with kernel <code class="bg-[#F4F1EA] px-1 py-0.5 rounded text-[11px] font-mono">epoll_wait</code> and <code class="bg-[#F4F1EA] px-1 py-0.5 rounded text-[11px] font-mono">inotify</code>. Eliminates background CPU polling entirely, maintaining a flat 0.00% idle CPU footprint on developer workstations.
+                Replaced polling loops with kernel <code class="bg-[#F4F1EA] px-1 py-0.5 rounded text-[11px] font-mono">epoll_wait</code> and <code class="bg-[#F4F1EA] px-1 py-0.5 rounded text-[11px] font-mono">inotify</code>. Eliminates background CPU polling entirely by sleeping in the kernel until file descriptor events fire.
               </p>
             </div>
             <div class="text-right shrink-0">
-              <div class="text-sm font-bold font-mono text-[#1C1B19]">0.00% CPU</div>
-              <div class="text-[10px] text-[#57534E] font-mono">Idle Event Wait</div>
+              <div class="text-sm font-bold font-mono text-[#1C1B19]">Pending</div>
+              <div class="text-[10px] text-[#57534E] font-mono">Idle Measurement</div>
             </div>
           </div>
         </TornPaperStrip>
