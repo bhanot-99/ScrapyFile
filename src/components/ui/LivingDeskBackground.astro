@@ -1,0 +1,370 @@
+---
+// LivingDeskBackground.astro
+// Fixed, pointer-events:none layer stack behind content.
+// Provides:
+// 1. Base warm paper + grain
+// 2. Scroll-linked graph/blueprint transition layer
+// 3. Three parallax doodle layers (slow, mid, fast)
+// 4. Cursor light highlight
+// 5. Sparse ambient drifting flecks
+---
+
+<div class="living-desk-bg" aria-hidden="true">
+  <!-- Layer 1: Base Warm Paper Canvas & Texture is handled by body background + paper-grain-overlay -->
+
+  <!-- Layer 2: Dynamic Blueprint Grid Transition Layer -->
+  <div id="blueprint-transition-layer" class="blueprint-layer">
+    <div class="blueprint-grid"></div>
+  </div>
+
+  <!-- Layer 4: Cursor Light Highlight (Desktop only) -->
+  <div class="cursor-light-spotlight"></div>
+
+  <!-- Layer 3A: Parallax Doodle Layer 1 (Slow: 0.15x speed) -->
+  <div class="parallax-doodle-layer slow-layer" data-parallax="0.15">
+    {/* Coffee Ring Stain (Top right of desk) */}
+    <svg class="coffee-stain" width="160" height="160" viewBox="0 0 160 160" fill="none">
+      <circle cx="80" cy="80" r="68" stroke="#8A6B47" stroke-width="3" stroke-opacity="0.18" stroke-dasharray="14 4 20 6" />
+      <circle cx="80" cy="80" r="64" stroke="#8A6B47" stroke-width="1.5" stroke-opacity="0.12" stroke-dasharray="8 6" />
+      <path d="M42 60C48 45 65 38 82 40C95 42 110 52 114 66C118 80 110 98 96 108C82 118 64 116 52 104" stroke="#8A6B47" stroke-width="1.2" stroke-opacity="0.10" />
+      <circle cx="112" cy="72" r="6" fill="#8A6B47" fill-opacity="0.08" />
+    </svg>
+
+    {/* Drafting Ruler Ticks (Left edge) */}
+    <svg class="ruler-ticks" width="24" height="260" viewBox="0 0 24 260" fill="none">
+      <line x1="2" y1="10" x2="22" y2="10" stroke="#1C1B19" stroke-opacity="0.15" stroke-width="1.5"/>
+      <line x1="2" y1="35" x2="14" y2="35" stroke="#1C1B19" stroke-opacity="0.12" stroke-width="1"/>
+      <line x1="2" y1="60" x2="18" y2="60" stroke="#1C1B19" stroke-opacity="0.12" stroke-width="1.2"/>
+      <line x1="2" y1="85" x2="14" y2="85" stroke="#1C1B19" stroke-opacity="0.12" stroke-width="1"/>
+      <line x1="2" y1="110" x2="22" y2="110" stroke="#1C1B19" stroke-opacity="0.15" stroke-width="1.5"/>
+      <line x1="2" y1="135" x2="14" y2="135" stroke="#1C1B19" stroke-opacity="0.12" stroke-width="1"/>
+      <line x1="2" y1="160" x2="18" y2="160" stroke="#1C1B19" stroke-opacity="0.12" stroke-width="1.2"/>
+      <line x1="2" y1="185" x2="14" y2="185" stroke="#1C1B19" stroke-opacity="0.12" stroke-width="1"/>
+      <line x1="2" y1="210" x2="22" y2="210" stroke="#1C1B19" stroke-opacity="0.15" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <!-- Layer 3B: Parallax Doodle Layer 2 (Mid: 0.35x speed) -->
+  <div class="parallax-doodle-layer mid-layer" data-parallax="0.35">
+    {/* Syscall Stamp: epoll_create1 */}
+    <div class="stamp-box stamp-epoll">
+      <span class="stamp-text">epoll_create1(EPOLL_CLOEXEC)</span>
+    </div>
+
+    {/* Syscall Stamp: landlock_add_rule */}
+    <div class="stamp-box stamp-landlock">
+      <span class="stamp-text">landlock_add_rule(AF_INET=DENY)</span>
+    </div>
+
+    {/* Syscall Stamp: inotify_add_watch */}
+    <div class="stamp-box stamp-inotify">
+      <span class="stamp-text">inotify_add_watch(IN_CREATE)</span>
+    </div>
+
+    {/* Hand-Drawn Annotation Arrow */}
+    <svg class="doodle-arrow" width="80" height="40" viewBox="0 0 80 40" fill="none">
+      <path d="M6 30C26 34 52 26 70 10" stroke="#1C1B19" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round"/>
+      <path d="M58 8L72 9L66 22" stroke="#1C1B19" stroke-opacity="0.22" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+
+    {/* Circled Emphasis Ring */}
+    <svg class="doodle-circle" width="100" height="50" viewBox="0 0 100 50" fill="none">
+      <ellipse cx="50" cy="25" rx="44" ry="20" stroke="#FF3B30" stroke-opacity="0.20" stroke-width="1.8" stroke-dasharray="6 2" transform="rotate(-3 50 25)"/>
+    </svg>
+  </div>
+
+  <!-- Layer 3C: Parallax Doodle Layer 3 (Fast: 0.65x speed) -->
+  <div class="parallax-doodle-layer fast-layer" data-parallax="0.65">
+    {/* Loose Masking Tape Scrap (Left) */}
+    <div class="desk-tape-scrap tape-left"></div>
+
+    {/* Loose Masking Tape Scrap (Right) */}
+    <div class="desk-tape-scrap tape-right"></div>
+
+    {/* Metal Paperclip SVG */}
+    <svg class="paperclip-svg" width="30" height="70" viewBox="0 0 30 70" fill="none">
+      <path d="M10 20V52C10 58 14 62 20 62C26 62 30 58 30 52V14C30 6 24 2 16 2C8 2 2 8 2 16V54" stroke="#8A857D" stroke-opacity="0.25" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <!-- Layer 5: Ambient Floating Dust/Fibers (Sparse) -->
+  <div class="ambient-dust-container">
+    <span class="dust-fleck f1"></span>
+    <span class="dust-fleck f2"></span>
+    <span class="dust-fleck f3"></span>
+    <span class="dust-fleck f4"></span>
+    <span class="dust-fleck f5"></span>
+  </div>
+</div>
+
+<style>
+  .living-desk-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  /* Layer 2: Blueprint Transition Layer */
+  .blueprint-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    background-color: #17283C;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
+    mix-blend-mode: multiply;
+  }
+
+  .blueprint-grid {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Layer 4: Desktop Cursor Light Highlight */
+  .cursor-light-spotlight {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      650px circle at var(--cursor-x, 50%) var(--cursor-y, 30%),
+      rgba(255, 255, 255, 0.40) 0%,
+      transparent 70%
+    );
+    opacity: 0.9;
+    transition: opacity 0.2s ease;
+  }
+
+  /* Parallax Layers */
+  .parallax-doodle-layer {
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  /* Coffee Stain */
+  .coffee-stain {
+    position: absolute;
+    top: 8%;
+    right: 4%;
+    transform: rotate(18deg);
+  }
+
+  /* Ruler Ticks */
+  .ruler-ticks {
+    position: absolute;
+    top: 35%;
+    left: 1%;
+  }
+
+  /* Syscall Stamps */
+  .stamp-box {
+    position: absolute;
+    border: 1.5px dashed rgba(28, 27, 25, 0.16);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(28, 27, 25, 0.22);
+    letter-spacing: 0.04em;
+    user-select: none;
+  }
+
+  .stamp-epoll {
+    top: 22%;
+    left: 3%;
+    transform: rotate(-6deg);
+  }
+
+  .stamp-landlock {
+    top: 55%;
+    right: 5%;
+    transform: rotate(5deg);
+  }
+
+  .stamp-inotify {
+    top: 78%;
+    left: 6%;
+    transform: rotate(-3deg);
+  }
+
+  .doodle-arrow {
+    position: absolute;
+    top: 15%;
+    left: 48%;
+    transform: rotate(12deg);
+  }
+
+  .doodle-circle {
+    position: absolute;
+    top: 48%;
+    left: 12%;
+  }
+
+  /* Desk Tape Scraps */
+  .desk-tape-scrap {
+    position: absolute;
+    width: 60px;
+    height: 18px;
+    background-color: rgba(224, 214, 190, 0.45);
+    box-shadow: 0 1px 3px rgba(28, 27, 25, 0.04);
+    clip-path: polygon(
+      0% 0%, 96% 0%, 100% 25%, 95% 50%, 100% 75%, 95% 100%,
+      5% 100%, 0% 75%, 4% 50%, 0% 25%, 0% 0%
+    );
+  }
+
+  .tape-left {
+    top: 30%;
+    left: 2%;
+    transform: rotate(24deg);
+  }
+
+  .tape-right {
+    top: 68%;
+    right: 3%;
+    transform: rotate(-18deg);
+  }
+
+  .paperclip-svg {
+    position: absolute;
+    top: 62%;
+    left: 4%;
+    transform: rotate(35deg);
+  }
+
+  /* Ambient Dust Flecks */
+  .ambient-dust-container {
+    position: absolute;
+    inset: 0;
+  }
+
+  .dust-fleck {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: rgba(28, 27, 25, 0.12);
+  }
+
+  .f1 { top: 12%; left: 18%; animation: dustFloat 12s ease-in-out infinite; }
+  .f2 { top: 38%; right: 22%; animation: dustFloat 16s ease-in-out infinite 2s; }
+  .f3 { top: 64%; left: 32%; animation: dustFloat 14s ease-in-out infinite 4s; }
+  .f4 { top: 82%; right: 15%; animation: dustFloat 18s ease-in-out infinite 1s; }
+  .f5 { top: 92%; left: 52%; animation: dustFloat 15s ease-in-out infinite 3s; }
+
+  @keyframes dustFloat {
+    0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.12; }
+    50% { transform: translateY(-12px) translateX(6px); opacity: 0.22; }
+  }
+
+  /* Accessibility: Prefers Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-doodle-layer {
+      transform: none !important;
+    }
+    .dust-fleck {
+      animation: none !important;
+    }
+    .cursor-light-spotlight {
+      display: none !important;
+    }
+  }
+
+  /* Mobile: Hide distracting background elements */
+  @media (max-width: 768px) {
+    .cursor-light-spotlight {
+      display: none;
+    }
+    .stamp-box {
+      display: none;
+    }
+    .ruler-ticks, .paperclip-svg {
+      display: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    // Only run parallax and light tracking if not reduced-motion
+    const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isReduced) return;
+
+    // Track scroll for parallax layers and blueprint transition
+    const blueprintLayer = document.getElementById('blueprint-transition-layer');
+    const slowLayer = document.querySelector('.slow-layer');
+    const midLayer = document.querySelector('.mid-layer');
+    const fastLayer = document.querySelector('.fast-layer');
+
+    let latestScrollY = window.scrollY;
+    let ticking = false;
+
+    function onScroll() {
+      latestScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateParallax(latestScrollY);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    function updateParallax(scrollY) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? scrollY / docHeight : 0;
+
+      // Update Parallax layers via transform translate3d (60fps GPU)
+      if (slowLayer) slowLayer.style.transform = `translate3d(0, ${-scrollY * 0.08}px, 0)`;
+      if (midLayer) midLayer.style.transform = `translate3d(0, ${-scrollY * 0.18}px, 0)`;
+      if (fastLayer) fastLayer.style.transform = `translate3d(0, ${-scrollY * 0.32}px, 0)`;
+
+      // Blueprint Grid Transition in the Proof Section (around progress 0.35 to 0.70)
+      // Hero (0 - 0.25): 0 opacity (Warm Cream)
+      // Proof (0.35 - 0.65): fades up to ~0.85 opacity (Technical Blueprint)
+      // Pipeline & CTA (0.75 - 1.0): fades back down to 0 opacity (Warm Cream)
+      if (blueprintLayer) {
+        let bpOpacity = 0;
+        if (progress > 0.22 && progress < 0.75) {
+          if (progress <= 0.40) {
+            // Fade in
+            bpOpacity = (progress - 0.22) / (0.40 - 0.22) * 0.82;
+          } else if (progress >= 0.58) {
+            // Fade out
+            bpOpacity = (1 - (progress - 0.58) / (0.75 - 0.58)) * 0.82;
+          } else {
+            bpOpacity = 0.82;
+          }
+        }
+        blueprintLayer.style.opacity = Math.max(0, Math.min(0.85, bpOpacity)).toFixed(3);
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Initial call
+    updateParallax(window.scrollY);
+
+    // Desktop Mouse Light-Spotlight position update
+    if (window.matchMedia('(hover: hover)').matches) {
+      let mouseTicking = false;
+      window.addEventListener('pointermove', (e) => {
+        if (!mouseTicking) {
+          window.requestAnimationFrame(() => {
+            const xPercent = (e.clientX / window.innerWidth) * 100;
+            const yPercent = (e.clientY / window.innerHeight) * 100;
+            document.documentElement.style.setProperty('--cursor-x', `${xPercent.toFixed(1)}%`);
+            document.documentElement.style.setProperty('--cursor-y', `${yPercent.toFixed(1)}%`);
+            mouseTicking = false;
+          });
+          mouseTicking = true;
+        }
+      }, { passive: true });
+    }
+  })();
+</script>

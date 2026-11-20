@@ -1,0 +1,144 @@
+---
+// ChapterRail.astro
+// Slim side rail "01 MESS ... 05 CLEAN" with pen-drawn vertical scroll progress.
+// Desktop-only, accessible, clickable to jump between chapters.
+---
+
+<aside class="fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col items-end pointer-events-auto select-none" aria-label="Page Chapters">
+  <div class="relative py-4 pr-1 flex flex-col items-end gap-6">
+    
+    <!-- Pen-Drawn Progress Line Background Track -->
+    <div class="absolute right-2 top-0 bottom-0 w-[2px] bg-[#1C1B19]/10 rounded-full">
+      <!-- Active Pen Ink Fill Line -->
+      <div id="rail-progress-fill" class="w-full bg-[#1C1B19] rounded-full transition-all duration-75 origin-top" style="height: 0%;"></div>
+    </div>
+
+    <!-- Chapter 01: MESS -->
+    <a
+      href="#chapter-1"
+      class="chapter-node group flex items-center gap-2.5 transition-all duration-200"
+      data-chapter="1"
+      aria-label="Chapter 1: Mess (Raw Spec Desk)"
+    >
+      <span class="chapter-label text-[10px] font-mono font-bold tracking-wider uppercase text-[#57534E] opacity-0 group-hover:opacity-100 transition-opacity bg-[#FDFBF7] px-2 py-0.5 rounded-full border border-[#1C1B19]/10 shadow-paper-sm">
+        01 MESS
+      </span>
+      <span class="node-pip w-3.5 h-3.5 rounded-full border-2 border-[#1C1B19] bg-[#FDFBF7] transition-all duration-200 z-10 group-hover:scale-125"></span>
+    </a>
+
+    <!-- Chapter 02: TEARDOWN -->
+    <a
+      href="#chapter-2"
+      class="chapter-node group flex items-center gap-2.5 transition-all duration-200"
+      data-chapter="2"
+      aria-label="Chapter 2: Teardown (Raw Code to Clean Copy)"
+    >
+      <span class="chapter-label text-[10px] font-mono font-bold tracking-wider uppercase text-[#57534E] opacity-0 group-hover:opacity-100 transition-opacity bg-[#FDFBF7] px-2 py-0.5 rounded-full border border-[#1C1B19]/10 shadow-paper-sm">
+        02 TEARDOWN
+      </span>
+      <span class="node-pip w-3.5 h-3.5 rounded-full border-2 border-[#1C1B19] bg-[#FDFBF7] transition-all duration-200 z-10 group-hover:scale-125"></span>
+    </a>
+
+    <!-- Chapter 03: PROOF -->
+    <a
+      href="#chapter-3"
+      class="chapter-node group flex items-center gap-2.5 transition-all duration-200"
+      data-chapter="3"
+      aria-label="Chapter 3: Proof (Blueprint & Shipped Work)"
+    >
+      <span class="chapter-label text-[10px] font-mono font-bold tracking-wider uppercase text-[#57534E] opacity-0 group-hover:opacity-100 transition-opacity bg-[#FDFBF7] px-2 py-0.5 rounded-full border border-[#1C1B19]/10 shadow-paper-sm">
+        03 PROOF
+      </span>
+      <span class="node-pip w-3.5 h-3.5 rounded-full border-2 border-[#1C1B19] bg-[#FDFBF7] transition-all duration-200 z-10 group-hover:scale-125"></span>
+    </a>
+
+    <!-- Chapter 04: PIPELINE -->
+    <a
+      href="#chapter-4"
+      class="chapter-node group flex items-center gap-2.5 transition-all duration-200"
+      data-chapter="4"
+      aria-label="Chapter 4: Pipeline (70/30 Research)"
+    >
+      <span class="chapter-label text-[10px] font-mono font-bold tracking-wider uppercase text-[#57534E] opacity-0 group-hover:opacity-100 transition-opacity bg-[#FDFBF7] px-2 py-0.5 rounded-full border border-[#1C1B19]/10 shadow-paper-sm">
+        04 PIPELINE
+      </span>
+      <span class="node-pip w-3.5 h-3.5 rounded-full border-2 border-[#1C1B19] bg-[#FDFBF7] transition-all duration-200 z-10 group-hover:scale-125"></span>
+    </a>
+
+    <!-- Chapter 05: CLEAN -->
+    <a
+      href="#chapter-5"
+      class="chapter-node group flex items-center gap-2.5 transition-all duration-200"
+      data-chapter="5"
+      aria-label="Chapter 5: Clean (Final Sheet & CTA)"
+    >
+      <span class="chapter-label text-[10px] font-mono font-bold tracking-wider uppercase text-[#57534E] opacity-0 group-hover:opacity-100 transition-opacity bg-[#FDFBF7] px-2 py-0.5 rounded-full border border-[#1C1B19]/10 shadow-paper-sm">
+        05 CLEAN
+      </span>
+      <span class="node-pip w-3.5 h-3.5 rounded-full border-2 border-[#1C1B19] bg-[#FDFBF7] transition-all duration-200 z-10 group-hover:scale-125"></span>
+    </a>
+
+  </div>
+</aside>
+
+<style>
+  /* Active State for Current Chapter */
+  .chapter-node.active .node-pip {
+    background-color: #E3DEFA;
+    border-color: #1C1B19;
+    transform: scale(1.35);
+    box-shadow: 0 0 0 3px rgba(28, 27, 25, 0.12);
+  }
+
+  .chapter-node.active .chapter-label {
+    opacity: 1;
+    color: #1C1B19;
+    background-color: #E3DEFA;
+    border-color: #1C1B19;
+    font-weight: 800;
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const progressFill = document.getElementById('rail-progress-fill');
+    const nodes = document.querySelectorAll('.chapter-node');
+    const chapters = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5'];
+
+    function onScroll() {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollY = window.scrollY;
+      const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+
+      if (progressFill) {
+        progressFill.style.height = `${Math.min(100, Math.max(0, progress))}%`;
+      }
+
+      // Determine active chapter based on section positions
+      let currentActive = 1;
+      for (let i = chapters.length - 1; i >= 0; i--) {
+        const el = document.getElementById(chapters[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= window.innerHeight * 0.45) {
+            currentActive = i + 1;
+            break;
+          }
+        }
+      }
+
+      nodes.forEach((node) => {
+        const ch = parseInt(node.getAttribute('data-chapter') || '1', 10);
+        if (ch === currentActive) {
+          node.classList.add('active');
+        } else {
+          node.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Initial call
+    onScroll();
+  })();
+</script>

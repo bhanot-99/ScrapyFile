@@ -2,6 +2,7 @@
 import BaseHead from '../components/layout/BaseHead.astro';
 import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
+import LivingDeskBackground from '../components/ui/LivingDeskBackground.astro';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -29,13 +30,16 @@ const { title, description, image, articleDate } = Astro.props;
     <!-- Subtle Organic Paper Noise Texture Overlay -->
     <div class="paper-grain-overlay" aria-hidden="true"></div>
 
+    <!-- Living Paper Desk Layer Stack (Blueprint transition, Parallax doodles, Ambient flecks) -->
+    <LivingDeskBackground />
+
     <div class="w-full relative z-10">
       <Navbar />
       <slot />
     </div>
     <Footer />
 
-    <!-- Subtle Cursor Light-Source Tracker for Desktop -->
+    <!-- Subtle Desktop Cursor Light-Source Tracker -->
     <script is:inline>
       (() => {
         if (!window.matchMedia('(hover: hover)').matches) return;
@@ -47,8 +51,12 @@ const { title, description, image, articleDate } = Astro.props;
             window.requestAnimationFrame(() => {
               const xPercent = (e.clientX / window.innerWidth) * 100;
               const yPercent = (e.clientY / window.innerHeight) * 100;
-              document.documentElement.style.setProperty('--light-x', `${xPercent.toFixed(1)}%`);
-              document.documentElement.style.setProperty('--light-y', `${yPercent.toFixed(1)}%`);
+              const xStr = `${xPercent.toFixed(1)}%`;
+              const yStr = `${yPercent.toFixed(1)}%`;
+              document.documentElement.style.setProperty('--light-x', xStr);
+              document.documentElement.style.setProperty('--light-y', yStr);
+              document.documentElement.style.setProperty('--cursor-x', xStr);
+              document.documentElement.style.setProperty('--cursor-y', yStr);
               ticking = false;
             });
             ticking = true;
