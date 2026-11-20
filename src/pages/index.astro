@@ -63,13 +63,13 @@ import { ShieldCheck, Terminal } from 'lucide-react';
 
           <!-- Interactive Scroll-Scrubbed Red-Pen Strikethrough Memo Scrap -->
           <div class="hero-enter-4">
-            <HeroMarkupScrub client:load />
+            <HeroMarkupScrub client:idle />
           </div>
 
           <!-- Tactile CTAs: Primary & Secondary -->
           <div class="hero-enter-5 flex flex-wrap items-center gap-3 pt-1">
             <MagneticCta
-              client:load
+              client:idle
               label="Get a Free 2-Minute Video Teardown"
               href="/contact?teardown=true"
             />
@@ -103,10 +103,10 @@ import { ShieldCheck, Terminal } from 'lucide-react';
           </div>
         </div>
 
-        <!-- Right Column: Interactive "Spec-to-Copy" Live Demo Island (client:load) -->
+        <!-- Right Column: Interactive "Spec-to-Copy" Live Demo Island (client:idle) -->
         <div class="lg:col-span-6 w-full relative">
           <div class="masking-tape -top-3 left-1/2 -translate-x-1/2 z-20"></div>
-          <HeroSpecTranslator client:load />
+          <HeroSpecTranslator client:idle />
         </div>
       </div>
 
@@ -158,7 +158,7 @@ import { ShieldCheck, Terminal } from 'lucide-react';
   <PinnedTeardown client:visible />
 
   <!-- Interactive Before/After Tactile Teardown Slider -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+  <section class="content-auto max-w-6xl mx-auto px-4 sm:px-6 py-8">
     <BeforeAfterSlider client:visible />
   </section>
 
@@ -166,7 +166,7 @@ import { ShieldCheck, Terminal } from 'lucide-react';
   <FannedProofCards client:visible />
 
   <!-- Systems Scrapbook Desk Details (Field Notes & Shipped Strips) -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 border-b border-[#1C1B19]/8">
+  <section class="content-auto max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20 border-b border-[#1C1B19]/8">
     <SectionHeader
       eyebrow="ENGINEERING FIELD NOTES"
       title="The Systems Scrapbook"
@@ -290,7 +290,7 @@ import { ShieldCheck, Terminal } from 'lucide-react';
   </section>
 
   <!-- Interactive Draggable Sticky Notes: Engineering Copy Decisions -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+  <section class="content-auto max-w-6xl mx-auto px-4 sm:px-6 py-6">
     <DraggableStickyNotes client:visible />
   </section>
 

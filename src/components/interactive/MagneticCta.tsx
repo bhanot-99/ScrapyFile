@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useSpring } from 'framer-motion';
+import { motion, useSpring } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
 
 interface MagneticCtaProps {
