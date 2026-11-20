@@ -109,14 +109,14 @@
     overflow: hidden;
   }
 
-  /* Layer 2: Blueprint Transition Layer */
+  /* Layer 2: Blueprint Transition Layer (Pre-composited opacity, zero blend-mode overhead) */
   .blueprint-layer {
     position: absolute;
     inset: 0;
     opacity: 0;
-    background-color: #17283C;
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.5s ease;
-    mix-blend-mode: multiply;
+    background-color: rgba(23, 40, 60, 0.92);
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
   }
 
   .blueprint-grid {
@@ -320,6 +320,18 @@
     let latestScrollY = window.scrollY;
     let ticking = false;
 
+    // Cache maxScroll on resize (Zero layout reads during scroll)
+    let maxScroll = 1;
+    function updateMaxScroll() {
+      maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    }
+    updateMaxScroll();
+
+    const resizeObserver = new ResizeObserver(() => {
+      updateMaxScroll();
+    });
+    resizeObserver.observe(document.documentElement);
+
     function onScroll() {
       latestScrollY = window.scrollY;
       if (!ticking) {
@@ -332,26 +344,20 @@
     }
 
     function updateParallax(scrollY) {
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? scrollY / docHeight : 0;
+      const progress = maxScroll > 0 ? scrollY / maxScroll : 0;
 
       // Update Parallax layers via transform translate3d (60fps GPU)
-      if (slowLayer) slowLayer.style.transform = `translate3d(0, ${-scrollY * 0.08}px, 0)`;
-      if (midLayer) midLayer.style.transform = `translate3d(0, ${-scrollY * 0.18}px, 0)`;
-      if (fastLayer) fastLayer.style.transform = `translate3d(0, ${-scrollY * 0.32}px, 0)`;
+      if (slowLayer) slowLayer.style.transform = `translate3d(0, ${(-scrollY * 0.08).toFixed(1)}px, 0)`;
+      if (midLayer) midLayer.style.transform = `translate3d(0, ${(-scrollY * 0.18).toFixed(1)}px, 0)`;
+      if (fastLayer) fastLayer.style.transform = `translate3d(0, ${(-scrollY * 0.32).toFixed(1)}px, 0)`;
 
-      // Blueprint Grid Transition in the Proof Section (around progress 0.35 to 0.70)
-      // Hero (0 - 0.25): 0 opacity (Warm Cream)
-      // Proof (0.35 - 0.65): fades up to ~0.85 opacity (Technical Blueprint)
-      // Pipeline & CTA (0.75 - 1.0): fades back down to 0 opacity (Warm Cream)
+      // Blueprint Grid Transition in the Proof Section
       if (blueprintLayer) {
         let bpOpacity = 0;
         if (progress > 0.22 && progress < 0.75) {
           if (progress <= 0.40) {
-            // Fade in
             bpOpacity = (progress - 0.22) / (0.40 - 0.22) * 0.82;
           } else if (progress >= 0.58) {
-            // Fade out
             bpOpacity = (1 - (progress - 0.58) / (0.75 - 0.58)) * 0.82;
           } else {
             bpOpacity = 0.82;

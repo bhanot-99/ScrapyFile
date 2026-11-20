@@ -191,7 +191,7 @@ export default function CommandPalette() {
       role="dialog"
       aria-modal="true"
       aria-label="Section and page navigation"
-      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 px-4 bg-[#1C1B19]/40 backdrop-blur-xs"
+      className="fixed inset-0 z-50 flex items-start justify-center pt-20 sm:pt-28 px-4 bg-[#1C1B19]/50"
       onClick={() => setIsOpen(false)}
     >
       <div

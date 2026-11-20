@@ -10,7 +10,7 @@ const navLinks = [
 ---
 
 <header class="sticky top-0 z-50 w-full px-4 sm:px-6 pt-3 pb-2 transition-all duration-200">
-  <div class="max-w-6xl mx-auto bg-[#F4F1EA]/85 backdrop-blur-md rounded-2xl px-5 sm:px-6 py-3 flex items-center justify-between border border-[#1C1B19]/8 shadow-paper-sm">
+  <div class="max-w-6xl mx-auto bg-[#F4F1EA] rounded-2xl px-5 sm:px-6 py-3 flex items-center justify-between border border-[#1C1B19]/12 shadow-paper-sm">
     <!-- Brand Wordmark with Soft Lavender Tag -->
     <a href="/" class="group flex items-center gap-2.5 text-sm font-sans tracking-tight text-[#1C1B19]">
       <span class="font-extrabold text-base tracking-tight text-[#1C1B19]">Jatin Bhanot</span>
@@ -60,7 +60,7 @@ const navLinks = [
 
   <!-- Mobile Sub-Nav -->
   <div class="flex md:hidden justify-center gap-1.5 mt-2 px-2">
-    <div class="bg-[#FDFBF7]/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1.5 border border-[#1C1B19]/8 shadow-paper-sm text-[11px] font-sans font-semibold">
+    <div class="bg-[#FDFBF7] px-3 py-1 rounded-full flex items-center gap-1.5 border border-[#1C1B19]/10 shadow-paper-sm text-[11px] font-sans font-semibold">
       {navLinks.map((link) => {
         const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
         return (

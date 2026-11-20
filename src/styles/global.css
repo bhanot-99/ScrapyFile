@@ -1,6 +1,25 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* Two Minimal Variable Font Families (Latin Subset Only, font-display: swap) */
+@font-face {
+  font-family: 'Plus Jakarta Sans Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('/fonts/plus-jakarta-sans-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url('/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2-variations');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 @theme {
   --color-canvas: #F4F1EA;
   --color-paper: #FDFBF7;
@@ -152,9 +171,8 @@ body {
   transform: translateX(-50%) rotate(-1deg);
   width: 96px;
   height: 24px;
-  background-color: rgba(224, 214, 190, 0.78);
+  background-color: rgba(224, 214, 190, 0.85);
   box-shadow: 0 1px 3px rgba(28, 27, 25, 0.08);
-  backdrop-filter: blur(2px);
   clip-path: polygon(
     0% 0%, 96% 0%, 100% 15%, 96% 35%, 100% 55%, 97% 75%, 100% 95%, 95% 100%,
     4% 100%, 0% 85%, 4% 65%, 0% 45%, 3% 25%, 0% 0%
@@ -265,15 +283,21 @@ body {
   transform: scale(0.97) translateY(1px);
 }
 
-/* Subtle Crumpled Paper Texture Overlay (Pure SVG Noise) */
+/* Subtle Crumpled Paper Texture Overlay (Pure SVG Noise, zero blend-mode overhead) */
 .paper-grain-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.038;
-  mix-blend-mode: multiply;
+  opacity: 0.026;
   z-index: 999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Offscreen Section Rendering Optimization */
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 750px;
+  contain: layout style paint;
 }
 
 /* Accessibility: Honor prefers-reduced-motion */

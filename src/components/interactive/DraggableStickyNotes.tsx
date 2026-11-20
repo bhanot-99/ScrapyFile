@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { ChevronDown, Sparkles } from 'lucide-react';
 
 interface StickyNoteData {
@@ -103,7 +103,7 @@ export default function DraggableStickyNotes() {
               {/* Paper Masking Tape Header Anchor */}
               <div
                 aria-hidden="true"
-                className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#E6E0D5]/80 backdrop-blur-xs rounded-xs border-y border-[#1C1B19]/10 shadow-xs rotate-[-1deg] pointer-events-none"
+                className="absolute -top-3 left-1/2 -translate-x-1/2 w-20 h-5 bg-[#E6E0D5]/90 rounded-xs border-y border-[#1C1B19]/10 shadow-xs rotate-[-1deg] pointer-events-none"
               />
 
               {/* Note Header / Keyboard Accessible Toggle Button */}
