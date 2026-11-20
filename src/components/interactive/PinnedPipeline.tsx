@@ -51,9 +51,8 @@ export default function PinnedPipeline() {
     offset: ['start start', 'end end'],
   });
 
-  // Ink bar fill progress:
-  // Fills to 70% during the first 0.65 of scroll, then completes to 100%
-  const inkWidthPercent = useTransform(scrollYProgress, [0, 0.65, 1], [0, 70, 100]);
+  // Ink bar fill progress via GPU-composited scaleX (0 to 0.7 to 1.0)
+  const inkScaleX = useTransform(scrollYProgress, [0, 0.65, 1], [0, 0.7, 1]);
 
   // Step 1 card animation
   const card1Y = useTransform(scrollYProgress, [0, 0.25], [40, 0]);
@@ -103,10 +102,10 @@ export default function PinnedPipeline() {
             {/* 70% marker notch */}
             <div className="absolute left-[70%] top-0 bottom-0 w-[1.5px] bg-[#1C1B19]/30 z-20"></div>
 
-            {/* Filling Ink Bar */}
+            {/* Filling Ink Bar (GPU transform: scaleX, zero layout trigger) */}
             <motion.div
-              style={{ width: useTransform(inkWidthPercent, (v) => `${v}%`) }}
-              className="bg-[#1C1B19] h-full rounded-full transition-all duration-75"
+              style={{ scaleX: inkScaleX, transformOrigin: 'left' }}
+              className="bg-[#1C1B19] h-full w-full rounded-full"
             />
           </div>
         </div>
