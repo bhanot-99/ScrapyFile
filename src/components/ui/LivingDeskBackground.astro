@@ -128,17 +128,26 @@
     background-size: 32px 32px;
   }
 
-  /* Layer 4: Desktop Cursor Light Highlight */
+  /* Layer 4: Desktop Cursor Light Highlight (GPU translate3d) */
   .cursor-light-spotlight {
-    position: absolute;
-    inset: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 600px;
+    margin-top: -300px;
+    margin-left: -300px;
+    border-radius: 50%;
+    pointer-events: none;
     background: radial-gradient(
-      650px circle at var(--cursor-x, 50%) var(--cursor-y, 30%),
+      circle at center,
       rgba(255, 255, 255, 0.40) 0%,
+      rgba(255, 253, 247, 0.12) 40%,
       transparent 70%
     );
     opacity: 0.9;
-    transition: opacity 0.2s ease;
+    will-change: transform;
+    transform: translate3d(-9999px, -9999px, 0);
   }
 
   /* Parallax Layers */
@@ -356,16 +365,18 @@
     // Initial call
     updateParallax(window.scrollY);
 
-    // Desktop Mouse Light-Spotlight position update
-    if (window.matchMedia('(hover: hover)').matches) {
+    // Desktop Mouse Light-Spotlight position update via translate3d (GPU composite, zero style recalc)
+    const spotlight = document.getElementById('cursor-light-spotlight');
+    if (spotlight && window.matchMedia('(hover: hover)').matches) {
+      let mouseX = -9999;
+      let mouseY = -9999;
       let mouseTicking = false;
       window.addEventListener('pointermove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
         if (!mouseTicking) {
           window.requestAnimationFrame(() => {
-            const xPercent = (e.clientX / window.innerWidth) * 100;
-            const yPercent = (e.clientY / window.innerHeight) * 100;
-            document.documentElement.style.setProperty('--cursor-x', `${xPercent.toFixed(1)}%`);
-            document.documentElement.style.setProperty('--cursor-y', `${yPercent.toFixed(1)}%`);
+            spotlight.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
             mouseTicking = false;
           });
           mouseTicking = true;

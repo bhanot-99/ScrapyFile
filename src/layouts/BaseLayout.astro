@@ -39,38 +39,6 @@ const { title, description, image, articleDate } = Astro.props;
       <slot />
     </div>
     <Footer />
-    <CommandPalette client:load />
-
-    <!-- Subtle Desktop Cursor Light-Source Tracker -->
-    <script is:inline>
-      (() => {
-        if (!window.matchMedia('(hover: hover)').matches) return;
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        
-        let ticking = false;
-        window.addEventListener('pointermove', (e) => {
-          if (!ticking) {
-            window.requestAnimationFrame(() => {
-              const xPercent = (e.clientX / window.innerWidth) * 100;
-              const yPercent = (e.clientY / window.innerHeight) * 100;
-              const xStr = `${xPercent.toFixed(1)}%`;
-              const yStr = `${yPercent.toFixed(1)}%`;
-              document.documentElement.style.setProperty('--light-x', xStr);
-              document.documentElement.style.setProperty('--light-y', yStr);
-              document.documentElement.style.setProperty('--cursor-x', xStr);
-              document.documentElement.style.setProperty('--cursor-y', yStr);
-
-              // Calculate normalized paper shadow nudge away from light source
-              const normX = ((e.clientX / window.innerWidth) - 0.5) * 8; // -4px to +4px
-              const normY = ((e.clientY / window.innerHeight) - 0.5) * 8;
-              document.documentElement.style.setProperty('--shadow-nudge-x', `${(-normX).toFixed(1)}px`);
-              document.documentElement.style.setProperty('--shadow-nudge-y', `${(-normY + 8).toFixed(1)}px`);
-              ticking = false;
-            });
-            ticking = true;
-          }
-        }, { passive: true });
-      })();
-    </script>
+    <CommandPalette client:idle />
   </body>
 </html>
