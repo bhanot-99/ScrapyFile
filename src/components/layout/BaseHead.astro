@@ -1,7 +1,4 @@
 ---
-import '@fontsource-variable/plus-jakarta-sans';
-import '@fontsource-variable/inter';
-import '@fontsource-variable/jetbrains-mono';
 import '../../styles/global.css';
 
 interface Props {
@@ -29,6 +26,10 @@ const formattedTitle = title.includes('Jatin Bhanot') ? title : `${title} | Jati
 <link rel="canonical" href={canonicalURL} />
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content="#F4F1EA" />
+
+<!-- Font Preloads (Latin Subsets) -->
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+<link rel="preload" href="/fonts/jetbrains-mono-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
 <!-- Primary Meta Tags -->
 <title>{formattedTitle}</title>
