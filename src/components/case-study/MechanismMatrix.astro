@@ -12,35 +12,35 @@ interface Props {
 const { rows, title = "Mechanism-to-Benefit Translation Matrix" } = Astro.props;
 ---
 
-<div class="bg-[#FFFDF9] rounded-sm border-[1.5px] border-[#111111] shadow-[4px_4px_0px_#111111] overflow-hidden my-6 font-mono">
-  <div class="bg-[#111111] text-[#F3F1EC] px-5 py-3 border-b-[1.5px] border-[#111111] flex items-center justify-between">
-    <span class="text-xs uppercase tracking-wider font-mono font-bold text-[#FFE600]">
+<div class="bg-[#FDFBF7] rounded-2xl border border-[#1C1B19]/8 shadow-paper-md overflow-hidden my-8 font-mono">
+  <div class="bg-[#ECE7DE] text-[#1C1B19] px-6 py-4 border-b border-[#1C1B19]/8 flex items-center justify-between">
+    <span class="text-xs uppercase tracking-wider font-mono font-bold text-[#1C1B19]">
       // {title}
     </span>
-    <span class="text-[11px] text-[#F3F1EC]/70 hidden sm:inline">Engineering Rigour → Revenue Lift</span>
+    <span class="text-[11px] text-[#57534E] font-medium hidden sm:inline">Engineering Rigour → Revenue Lift</span>
   </div>
 
   <div class="overflow-x-auto">
     <table class="w-full text-left border-collapse text-xs">
       <thead>
-        <tr class="bg-[#FAF8F3] border-b-[1.5px] border-[#111111] text-[#111111]">
-          <th class="p-4 font-bold w-1/2 uppercase tracking-wider border-r border-[#111111]/15">Technical Mechanism (The "How It Works")</th>
-          <th class="p-4 font-bold w-1/2 text-[#16A34A] uppercase tracking-wider">Commercial Benefit (What The Buyer Buys)</th>
+        <tr class="bg-[#FAF7F0] border-b border-[#1C1B19]/8 text-[#57534E]">
+          <th class="p-4 sm:p-5 font-bold w-1/2 uppercase tracking-wider border-r border-[#1C1B19]/8">Technical Mechanism (The "How It Works")</th>
+          <th class="p-4 sm:p-5 font-bold w-1/2 text-[#16A34A] uppercase tracking-wider">Commercial Benefit (What The Buyer Buys)</th>
         </tr>
       </thead>
-      <tbody class="divide-y divide-[#111111]/15">
+      <tbody class="divide-y divide-[#1C1B19]/6">
         {rows.map((row, idx) => (
-          <tr class={idx % 2 === 0 ? 'bg-white' : 'bg-[#FAF8F3]'}>
-            <td class="p-4 text-[#111111] align-top leading-relaxed font-mono border-r border-[#111111]/15">
-              <div class="flex items-start gap-2">
-                <span class="font-bold text-[#FF3B30] select-none">0{idx + 1}.</span>
+          <tr class={idx % 2 === 0 ? 'bg-white' : 'bg-[#FAF7F0]/60'}>
+            <td class="p-4 sm:p-5 text-[#1C1B19] align-top leading-relaxed font-mono border-r border-[#1C1B19]/8">
+              <div class="flex items-start gap-2.5">
+                <span class="font-bold text-[#8A857D] select-none">0{idx + 1}.</span>
                 <span class="font-medium">{row.mechanism}</span>
               </div>
             </td>
-            <td class="p-4 text-[#111111] align-top leading-relaxed font-sans">
-              <div class="flex items-start gap-2">
+            <td class="p-4 sm:p-5 text-[#1C1B19] align-top leading-relaxed font-sans">
+              <div class="flex items-start gap-2.5">
                 <span class="text-[#16A34A] font-bold select-none font-mono">→</span>
-                <span class="font-semibold text-[#111111]">{row.benefit}</span>
+                <span class="font-semibold text-[#1C1B19]">{row.benefit}</span>
               </div>
             </td>
           </tr>

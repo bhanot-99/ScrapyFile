@@ -2,36 +2,34 @@
 const currentPath = Astro.url.pathname;
 
 const navLinks = [
-  { href: '/work', label: 'WORK' },
-  { href: '/services', label: 'SERVICES' },
-  { href: '/about', label: 'ABOUT' },
-  { href: '/contact', label: 'CONTACT' },
+  { href: '/work', label: 'Work' },
+  { href: '/services', label: 'Services' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
 ];
 ---
 
 <header class="sticky top-0 z-50 w-full px-4 sm:px-6 pt-3 pb-2 transition-all duration-200">
-  <div class="max-w-6xl mx-auto paper-frosted rounded-md px-4 sm:px-6 py-2.5 flex items-center justify-between border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111]">
-    <!-- Brand Stamped Monogram -->
-    <a href="/" class="group flex items-center gap-2.5 font-mono text-xs sm:text-sm tracking-tight text-[#111111]">
-      <span class="inline-flex items-center justify-center w-7 h-7 rounded bg-[#111111] border-[1.5px] border-[#111111] text-[#FFE600] font-black font-display text-xs shadow-[1.5px_1.5px_0px_#FF3B30] group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-transform">
-        JB
+  <div class="max-w-6xl mx-auto bg-[#F4F1EA]/85 backdrop-blur-md rounded-2xl px-5 sm:px-6 py-3 flex items-center justify-between border border-[#1C1B19]/8 shadow-paper-sm">
+    <!-- Brand Wordmark with Soft Lavender Tag -->
+    <a href="/" class="group flex items-center gap-2.5 text-sm font-sans tracking-tight text-[#1C1B19]">
+      <span class="font-extrabold text-base tracking-tight text-[#1C1B19]">Jatin Bhanot</span>
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E3DEFA] text-[11px] font-mono font-bold text-[#1C1B19]">
+        Tech Copy
       </span>
-      <span class="font-black font-display text-sm tracking-tight text-[#111111]">JATIN BHANOT</span>
-      <span class="text-[#4B4A47] hidden sm:inline">//</span>
-      <span class="text-[#FF3B30] font-mono text-xs font-bold tracking-wider hidden sm:inline">TECH COPY</span>
     </a>
 
     <!-- Center Navigation Links -->
-    <nav class="hidden md:flex items-center gap-1 font-mono text-xs font-bold tracking-wider">
+    <nav class="hidden md:flex items-center gap-1 font-sans text-xs font-semibold">
       {navLinks.map((link) => {
         const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
         return (
           <a
             href={link.href}
-            class={`px-3 py-1 rounded-sm border-[1.5px] transition-all ${
+            class={`px-3.5 py-1.5 rounded-full transition-all ${
               isActive
-                ? 'bg-[#FFE600] text-[#111111] border-[#111111] shadow-[2px_2px_0px_#111111]'
-                : 'border-transparent text-[#4B4A47] hover:text-[#111111] hover:bg-[#FAF8F3] hover:border-[#111111]'
+                ? 'bg-[#1C1B19] text-[#FDFBF7] shadow-sm'
+                : 'text-[#57534E] hover:text-[#1C1B19] hover:bg-[#EAE5DA]/60'
             }`}
           >
             {link.label}
@@ -42,16 +40,16 @@ const navLinks = [
 
     <!-- Right: Availability Status & Project CTA -->
     <div class="flex items-center gap-3">
-      <div class="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded-sm bg-[#FFFDF9] border-[1.5px] border-[#111111] text-[11px] font-mono font-bold text-[#111111] shadow-[2px_2px_0px_#111111]">
-        <span class="w-2 h-2 rounded-full bg-[#16A34A] animate-ping"></span>
-        <span>Q4 / 2026: <strong class="text-[#16A34A]">2 SLOTS OPEN</strong></span>
+      <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-[#D7F0DE] border border-[#1C1B19]/6 text-[11px] font-mono font-semibold text-[#1C1B19]">
+        <span class="w-2 h-2 rounded-full bg-[#16A34A]"></span>
+        <span>Q4 / 2026: <strong>2 Slots Open</strong></span>
       </div>
 
       <a
         href="/contact"
-        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-sm text-xs font-mono font-bold tracking-wider uppercase bg-[#111111] text-[#FFE600] hover:bg-[#111111] hover:text-white border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#FF3B30] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[4px_4px_0px_#FF3B30] active:translate-x-[1px] active:translate-y-[1px] transition-all"
+        class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-sans font-bold tracking-tight bg-[#1C1B19] text-[#FDFBF7] hover:bg-[#3D3A36] shadow-paper-sm hover:shadow-paper-md hover:-translate-y-0.5 active:translate-y-0 transition-all"
       >
-        <span>START PROJECT</span>
+        <span>Start a Project</span>
         <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14"></path>
           <path d="m12 5 7 7-7 7"></path>
@@ -62,14 +60,14 @@ const navLinks = [
 
   <!-- Mobile Sub-Nav -->
   <div class="flex md:hidden justify-center gap-1.5 mt-2 px-2">
-    <div class="bg-[#FFFDF9] px-2.5 py-1 rounded-sm flex items-center gap-1.5 border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] text-[11px] font-mono font-bold">
+    <div class="bg-[#FDFBF7]/90 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1.5 border border-[#1C1B19]/8 shadow-paper-sm text-[11px] font-sans font-semibold">
       {navLinks.map((link) => {
         const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
         return (
           <a
             href={link.href}
-            class={`px-2 py-0.5 rounded-sm border ${
-              isActive ? 'bg-[#FFE600] text-[#111111] border-[#111111]' : 'border-transparent text-[#4B4A47]'
+            class={`px-2.5 py-1 rounded-full ${
+              isActive ? 'bg-[#1C1B19] text-white' : 'text-[#57534E]'
             }`}
           >
             {link.label}

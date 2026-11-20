@@ -31,23 +31,23 @@ export default function PdfDownloadModal({
   };
 
   return (
-    <div className="relative bg-[#FFFDF9] rounded-sm border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] p-5 sm:p-7 my-8 font-mono">
+    <div className="relative bg-[#FDFBF7] rounded-2xl border border-[#1C1B19]/10 shadow-[0_12px_28px_rgba(28,27,25,0.08)] p-5 sm:p-7 my-8 font-sans">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-start gap-3.5">
-          <div className="p-3 rounded-xs bg-[#FFE600] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] text-[#111111] shrink-0">
+          <div className="p-3 rounded-2xl bg-[#E3DEFA] border border-[#1C1B19]/10 shadow-xs text-[#1C1B19] shrink-0">
             <FileText className="w-6 h-6" />
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] uppercase tracking-wider text-[#111111] font-bold px-2 py-0.5 rounded-xs bg-[#16A34A] text-white border border-[#111111]">
-                OFFICIAL WHITEPAPER
+              <span className="text-[10px] uppercase tracking-wider text-[#1C1B19] font-mono font-semibold px-2.5 py-0.5 rounded-full bg-[#D7F0DE] border border-[#1C1B19]/10">
+                Official Whitepaper
               </span>
-              <span className="text-[11px] text-[#4B4A47] font-bold">{filesize}</span>
+              <span className="text-[11px] text-[#57534E] font-mono font-medium">{filesize}</span>
             </div>
-            <h4 className="text-sm sm:text-base font-black font-display uppercase tracking-tight text-[#111111]">
+            <h4 className="text-sm sm:text-base font-bold tracking-tight text-[#1C1B19]">
               {documentTitle}
             </h4>
-            <p className="text-xs text-[#4B4A47] font-sans font-medium">
+            <p className="text-xs text-[#57534E] leading-relaxed">
               Includes full Landlock C rulesets, systemd security profiles, and BitNet b1.58 AVX-512 benchmark logs.
             </p>
           </div>
@@ -57,20 +57,20 @@ export default function PdfDownloadModal({
           type="button"
           onClick={handleDownload}
           disabled={downloading}
-          className={`px-5 py-3 rounded-xs text-xs font-mono font-black uppercase tracking-wider transition-all cursor-pointer flex items-center justify-center gap-2 shrink-0 border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111] ${
+          className={`px-5 py-3 rounded-full text-xs font-sans font-semibold tracking-wide transition-all cursor-pointer flex items-center justify-center gap-2 shrink-0 ${
             downloaded
-              ? 'bg-[#16A34A] text-white'
-              : 'bg-[#FF3B30] text-white hover:bg-[#e03026] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_#111111]'
+              ? 'bg-[#D7F0DE] text-[#1C1B19] border border-[#1C1B19]/15'
+              : 'bg-[#1C1B19] text-[#FDFBF7] hover:bg-[#3D3A36] shadow-[0_4px_12px_rgba(28,27,25,0.12)] hover:translate-y-[-1px]'
           }`}
         >
           {downloading ? (
             <span className="flex items-center gap-2">
-              <span className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+              <span className="w-3.5 h-3.5 border-2 border-current border-t-transparent rounded-full animate-spin"></span>
               Generating PDF...
             </span>
           ) : downloaded ? (
             <span className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-white" />
+              <CheckCircle2 className="w-4 h-4 text-[#1C1B19]" />
               Downloaded (1.8 MB)
             </span>
           ) : (
@@ -82,8 +82,8 @@ export default function PdfDownloadModal({
         </button>
       </div>
 
-      <div className="mt-4 pt-3 border-t-[1.5px] border-[#111111]/20 flex items-center gap-2 text-[11px] text-[#4B4A47] font-bold">
-        <ShieldCheck className="w-3.5 h-3.5 text-[#16A34A]" />
+      <div className="mt-4 pt-3 border-t border-[#1C1B19]/8 flex items-center gap-2 text-[11px] text-[#57534E] font-mono font-medium">
+        <ShieldCheck className="w-3.5 h-3.5 text-[#1C1B19]" />
         <span>Cryptographically verified release • SHA-256: 9b2d8f...7e41</span>
       </div>
     </div>

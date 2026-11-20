@@ -1,0 +1,48 @@
+---
+interface Props {
+  hasTape?: boolean;
+  tapeColor?: 'default' | 'peach' | 'lavender' | 'rose';
+  class?: string;
+  isRuled?: boolean;
+}
+
+const {
+  hasTape = true,
+  tapeColor = 'default',
+  class: className = '',
+  isRuled = true,
+} = Astro.props;
+
+const tapeClass = {
+  default: '',
+  peach: 'masking-tape-peach',
+  lavender: 'masking-tape-lavender',
+  rose: 'masking-tape-rose',
+}[tapeColor];
+
+// Generate 8 spiral holes
+const spiralHoles = Array.from({ length: 8 });
+---
+
+<div class={`relative bg-[#FDFBF7] rounded-2xl border border-[#1C1B19]/8 shadow-paper-md p-6 sm:p-8 ${isRuled ? 'ruled-paper' : ''} ${className}`}>
+  <!-- Masking tape centered at top edge -->
+  {hasTape && (
+    <div class={`masking-tape ${tapeClass}`}></div>
+  )}
+
+  <!-- Spiral Ring Binding Along Left Edge -->
+  <div class="absolute left-2.5 top-6 bottom-6 flex flex-col justify-between pointer-events-none z-10">
+    {spiralHoles.map(() => (
+      <div class="flex items-center gap-1 -ml-3">
+        {/* Metal ring clip */}
+        <div class="w-4 h-2 rounded-full bg-gradient-to-r from-stone-400 via-stone-200 to-stone-400 shadow-sm border border-stone-400/40"></div>
+        {/* Paper punch hole */}
+        <div class="w-2.5 h-2.5 rounded-full bg-[#EAE5DA] shadow-inner border border-stone-300/60"></div>
+      </div>
+    ))}
+  </div>
+
+  <div class="pl-4 sm:pl-6 relative z-10">
+    <slot />
+  </div>
+</div>

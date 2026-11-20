@@ -2,36 +2,34 @@
 interface Props {
   tilt?: 'none' | 'left' | 'right';
   hasTape?: boolean;
-  tapeColor?: 'yellow' | 'red' | 'blue';
-  shadowColor?: 'ink' | 'yellow' | 'red' | 'blue';
+  tapeColor?: 'default' | 'peach' | 'lavender' | 'rose';
   class?: string;
 }
 
 const {
   tilt = 'none',
-  hasTape = false,
-  tapeColor = 'yellow',
-  shadowColor = 'ink',
+  hasTape = true,
+  tapeColor = 'default',
   class: className = '',
 } = Astro.props;
 
 const tiltClasses = {
   none: '',
-  left: 'tilt-left',
-  right: 'tilt-right',
+  left: 'tilt-gentle-left',
+  right: 'tilt-gentle-right',
 };
 
-const shadowClasses = {
-  ink: 'paper-box paper-box-hover',
-  yellow: 'paper-box-yellow',
-  red: 'paper-box-red',
-  blue: 'paper-box-blue',
-};
+const tapeColorClass = {
+  default: '',
+  peach: 'masking-tape-peach',
+  lavender: 'masking-tape-lavender',
+  rose: 'masking-tape-rose',
+}[tapeColor];
 ---
 
-<div class={`relative ${shadowClasses[shadowColor]} ${tiltClasses[tilt]} ${className}`}>
+<div class={`relative bg-[#FDFBF7] rounded-2xl border border-[#1C1B19]/8 shadow-paper-md transition-all duration-300 hover:shadow-paper-lg ${tiltClasses[tilt]} ${className}`}>
   {hasTape && (
-    <div class={`washi-tape ${tapeColor === 'red' ? 'washi-tape-red' : tapeColor === 'blue' ? 'washi-tape-blue' : ''}`} />
+    <div class={`masking-tape ${tapeColorClass}`}></div>
   )}
   <slot />
 </div>

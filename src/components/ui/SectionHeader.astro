@@ -1,30 +1,40 @@
 ---
+import HandDrawnDoodles from './HandDrawnDoodles.astro';
+
 interface Props {
   eyebrow: string;
   title: string;
   subtitle?: string;
   align?: 'left' | 'center';
+  withDoodle?: boolean;
 }
 
-const { eyebrow, title, subtitle, align = 'left' } = Astro.props;
+const { eyebrow, title, subtitle, align = 'left', withDoodle = true } = Astro.props;
 ---
 
 <div class={`mb-10 sm:mb-14 ${align === 'center' ? 'text-center mx-auto max-w-2xl' : 'max-w-3xl'}`}>
-  <!-- Eyebrow Stamp Pill -->
-  <div class={`inline-flex items-center gap-2 mb-3 bg-[#FFE600] border-[1.5px] border-[#111111] px-2.5 py-0.5 rounded-sm shadow-[2px_2px_0px_#111111]`}>
-    <span class="w-2 h-2 rounded-full bg-[#111111]"></span>
-    <span class="text-[11px] uppercase tracking-[0.16em] text-[#111111] font-mono font-extrabold">
+  <!-- Eyebrow Pastel Pill -->
+  <div class="inline-flex items-center gap-2 mb-3 bg-[#E3DEFA] border border-[#1C1B19]/10 px-3 py-1 rounded-full shadow-paper-sm">
+    <span class="w-1.5 h-1.5 rounded-full bg-[#1C1B19]/40"></span>
+    <span class="text-[11px] tracking-wider text-[#1C1B19] font-mono font-semibold uppercase">
       {eyebrow}
     </span>
   </div>
 
-  <!-- Ultra-wide Chunky Poster Title -->
-  <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-[-0.04em] text-[#111111] font-display leading-[1.05] mb-4">
-    {title}
-  </h2>
+  <!-- Friendly Title Case Poster Title in Plus Jakarta Sans -->
+  <div class="relative inline-block">
+    <h2 class="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-[-0.03em] text-[#1C1B19] font-display leading-[1.15] mb-3">
+      {title}
+    </h2>
+    {withDoodle && align === 'left' && (
+      <div class="opacity-80 -mt-1 mb-2">
+        <HandDrawnDoodles type="squiggly-underline" width={90} height={10} color="#E3DEFA" />
+      </div>
+    )}
+  </div>
 
   {subtitle && (
-    <p class="text-[#4B4A47] text-sm sm:text-base leading-relaxed font-sans font-medium">
+    <p class="text-[#57534E] text-base leading-relaxed font-sans font-medium mt-1">
       {subtitle}
     </p>
   )}

@@ -12,6 +12,9 @@ const services = [
     tag: 'MOST POPULAR // DEVTOOLS & INFRA',
     turnaround: '10–14 Business Days',
     icon: Terminal,
+    iconBg: 'bg-[#E3DEFA]',
+    tapeColor: 'lavender' as const,
+    badgeVariant: 'lavender' as const,
     description: 'Transform complex developer tooling mechanisms into a clear, high-converting homepage that skeptical Staff Engineers immediately understand and trust.',
     deliverables: [
       'Comprehensive Voice-of-Customer (VoC) research mined from Hacker News, Reddit & GitHub',
@@ -29,6 +32,9 @@ const services = [
     tag: 'AUTHORITY & TOP-OF-FUNNEL',
     turnaround: '2–3 Weeks',
     icon: FileCode,
+    iconBg: 'bg-[#FADEC9]',
+    tapeColor: 'peach' as const,
+    badgeVariant: 'peach' as const,
     description: 'A 1,800 to 2,500-word authoritative, runnable technical deep-dive designed to rank on Hacker News frontpage and earn backlinks from principal engineers.',
     deliverables: [
       'Runnable companion GitHub repository with clean test suites & reproducible benchmarks',
@@ -45,6 +51,9 @@ const services = [
     tag: 'MULTI-CHANNEL ACTIVATION',
     turnaround: '2–3 Weeks',
     icon: Rocket,
+    iconBg: 'bg-[#D7F0DE]',
+    tapeColor: 'rose' as const,
+    badgeVariant: 'sage' as const,
     description: 'The end-to-end launch package for shipping a major version or new developer product across Hacker News, email, and landing pages.',
     deliverables: [
       'Product landing page wireframe engineered for instant CLI / SDK activation',
@@ -71,65 +80,64 @@ const services = [
 
     <!-- 3 Productised Offering Cards as Dossier Folders -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
-      {services.map((service, idx) => {
+      {services.map((service) => {
         const Icon = service.icon;
-        const tape = idx === 0 ? 'yellow' : idx === 1 ? 'red' : 'blue';
         return (
           <PaperCard
             hasTape={true}
-            tapeColor={tape}
+            tapeColor={service.tapeColor}
             class="p-7 sm:p-8 flex flex-col justify-between"
           >
             <div class="space-y-6">
               <div class="flex items-center justify-between">
-                <span class="p-3 rounded-xs bg-[#FFE600] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] text-[#111111]">
+                <span class={`p-3 rounded-2xl ${service.iconBg} border border-[#1C1B19]/10 shadow-xs text-[#1C1B19]`}>
                   <Icon className="w-5 h-5" />
                 </span>
-                <span class="text-[11px] font-mono font-bold text-[#111111] flex items-center gap-1.5 bg-[#FAF8F3] px-2.5 py-1 rounded-xs border-[1.5px] border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
-                  <Clock className="w-3.5 h-3.5 text-[#FF3B30]" />
+                <span class="text-[11px] font-mono font-medium text-[#1C1B19] flex items-center gap-1.5 bg-[#F4F1EA] px-2.5 py-1 rounded-full border border-[#1C1B19]/8">
+                  <Clock className="w-3.5 h-3.5 text-[#1C1B19]" />
                   {service.turnaround}
                 </span>
               </div>
 
               <div>
-                <span class="text-[10px] font-mono font-bold text-[#FF3B30] tracking-wider uppercase block mb-1.5">
+                <span class="text-[10px] font-mono font-semibold text-[#57534E] tracking-wider uppercase block mb-1.5">
                   {service.tag}
                 </span>
-                <h3 class="text-xl sm:text-2xl font-black font-display uppercase tracking-tight text-[#111111] leading-tight">
+                <h3 class="text-xl sm:text-2xl font-bold font-sans tracking-tight text-[#1C1B19] leading-tight">
                   {service.title}
                 </h3>
-                <p class="text-[#3F3E3B] text-xs sm:text-sm mt-3 leading-relaxed font-sans font-medium">
+                <p class="text-[#57534E] text-xs sm:text-sm mt-3 leading-relaxed font-sans">
                   {service.description}
                 </p>
               </div>
 
-              <div class="space-y-3 pt-2 border-t-[1.5px] border-[#111111]/20">
-                <span class="text-[11px] font-mono uppercase tracking-wider text-[#111111] font-bold block">
+              <div class="space-y-3 pt-3 border-t border-[#1C1B19]/8">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-[#1C1B19] font-semibold block">
                   Deliverables Included:
                 </span>
-                <ul class="space-y-2.5 text-xs text-[#111111]">
+                <ul class="space-y-2 text-xs text-[#57534E]">
                   {service.deliverables.map(del => (
                     <li class="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#16A34A] shrink-0 mt-0.5" />
-                      <span class="leading-relaxed font-medium">{del}</span>
+                      <CheckCircle2 className="w-4 h-4 text-[#1C1B19] shrink-0 mt-0.5" />
+                      <span class="leading-relaxed">{del}</span>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
 
-            <div class="pt-8 mt-6 border-t-[1.5px] border-[#111111]/20 space-y-4">
-              <div class="text-[11px] font-mono text-[#111111] bg-[#FAF8F3] p-3 rounded-xs border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
-                <span class="text-[#8E8D88] uppercase font-bold">Best For: </span>
-                <span class="text-[#111111] font-bold">{service.idealFor}</span>
+            <div class="pt-8 mt-6 border-t border-[#1C1B19]/8 space-y-4">
+              <div class="text-[11px] font-mono text-[#1C1B19] bg-[#F4F1EA] p-3 rounded-xl border border-[#1C1B19]/8">
+                <span class="text-[#57534E]">Best For: </span>
+                <span class="text-[#1C1B19] font-semibold">{service.idealFor}</span>
               </div>
 
               <a
                 href={`/contact?service=${service.id}`}
-                class="w-full py-3 rounded-xs text-xs font-mono font-black uppercase tracking-wider bg-[#FF3B30] text-white hover:bg-[#e03026] border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_#111111] transition-all flex items-center justify-center gap-2"
+                class="w-full py-3 rounded-full text-xs font-sans font-semibold tracking-wide bg-[#1C1B19] text-[#FDFBF7] hover:bg-[#3D3A36] shadow-paper-sm hover:translate-y-[-1px] transition-all flex items-center justify-center gap-2"
               >
                 <span>Select Offering</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <ArrowRight className="w-4 h-4" />
               </a>
             </div>
           </PaperCard>
@@ -138,7 +146,7 @@ const services = [
     </div>
 
     <!-- FAQ Accordion Section -->
-    <div class="max-w-3xl mx-auto pt-10 border-t-[2px] border-[#111111]">
+    <div class="max-w-3xl mx-auto pt-12 border-t border-[#1C1B19]/8">
       <SectionHeader
         eyebrow="OBJECTION HANDLING // TRANSPARENCY"
         title="Frequently Answered Questions"

@@ -3,11 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import CopyEmailButton from '../components/ui/CopyEmailButton.tsx';
 import PaperCard from '../components/ui/PaperCard.astro';
+import Badge from '../components/ui/Badge.astro';
 import { GraduationCap, ArrowRight } from 'lucide-react';
 
 const techStack = {
   systems: {
     category: 'Systems, Kernel & Concurrency',
+    badgeVariant: 'lavender' as const,
     summary: 'Low-level Linux systems programming, unprivileged kernel sandboxing, and deterministic async runtimes.',
     skills: [
       { name: 'Rust (tokio, nix, ratatui, aya)', proof: 'Production daemons, zero-allocation ring buffers' },
@@ -18,6 +20,7 @@ const techStack = {
   },
   ai: {
     category: 'On-Device, Edge AI & Quantization',
+    badgeVariant: 'peach' as const,
     summary: 'Air-gapped language model runtimes, ternary integer weights, and real-time UAV computer vision.',
     skills: [
       { name: 'BitNet b1.58 Ternary Architecture', proof: 'Addition-only matrix kernels on AVX-512' },
@@ -28,6 +31,7 @@ const techStack = {
   },
   observability: {
     category: 'Data, Telemetry & Developer Marketing',
+    badgeVariant: 'sage' as const,
     summary: 'High-throughput telemetry correlation, wireframed developer conversion funnels, and technical communication.',
     skills: [
       { name: 'OpenTelemetry (OTel) & Linux Perf', proof: 'Sub-microsecond trace spans and RSS auditing' },
@@ -51,9 +55,9 @@ const techStack = {
         title="Why A Systems Engineer Writes Sharper Developer Copy"
       />
 
-      <div class="text-[#3F3E3B] text-base sm:text-lg leading-relaxed space-y-5 font-sans font-medium">
+      <div class="text-[#57534E] text-base sm:text-lg leading-relaxed space-y-5 font-sans">
         <p>
-          I am <strong>Jatin Bhanot</strong>, a Computer Science engineer specialising in <span class="highlight-yellow font-bold text-[#111111]">Rust, C++20, Linux kernel internals, and on-device AI architectures</span>.
+          I am <strong class="text-[#1C1B19]">Jatin Bhanot</strong>, a Computer Science engineer specialising in <span class="bg-[#E3DEFA] px-2 py-0.5 rounded-lg font-semibold text-[#1C1B19]">Rust, C++20, Linux kernel internals, and on-device AI architectures</span>.
         </p>
 
         <p>
@@ -61,7 +65,7 @@ const techStack = {
         </p>
 
         <p>
-          Because I write production systems myself, I don't read marketing briefs; I read your <strong>source code, your GitHub PRs, and your benchmark suites</strong>. I translate low-level mechanisms into undeniable commercial value that engineers actually respect.
+          Because I write production systems myself, I don't read marketing briefs; I read your <strong class="text-[#1C1B19]">source code, your GitHub PRs, and your benchmark suites</strong>. I translate low-level mechanisms into undeniable commercial value that engineers actually respect.
         </p>
       </div>
 
@@ -69,55 +73,55 @@ const techStack = {
         <CopyEmailButton client:load email="bhanot1054@gmail.com" label="bhanot1054@gmail.com" />
         <a
           href="/work"
-          class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-[#111111] hover:text-[#FF3B30] underline decoration-2 decoration-[#111111]"
+          class="inline-flex items-center gap-1.5 text-xs font-sans font-semibold text-[#1C1B19] hover:underline"
         >
           <span>Inspect Case Studies</span>
-          <ArrowRight className="w-3.5 h-3.5 text-[#FF3B30]" />
+          <ArrowRight className="w-3.5 h-3.5 text-[#1C1B19]" />
         </a>
       </div>
     </div>
 
     <!-- Educational & Research Pedigree -->
-    <div class="mb-20 bg-[#FFFDF9] rounded-sm p-6 sm:p-8 border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] space-y-6 relative">
-      <div class="washi-tape washi-tape-yellow"></div>
-      <div class="flex items-center gap-2">
-        <GraduationCap className="w-5 h-5 text-[#2563EB]" />
-        <h3 class="text-lg font-black font-display uppercase tracking-tight text-[#111111]">
+    <div class="mb-20 bg-[#FDFBF7] rounded-2xl p-6 sm:p-8 border border-[#1C1B19]/10 shadow-paper-md space-y-6 relative">
+      <div class="masking-tape masking-tape-peach -top-3"></div>
+      <div class="flex items-center gap-2.5">
+        <GraduationCap className="w-5 h-5 text-[#1C1B19]" />
+        <h3 class="text-lg font-bold font-sans tracking-tight text-[#1C1B19]">
           Academic & International Research Pedigree
         </h3>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
-        <div class="p-4 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] space-y-2">
-          <div class="text-[#2563EB] font-bold text-sm">Chitkara University</div>
-          <div class="text-[#111111] font-bold">B.E. Computer Science Engineering</div>
-          <div class="text-[#4B4A47] font-medium font-sans">Specialisation in Systems, Concurrency & Operating Systems Architecture</div>
+        <div class="p-4 rounded-xl bg-[#F4F1EA] border border-[#1C1B19]/8 space-y-2">
+          <div class="text-[#1C1B19] font-bold text-sm">Chitkara University</div>
+          <div class="text-[#1C1B19] font-semibold">B.E. Computer Science Engineering</div>
+          <div class="text-[#57534E] font-sans">Specialisation in Systems, Concurrency & Operating Systems Architecture</div>
         </div>
 
-        <div class="p-4 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] space-y-2">
-          <div class="text-[#FF3B30] font-bold text-sm">National Formosa University (Taiwan)</div>
-          <div class="text-[#111111] font-bold">UAV Edge AI & Computer Vision Internship</div>
-          <div class="text-[#4B4A47] font-medium font-sans">Engineered sub-4ms real-time tracking pipelines on ARM Jetson avionics</div>
+        <div class="p-4 rounded-xl bg-[#F4F1EA] border border-[#1C1B19]/8 space-y-2">
+          <div class="text-[#1C1B19] font-bold text-sm">National Formosa University (Taiwan)</div>
+          <div class="text-[#1C1B19] font-semibold">UAV Edge AI & Computer Vision Internship</div>
+          <div class="text-[#57534E] font-sans">Engineered sub-4ms real-time tracking pipelines on ARM Jetson avionics</div>
         </div>
 
-        <div class="p-4 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] space-y-2">
-          <div class="text-[#16A34A] font-bold text-sm">Astana IT University</div>
-          <div class="text-[#111111] font-bold">Applied CS & Cloud Systems Exchange</div>
-          <div class="text-[#4B4A47] font-medium font-sans">Distributed microservices, Linux namespaces, and low-latency networking</div>
+        <div class="p-4 rounded-xl bg-[#F4F1EA] border border-[#1C1B19]/8 space-y-2">
+          <div class="text-[#1C1B19] font-bold text-sm">Astana IT University</div>
+          <div class="text-[#1C1B19] font-semibold">Applied CS & Cloud Systems Exchange</div>
+          <div class="text-[#57534E] font-sans">Distributed microservices, Linux namespaces, and low-latency networking</div>
         </div>
       </div>
     </div>
 
     <!-- Structured Technical Stack Matrix -->
     <div class="space-y-8">
-      <div class="border-b-[2px] border-[#111111] pb-4">
-        <span class="text-xs font-mono uppercase tracking-[0.16em] text-[#FF3B30] font-bold block mb-2">
+      <div class="border-b border-[#1C1B19]/8 pb-4">
+        <span class="text-xs font-mono uppercase tracking-wider text-[#57534E] font-semibold block mb-2">
           // AUDITED CAPABILITIES
         </span>
-        <h2 class="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#111111]">
+        <h2 class="text-2xl sm:text-3xl font-bold font-sans tracking-tight text-[#1C1B19]">
           Structured Technical Stack Matrix
         </h2>
-        <p class="text-[#4B4A47] text-sm mt-1 font-medium font-sans">
+        <p class="text-[#57534E] text-sm mt-1 font-sans">
           Every skill listed is backed by shipped code, automated test suites, or live benchmarks.
         </p>
       </div>
@@ -128,19 +132,22 @@ const techStack = {
             class="p-6 sm:p-7 space-y-5"
           >
             <div>
-              <h3 class="text-lg font-black font-display uppercase tracking-tight text-[#111111]">
+              <div class="flex items-center justify-between mb-2">
+                <Badge text="VERIFIED" variant={cat.badgeVariant} />
+              </div>
+              <h3 class="text-lg font-bold font-sans tracking-tight text-[#1C1B19]">
                 {cat.category}
               </h3>
-              <p class="text-[#4B4A47] text-xs mt-1 leading-relaxed font-sans font-medium">
+              <p class="text-[#57534E] text-xs mt-1.5 leading-relaxed font-sans">
                 {cat.summary}
               </p>
             </div>
 
-            <div class="space-y-3 pt-2 border-t-[1.5px] border-[#111111]/20 font-mono text-xs">
+            <div class="space-y-3 pt-3 border-t border-[#1C1B19]/8 font-mono text-xs">
               {cat.skills.map(skill => (
-                <div class="p-3 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] space-y-1">
-                  <div class="text-[#111111] font-bold">{skill.name}</div>
-                  <div class="text-[11px] text-[#4B4A47] leading-snug font-sans">{skill.proof}</div>
+                <div class="p-3 rounded-xl bg-[#F4F1EA] border border-[#1C1B19]/8 space-y-1">
+                  <div class="text-[#1C1B19] font-semibold">{skill.name}</div>
+                  <div class="text-[11px] text-[#57534E] leading-snug font-sans">{skill.proof}</div>
                 </div>
               ))}
             </div>

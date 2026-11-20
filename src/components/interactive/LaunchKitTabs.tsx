@@ -111,9 +111,9 @@ Jatin`
   ];
 
   return (
-    <div className="w-full bg-[#FFFDF9] rounded-sm border-[2px] border-[#111111] shadow-[6px_6px_0px_#111111] overflow-hidden my-8">
-      {/* Tab Navigation (File Folder Tabs) */}
-      <div className="bg-[#FAF8F3] p-2 border-b-[1.5px] border-[#111111] flex flex-wrap gap-1.5">
+    <div className="w-full bg-[#FDFBF7] rounded-3xl border border-[#1C1B19]/8 shadow-paper-md overflow-hidden my-8">
+      {/* Tab Navigation */}
+      <div className="bg-[#FAF7F0] p-2.5 border-b border-[#1C1B19]/8 flex flex-wrap gap-1.5">
         {TABS.map(tab => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -122,10 +122,10 @@ Jatin`
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-xs text-xs font-mono font-bold transition-all cursor-pointer border-[1.5px] ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 rounded-full text-xs font-mono font-semibold transition-all cursor-pointer border ${
                 isActive
-                  ? 'bg-[#FFE600] text-[#111111] border-[#111111] shadow-[3px_3px_0px_#111111]'
-                  : 'bg-[#FFFDF9] text-[#4B4A47] hover:text-[#111111] border-[#111111] shadow-[1.5px_1.5px_0px_#111111]'
+                  ? 'bg-[#E3DEFA] text-[#1C1B19] border-[#1C1B19]/10 shadow-sm'
+                  : 'bg-[#FDFBF7] text-[#57534E] hover:text-[#1C1B19] border-[#1C1B19]/6'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -136,7 +136,7 @@ Jatin`
       </div>
 
       {/* Tab Content Display */}
-      <div className="p-5 sm:p-8 bg-[#FFFDF9]">
+      <div className="p-6 sm:p-8 bg-[#FDFBF7]">
         <AnimatePresence mode="wait">
           {activeTab === 'landing' && (
             <motion.div
@@ -147,55 +147,55 @@ Jatin`
               transition={{ duration: 0.2 }}
               className="space-y-6"
             >
-              <div className="border-[1.5px] border-[#111111] rounded-xs bg-[#FAF8F3] p-6 sm:p-8 space-y-5 shadow-[4px_4px_0px_#111111]">
-                <div className="flex items-center justify-between border-b-[1.5px] border-[#111111]/20 pb-4">
-                  <div className="font-mono text-xs font-bold text-[#FF3B30] uppercase">
-                    // DELIVERABLE 1: CONVERSION LANDING PAGE WIREFRAME
+              <div className="border border-[#1C1B19]/8 rounded-2xl bg-[#FAF7F0] p-6 sm:p-8 space-y-5 shadow-sm">
+                <div className="flex items-center justify-between border-b border-[#1C1B19]/8 pb-4">
+                  <div className="font-mono text-xs font-bold text-[#1C1B19] uppercase">
+                    // Deliverable 1: Landing Page Blueprint
                   </div>
-                  <span className="text-[11px] font-mono font-bold text-[#111111] bg-[#FFE600] px-2 py-0.5 border border-[#111111]">Full Blueprint</span>
+                  <span className="text-[11px] font-mono font-semibold text-[#1C1B19] bg-[#E3DEFA] px-2.5 py-0.5 rounded-full">Full Wireframe</span>
                 </div>
 
                 <div className="space-y-3">
-                  <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-xs bg-[#16A34A] text-white border-[1.5px] border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
+                  <span className="font-mono text-xs font-bold px-3 py-1 rounded-full bg-[#D7F0DE] text-[#1C1B19] border border-[#1C1B19]/8">
                     ZERO-PRIVILEGE LINUX KERNEL TELEMETRY
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-black font-display uppercase text-[#111111]">
+                  <h3 className="text-2xl sm:text-3xl font-extrabold text-[#1C1B19] tracking-tight">
                     Know Exactly What Your AI Coding Agents Touch on Linux.
                   </h3>
-                  <p className="text-[#3F3E3B] text-sm sm:text-base max-w-2xl leading-relaxed font-sans font-medium">
+                  <p className="text-[#57534E] text-sm sm:text-base max-w-2xl leading-relaxed font-sans font-medium">
                     Multiplexing epoll and inotify to track microsecond subshells, file writes, and outbound sockets—without root permissions and 0.00% idle CPU overhead.
                   </p>
                 </div>
 
                 {/* Simulated CLI Copy Box */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-2">
-                  <div className="flex-1 bg-[#111111] p-3 rounded-xs border-[1.5px] border-[#111111] font-mono text-xs text-[#F3F1EC] flex items-center justify-between shadow-[2px_2px_0px_#111111]">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 pt-2">
+                  <div className="flex-1 bg-[#1C1B19] p-3.5 rounded-xl font-mono text-xs text-[#FDFBF7] flex items-center justify-between shadow-sm">
                     <span>cargo install agent-radar && agent-radar --watch</span>
                     <button
                       type="button"
                       onClick={handleCopyCli}
-                      className="p-1 rounded-xs bg-white/10 hover:bg-[#FFE600] hover:text-[#111111] text-[#F3F1EC] cursor-pointer ml-2 transition-colors"
+                      className="p-1.5 rounded-lg bg-white/10 hover:bg-[#E3DEFA] hover:text-[#1C1B19] text-[#FDFBF7] cursor-pointer ml-2 transition-colors"
                     >
                       {copiedCli ? <Check className="w-3.5 h-3.5 text-[#16A34A]" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
                   </div>
-                  <div className="px-4 py-3 rounded-xs bg-[#FF3B30] text-white font-mono text-xs font-bold uppercase border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111] text-center cursor-pointer hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all">
-                    Inspect GitHub Repo
+                  <div className="px-5 py-3 rounded-full bg-[#1C1B19] text-[#FDFBF7] font-sans text-xs font-bold text-center cursor-pointer shadow-paper-sm hover:-translate-y-0.5 transition-all">
+                    Inspect Architecture (GitHub)
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t-[1.5px] border-[#111111]/20 text-xs font-mono">
-                  <div className="p-3 rounded-xs bg-white border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
-                    <div className="text-[#8E8D88] font-bold">Memory Envelope</div>
-                    <div className="text-[#111111] font-black text-sm mt-0.5">4.2MB RSS Bounded</div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-[#1C1B19]/8 text-xs font-mono">
+                  <div className="p-3.5 rounded-xl bg-white border border-[#1C1B19]/8 shadow-sm">
+                    <div className="text-[#8A857D] font-medium">Memory Envelope</div>
+                    <div className="text-[#1C1B19] font-bold text-sm mt-0.5">4.2MB RSS Bounded</div>
                   </div>
-                  <div className="p-3 rounded-xs bg-white border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
-                    <div className="text-[#8E8D88] font-bold">Idle CPU Drain</div>
-                    <div className="text-[#16A34A] font-black text-sm mt-0.5">0.00% Flat</div>
+                  <div className="p-3.5 rounded-xl bg-white border border-[#1C1B19]/8 shadow-sm">
+                    <div className="text-[#8A857D] font-medium">Idle CPU Drain</div>
+                    <div className="text-[#16A34A] font-bold text-sm mt-0.5">0.00% Flat</div>
                   </div>
-                  <div className="p-3 rounded-xs bg-white border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
-                    <div className="text-[#8E8D88] font-bold">Security Model</div>
-                    <div className="text-[#2563EB] font-black text-sm mt-0.5">Zero Root / Landlock</div>
+                  <div className="p-3.5 rounded-xl bg-white border border-[#1C1B19]/8 shadow-sm">
+                    <div className="text-[#8A857D] font-medium">Security Model</div>
+                    <div className="text-[#2563EB] font-bold text-sm mt-0.5">Zero Root / Landlock</div>
                   </div>
                 </div>
               </div>
@@ -211,29 +211,29 @@ Jatin`
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <div className="bg-[#FAF8F3] rounded-xs border-[1.5px] border-[#111111] p-5 sm:p-7 space-y-4 font-mono shadow-[4px_4px_0px_#111111]">
-                <div className="flex items-center justify-between text-xs border-b-[1.5px] border-[#111111]/20 pb-3">
+              <div className="bg-[#FAF7F0] rounded-2xl border border-[#1C1B19]/8 p-6 sm:p-7 space-y-4 font-mono shadow-sm">
+                <div className="flex items-center justify-between text-xs border-b border-[#1C1B19]/8 pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-xs bg-[#FF6600] text-white font-bold flex items-center justify-center text-[11px] border border-[#111111]">
+                    <span className="w-5 h-5 rounded-md bg-[#FF6600] text-white font-bold flex items-center justify-center text-[11px]">
                       Y
                     </span>
-                    <span className="text-[#111111] font-bold">Hacker News Submission Copy</span>
+                    <span className="text-[#1C1B19] font-bold font-sans">Hacker News Submission Copy</span>
                   </div>
-                  <span className="text-[#111111] font-bold bg-[#FFE600] px-2 py-0.5 border border-[#111111]">Ranked #2 on Show HN</span>
+                  <span className="text-[#1C1B19] font-semibold bg-[#EAF57A] px-2.5 py-0.5 rounded-full text-[11px]">Ranked #2 on Show HN</span>
                 </div>
 
-                <div className="text-sm font-bold text-[#111111]">
+                <div className="text-sm font-bold text-[#1C1B19] font-sans">
                   Show HN: Agent-Radar – Zero-overhead Linux telemetry for AI coding agents in Rust
                 </div>
 
-                <div className="text-xs text-[#111111] leading-relaxed space-y-3 bg-[#FFFDF9] p-4 rounded-xs border-[1.5px] border-[#111111]">
+                <div className="text-xs text-[#1C1B19] leading-relaxed space-y-3 bg-[#FDFBF7] p-4 rounded-xl border border-[#1C1B19]/8">
                   <p>
                     Hi HN, I’m Jatin. I’ve been running local AI coding agents (Claude Code, Aider, OpenHands) on my Linux workstation and noticed a glaring gap:
                   </p>
                   <p>
                     These agents run hundreds of short-lived subshells (e.g. <code>`bash -c "..."`</code>) to test commands, inspect git status, and generate patches. Traditional auditing tools either:
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 text-[#4B4A47]">
+                  <ul className="list-disc pl-5 space-y-1 text-[#57534E]">
                     <li>Rely on <code>auditd</code>, which floods dmesg and requires root privileges.</li>
                     <li>Poll <code>/proc</code> every 100ms, completely missing transient subshells that live under 20ms before PID reuse occurs.</li>
                   </ul>
@@ -264,7 +264,7 @@ Jatin`
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {/* Email Sidebar List */}
                 <div className="space-y-2">
-                  <span className="text-xs font-mono uppercase tracking-wider text-[#111111] font-bold block mb-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#57534E] font-semibold block mb-2">
                     4-Part Drip Sequence:
                   </span>
                   {emails.map((email, idx) => (
@@ -272,34 +272,34 @@ Jatin`
                       key={idx}
                       type="button"
                       onClick={() => setActiveEmailIdx(idx)}
-                      className={`w-full text-left p-3 rounded-xs border-[1.5px] font-mono text-xs transition-all cursor-pointer ${
+                      className={`w-full text-left p-3.5 rounded-xl border font-mono text-xs transition-all cursor-pointer ${
                         activeEmailIdx === idx
-                          ? 'bg-[#FFE600] border-[#111111] text-[#111111] shadow-[2.5px_2.5px_0px_#111111] font-bold'
-                          : 'bg-[#FFFDF9] border-[#111111] text-[#4B4A47] hover:text-[#111111] shadow-[1px_1px_0px_#111111]'
+                          ? 'bg-[#E3DEFA] border-[#1C1B19]/15 text-[#1C1B19] shadow-sm font-bold'
+                          : 'bg-[#FAF7F0] border-[#1C1B19]/6 text-[#57534E] hover:text-[#1C1B19]'
                       }`}
                     >
-                      <div className="text-[10px] text-[#FF3B30] font-black mb-1">{email.day}</div>
-                      <div className="font-bold text-[#111111] truncate">{email.subject}</div>
-                      <div className="text-[11px] text-[#4B4A47] truncate mt-1">{email.preview}</div>
+                      <div className="text-[10px] text-[#1C1B19] font-bold mb-1">{email.day}</div>
+                      <div className="font-semibold text-[#1C1B19] truncate">{email.subject}</div>
+                      <div className="text-[11px] text-[#57534E] truncate mt-1">{email.preview}</div>
                     </button>
                   ))}
                 </div>
 
                 {/* Email Body Preview */}
-                <div className="lg:col-span-2 bg-[#FFFDF9] rounded-xs border-[1.5px] border-[#111111] p-5 sm:p-6 font-mono text-xs shadow-[4px_4px_0px_#111111]">
-                  <div className="border-b-[1.5px] border-[#111111]/20 pb-3 mb-4 space-y-1">
-                    <div className="text-[#4B4A47]">
-                      <span className="text-[#8E8D88]">Timing:</span> {emails[activeEmailIdx].day}
+                <div className="lg:col-span-2 bg-[#FDFBF7] rounded-2xl border border-[#1C1B19]/8 p-5 sm:p-6 font-mono text-xs shadow-paper-sm">
+                  <div className="border-b border-[#1C1B19]/8 pb-3 mb-4 space-y-1">
+                    <div className="text-[#57534E]">
+                      <span className="text-[#8A857D]">Timing:</span> {emails[activeEmailIdx].day}
                     </div>
-                    <div className="text-[#111111] font-bold">
-                      <span className="text-[#8E8D88]">Subject:</span> {emails[activeEmailIdx].subject}
+                    <div className="text-[#1C1B19] font-bold">
+                      <span className="text-[#8A857D]">Subject:</span> {emails[activeEmailIdx].subject}
                     </div>
-                    <div className="text-[#4B4A47]">
-                      <span className="text-[#8E8D88]">From:</span> Jatin Bhanot &lt;jatin@agentradar.dev&gt;
+                    <div className="text-[#57534E]">
+                      <span className="text-[#8A857D]">From:</span> Jatin Bhanot &lt;jatin@agentradar.dev&gt;
                     </div>
                   </div>
 
-                  <pre className="whitespace-pre-wrap font-mono text-[#111111] leading-relaxed text-xs">
+                  <pre className="whitespace-pre-wrap font-mono text-[#1C1B19] leading-relaxed text-xs">
                     {emails[activeEmailIdx].body}
                   </pre>
                 </div>
@@ -316,16 +316,16 @@ Jatin`
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <div className="bg-[#FFFDF9] rounded-xs border-[1.5px] border-[#111111] p-6 font-mono text-xs space-y-4 shadow-[4px_4px_0px_#111111]">
-                <div className="flex items-center justify-between border-b-[1.5px] border-[#111111]/20 pb-3">
-                  <span className="text-[#16A34A] font-black uppercase text-sm">agent-radar v0.4.0 — Zero-Egress Kernel Enforcement</span>
-                  <span className="text-[#8E8D88] font-bold">Released 2026-10-14</span>
+              <div className="bg-[#FDFBF7] rounded-2xl border border-[#1C1B19]/8 p-6 font-mono text-xs space-y-4 shadow-paper-sm">
+                <div className="flex items-center justify-between border-b border-[#1C1B19]/8 pb-3">
+                  <span className="text-[#16A34A] font-bold text-sm">agent-radar v0.4.0 — Zero-Egress Kernel Enforcement</span>
+                  <span className="text-[#8A857D]">Released 2026-10-14</span>
                 </div>
 
-                <div className="space-y-4 text-[#111111]">
+                <div className="space-y-4 text-[#1C1B19] font-sans">
                   <div>
-                    <h4 className="text-[#111111] font-bold mb-2 uppercase tracking-wide">🚀 Architectural Highlights</h4>
-                    <ul className="list-disc pl-5 space-y-1 text-[#3F3E3B]">
+                    <h4 className="text-[#1C1B19] font-bold mb-2">🚀 Architectural Highlights</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-[#57534E]">
                       <li><strong>Landlock LSM Integration:</strong> Added unprivileged network isolation flag <code>--deny-net</code>, mathematically blocking <code>socket(AF_INET, ...)</code> syscalls without root.</li>
                       <li><strong>PID Reuse Race Hardening:</strong> Replaced naive stat polling with atomic <code>btime</code> checks against Linux <code>/proc/sys/kernel/pid_max</code> bounds.</li>
                       <li><strong>Ring Buffer Slab Allocator:</strong> Memory overhead reduced by another 18% (down to 4.2MB RSS under heavy load).</li>
@@ -333,8 +333,8 @@ Jatin`
                   </div>
 
                   <div>
-                    <h4 className="text-[#111111] font-bold mb-2 uppercase tracking-wide">⚡ Breaking Changes</h4>
-                    <p className="text-[#4B4A47]">
+                    <h4 className="text-[#1C1B19] font-bold mb-2">⚡ Breaking Changes</h4>
+                    <p className="text-[#57534E]">
                       Config flag <code>--strict-proc</code> has been deprecated in favor of <code>--enforce-landlock</code>. Minimum supported Linux kernel is now 5.13+.
                     </p>
                   </div>

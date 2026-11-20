@@ -2,169 +2,150 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-canvas: #F3F1EC;
-  --color-paper: #FFFDF9;
-  --color-paper-card: #FAF8F3;
-  --color-ink: #111111;
-  --color-ink-muted: #4B4A47;
-  --color-ink-faint: #8E8D88;
-  --color-vermilion: #FF3B30;
-  --color-yellow: #FFE600;
-  --color-blueprint: #2563EB;
-  --color-mint: #16A34A;
-  --color-violet: #7C3AED;
-  --color-coral: #FF6B4A;
-  --font-display: 'Archivo Black', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --color-canvas: #F4F1EA;
+  --color-paper: #FDFBF7;
+  --color-paper-card: #FAF7F0;
+  --color-kraft: #E6E0D5;
+  --color-kraft-light: #ECE7DE;
+  --color-ink: #1C1B19;
+  --color-ink-muted: #57534E;
+  --color-ink-subtle: #8A857D;
+  --color-lavender: #E3DEFA;
+  --color-peach: #FADEC9;
+  --color-rose: #F7D6DE;
+  --color-lime: #EAF57A;
+  --color-sage: #D7F0DE;
+  --color-tape: rgba(224, 214, 190, 0.72);
+  --font-sans: 'Plus Jakarta Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans Variable', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-/* Light Mode Tactile Paper & Graph System */
+/* Warm Scrapbook & Tactile Paper-Craft Collage System */
 :root {
   color-scheme: light;
 }
 
 body {
-  background-color: #F3F1EC;
-  color: #111111;
+  background-color: #F4F1EA;
+  color: #1C1B19;
   font-family: var(--font-sans);
-  overflow-x: hidden;
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(17, 17, 17, 0.055) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(17, 17, 17, 0.055) 1px, transparent 1px);
+  overflow-x: clip;
 }
 
 ::selection {
-  background-color: #FFE600;
-  color: #111111;
+  background-color: #E3DEFA;
+  color: #1C1B19;
 }
 
-/* Neo-Editorial Hard Shadows & Tactile Borders */
-.paper-box {
-  background-color: #FFFDF9;
-  border: 1.5px solid #111111;
-  box-shadow: 4px 4px 0px #111111;
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+/* Realistic Soft Paper Elevation Shadows */
+.shadow-paper-sm {
+  box-shadow: 0 4px 12px rgba(28, 27, 25, 0.06), 0 1px 3px rgba(28, 27, 25, 0.04);
 }
 
-.paper-box-hover:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #111111;
+.shadow-paper-md {
+  box-shadow: 0 12px 28px rgba(28, 27, 25, 0.09), 0 2px 6px rgba(28, 27, 25, 0.05);
 }
 
-.paper-box-sm {
-  background-color: #FFFDF9;
-  border: 1.5px solid #111111;
-  box-shadow: 2.5px 2.5px 0px #111111;
+.shadow-paper-lg {
+  box-shadow: 0 20px 40px rgba(28, 27, 25, 0.12), 0 4px 12px rgba(28, 27, 25, 0.06);
 }
 
-.paper-box-yellow {
-  background-color: #FFFDF9;
-  border: 1.5px solid #111111;
-  box-shadow: 4px 4px 0px #FFE600;
+.shadow-torn {
+  filter: drop-shadow(0 6px 12px rgba(28, 27, 25, 0.10));
 }
 
-.paper-box-red {
-  background-color: #FFFDF9;
-  border: 1.5px solid #111111;
-  box-shadow: 4px 4px 0px #FF3B30;
-}
-
-.paper-box-blue {
-  background-color: #FFFDF9;
-  border: 1.5px solid #111111;
-  box-shadow: 4px 4px 0px #2563EB;
-}
-
-/* Editorial Highlighter Strips */
-.highlight-yellow {
-  background: linear-gradient(180deg, transparent 55%, #FFE600 55%);
-  padding: 0 4px;
-  display: inline;
-}
-
-.highlight-mint {
-  background: linear-gradient(180deg, transparent 55%, rgba(22, 163, 74, 0.25) 55%);
-  padding: 0 4px;
-  display: inline;
-}
-
-.highlight-vermilion {
-  background: linear-gradient(180deg, transparent 55%, rgba(255, 59, 48, 0.22) 55%);
-  padding: 0 4px;
-  display: inline;
-}
-
-/* Editorial Sticker Cutouts */
-.sticker-badge {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-weight: 700;
-  text-transform: uppercase;
-  border: 1.5px solid #111111;
-  box-shadow: 2px 2px 0px #111111;
-  letter-spacing: 0.06em;
-}
-
-/* Tilted Polaroid / Index Cards */
-.tilt-left {
-  transform: rotate(-1deg);
+/* Card Surface with Soft Tactile Border */
+.paper-sheet {
+  background-color: #FDFBF7;
+  border: 1px solid rgba(28, 27, 25, 0.09);
+  box-shadow: 0 12px 28px rgba(28, 27, 25, 0.07), 0 2px 6px rgba(28, 27, 25, 0.04);
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.tilt-left:hover {
-  transform: rotate(0deg) translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #111111;
+
+.paper-sheet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(28, 27, 25, 0.10), 0 4px 10px rgba(28, 27, 25, 0.05);
 }
 
-.tilt-right {
-  transform: rotate(1deg);
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.tilt-right:hover {
-  transform: rotate(0deg) translate(-2px, -2px);
-  box-shadow: 6px 6px 0px #111111;
-}
-
-/* Frosted Warm Paper Glass */
-.paper-frosted {
-  background: rgba(243, 241, 236, 0.92);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-bottom: 2px solid #111111;
+/* Ruled Notebook Paper Background */
+.ruled-paper {
+  background-color: #FDFBF7;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 27px,
+    rgba(87, 83, 78, 0.09) 28px
+  );
 }
 
-/* Washi Tape Strip */
-.washi-tape {
+/* Masking Tape Strip with Jagged Ends */
+.masking-tape {
   position: absolute;
   top: -10px;
   left: 50%;
-  transform: translateX(-50%) rotate(-1.5deg);
-  width: 90px;
-  height: 22px;
-  background-color: rgba(255, 230, 0, 0.55);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-  border-left: 2px dashed rgba(17, 17, 17, 0.2);
-  border-right: 2px dashed rgba(17, 17, 17, 0.2);
+  transform: translateX(-50%) rotate(-1deg);
+  width: 96px;
+  height: 24px;
+  background-color: rgba(224, 214, 190, 0.78);
+  box-shadow: 0 1px 3px rgba(28, 27, 25, 0.08);
+  backdrop-filter: blur(2px);
+  clip-path: polygon(
+    0% 0%, 96% 0%, 100% 15%, 96% 35%, 100% 55%, 97% 75%, 100% 95%, 95% 100%,
+    4% 100%, 0% 85%, 4% 65%, 0% 45%, 3% 25%, 0% 0%
+  );
   pointer-events: none;
   z-index: 20;
 }
 
-.washi-tape-red {
-  background-color: rgba(255, 59, 48, 0.45);
+.masking-tape-peach {
+  background-color: rgba(250, 222, 201, 0.82);
 }
 
-.washi-tape-blue {
-  background-color: rgba(37, 99, 235, 0.4);
+.masking-tape-lavender {
+  background-color: rgba(227, 222, 250, 0.82);
 }
 
-/* Subtle Crumpled Paper Texture Overlay (Pure CSS / SVG Noise) */
+.masking-tape-rose {
+  background-color: rgba(247, 214, 222, 0.82);
+}
+
+/* Die-Cut Sticker Badge with White Border & Soft Elevation */
+.sticker-tile {
+  background-color: #FDFBF7;
+  border: 3px solid #FFFFFF;
+  box-shadow: 0 4px 14px rgba(28, 27, 25, 0.08), 0 1px 3px rgba(28, 27, 25, 0.05);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sticker-tile:hover {
+  transform: scale(1.05) rotate(0deg);
+  box-shadow: 0 8px 20px rgba(28, 27, 25, 0.12);
+}
+
+/* Gentle Tilt Utilities */
+.tilt-gentle-left {
+  transform: rotate(-1.5deg);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tilt-gentle-left:hover {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+.tilt-gentle-right {
+  transform: rotate(1.5deg);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tilt-gentle-right:hover {
+  transform: rotate(0deg) translateY(-3px);
+}
+
+/* Subtle Crumpled Paper Texture Overlay (Pure SVG Noise) */
 .paper-grain-overlay {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  opacity: 0.04;
+  opacity: 0.038;
   mix-blend-mode: multiply;
   z-index: 999;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
@@ -176,13 +157,12 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #F3F1EC;
-  border-left: 1.5px solid #111111;
+  background: #F4F1EA;
 }
 ::-webkit-scrollbar-thumb {
-  background: #111111;
-  border: 1.5px solid #F3F1EC;
+  background: #D5CEBE;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF3B30;
+  background: #B8B09F;
 }

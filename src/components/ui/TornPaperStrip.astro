@@ -1,0 +1,22 @@
+---
+interface Props {
+  tilt?: 'none' | 'left' | 'right';
+  class?: string;
+  hasTape?: boolean;
+}
+
+const { tilt = 'none', class: className = '', hasTape = false } = Astro.props;
+
+const tiltStyle = {
+  none: '',
+  left: 'tilt-gentle-left',
+  right: 'tilt-gentle-right',
+}[tilt];
+---
+
+<div class={`relative bg-[#E6E0D5] rounded-xl p-5 sm:p-6 border border-[#1C1B19]/6 shadow-paper-md transition-all duration-300 ${tiltStyle} ${className}`}>
+  {hasTape && (
+    <div class="masking-tape -top-3"></div>
+  )}
+  <slot />
+</div>

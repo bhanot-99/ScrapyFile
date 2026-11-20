@@ -45,54 +45,54 @@ const tocItems = [
 <BaseLayout title={title} description={tagline} articleDate={publishDate}>
   <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-20">
     <!-- Breadcrumb -->
-    <div class="mb-8 flex items-center justify-between text-xs font-mono font-bold">
+    <div class="mb-8 flex items-center justify-between text-xs font-mono font-medium">
       <a
         href="/work"
-        class="inline-flex items-center gap-2 text-[#111111] hover:text-[#FF3B30] transition-colors bg-[#FFFDF9] px-2.5 py-1 border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]"
+        class="inline-flex items-center gap-2 text-[#57534E] hover:text-[#1C1B19] transition-colors bg-[#FDFBF7] px-3.5 py-1.5 rounded-full border border-[#1C1B19]/8 shadow-paper-sm"
       >
         <ArrowLeft className="w-3.5 h-3.5" />
-        <span>BACK TO WORK ARCHIVE</span>
+        <span>Back to Work Archive</span>
       </a>
-      <span class="text-[#111111] font-bold bg-[#FFE600] px-2 py-0.5 border border-[#111111] shadow-[1px_1px_0px_#111111] hidden sm:inline">SAMPLE #0 VERIFIED</span>
+      <span class="text-[#1C1B19] font-semibold bg-[#EAF57A] px-3 py-1 rounded-full border border-[#1C1B19]/10 shadow-sm hidden sm:inline">SAMPLE #0 VERIFIED</span>
     </div>
 
     {/* Section 1: Executive Metadata Header */}
-    <header id="executive-summary" class="mb-14 scroll-mt-24 relative bg-[#FFFDF9] rounded-md p-6 sm:p-10 border-[2px] border-[#111111] shadow-[6px_6px_0px_#111111] overflow-hidden">
-      <div class="washi-tape washi-tape-yellow"></div>
+    <header id="executive-summary" class="mb-14 scroll-mt-24 relative bg-[#FDFBF7] rounded-3xl p-6 sm:p-10 border border-[#1C1B19]/8 shadow-paper-md overflow-hidden">
+      <div class="masking-tape masking-tape-lavender"></div>
 
       <div class="relative z-10 space-y-6">
         <div class="flex flex-wrap items-center gap-2.5">
-          <Badge text={deliverableType} variant="tactical" size="sm" />
-          <Badge text={categoryLabel} variant="neutral" size="sm" />
-          <span class="text-[#4B4A47] text-xs font-mono font-bold flex items-center gap-1.5 ml-auto">
-            <Clock className="w-3.5 h-3.5 text-[#111111]" />
+          <Badge text={deliverableType} variant="lavender" size="sm" />
+          <Badge text={categoryLabel} variant="peach" size="sm" />
+          <span class="text-[#57534E] text-xs font-mono font-medium flex items-center gap-1.5 ml-auto">
+            <Clock className="w-3.5 h-3.5 text-[#1C1B19]" />
             {readTime}
           </span>
         </div>
 
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#111111] font-display leading-[1.08]">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-[#1C1B19] font-display leading-[1.12]">
           {title}
         </h1>
 
-        <p class="text-[#4B4A47] text-base sm:text-lg max-w-3xl leading-relaxed font-sans font-medium">
+        <p class="text-[#57534E] text-base sm:text-lg max-w-3xl leading-relaxed font-sans font-medium">
           {tagline}
         </p>
 
         <!-- Metadata Attributes Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t-[1.5px] border-[#111111]/20 text-xs font-mono">
-          <div class="p-3 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] space-y-1">
-            <div class="text-[#8E8D88] uppercase tracking-wider text-[10px] font-bold">Target Buyer Persona</div>
-            <div class="text-[#111111] font-bold">{targetBuyer}</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#1C1B19]/8 text-xs font-mono">
+          <div class="p-3.5 rounded-2xl bg-[#F4F1EA]/70 border border-[#1C1B19]/6 shadow-paper-sm space-y-1">
+            <div class="text-[#8A857D] uppercase tracking-wider text-[10px] font-semibold">Target Buyer Persona</div>
+            <div class="text-[#1C1B19] font-bold">{targetBuyer}</div>
           </div>
 
-          <div class="p-3 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] space-y-1">
-            <div class="text-[#8E8D88] uppercase tracking-wider text-[10px] font-bold">Core Stack Covered</div>
-            <div class="text-[#2563EB] font-bold truncate">{stack.join(' • ')}</div>
+          <div class="p-3.5 rounded-2xl bg-[#F4F1EA]/70 border border-[#1C1B19]/6 shadow-paper-sm space-y-1">
+            <div class="text-[#8A857D] uppercase tracking-wider text-[10px] font-semibold">Core Stack Covered</div>
+            <div class="text-[#1C1B19] font-bold truncate">{stack.join(' • ')}</div>
           </div>
 
-          <div class="p-3 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] space-y-1">
-            <div class="text-[#8E8D88] uppercase tracking-wider text-[10px] font-bold">Production Status</div>
-            <div class="text-[#111111] font-bold flex items-center gap-1.5">
+          <div class="p-3.5 rounded-2xl bg-[#F4F1EA]/70 border border-[#1C1B19]/6 shadow-paper-sm space-y-1">
+            <div class="text-[#8A857D] uppercase tracking-wider text-[10px] font-semibold">Production Status</div>
+            <div class="text-[#1C1B19] font-bold flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-[#16A34A]"></span>
               <span>Code-Verified & Live</span>
             </div>
@@ -102,9 +102,9 @@ const tocItems = [
         <!-- Telemetry Metrics Bar -->
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 font-mono">
           {metrics.map(m => (
-            <div class="bg-white p-3 rounded-xs border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
-              <div class="text-[10px] text-[#4B4A47] uppercase font-bold">{m.label}</div>
-              <div class="text-[#16A34A] font-black font-display text-base sm:text-lg mt-0.5">{m.value}</div>
+            <div class="bg-white p-3.5 rounded-2xl border border-[#1C1B19]/8 shadow-paper-sm">
+              <div class="text-[10px] text-[#8A857D] uppercase font-semibold">{m.label}</div>
+              <div class="text-[#16A34A] font-extrabold text-base sm:text-lg mt-0.5">{m.value}</div>
             </div>
           ))}
         </div>
@@ -114,30 +114,30 @@ const tocItems = [
     <!-- Main Content Grid with Desktop Sticky Left Table of Contents -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
       {/* Sticky Table of Contents (Desktop) */}
-      <aside class="hidden lg:block lg:col-span-3 sticky top-24 bg-[#FFFDF9] rounded-md p-5 border-[1.5px] border-[#111111] shadow-[4px_4px_0px_#111111] text-xs font-mono space-y-4">
-        <div class="text-[#111111] font-black font-display tracking-wider uppercase text-xs pb-2 border-b-[1.5px] border-[#111111]">
-          // CASE STUDY OUTLINE
+      <aside class="hidden lg:block lg:col-span-3 sticky top-24 bg-[#FDFBF7] rounded-2xl p-5 border border-[#1C1B19]/8 shadow-paper-md text-xs font-mono space-y-4">
+        <div class="text-[#1C1B19] font-extrabold tracking-wider uppercase text-xs pb-2 border-b border-[#1C1B19]/8">
+          // Outline
         </div>
-        <nav class="space-y-2">
+        <nav class="space-y-2 font-medium">
           {tocItems.map(item => (
             <a
               href={`#${item.id}`}
-              class="block text-[#4B4A47] hover:text-[#111111] hover:font-bold transition-colors py-1 pl-2 border-l-2 border-[#111111]/20 hover:border-[#FF3B30]"
+              class="block text-[#57534E] hover:text-[#1C1B19] hover:font-bold transition-colors py-1 pl-2 border-l-2 border-[#1C1B19]/10 hover:border-[#1C1B19]"
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div class="pt-4 border-t-[1.5px] border-[#111111] space-y-2">
-          <div class="text-[10px] text-[#8E8D88] uppercase tracking-wider font-bold">Companion Code</div>
+        <div class="pt-4 border-t border-[#1C1B19]/8 space-y-2">
+          <div class="text-[10px] text-[#8A857D] uppercase tracking-wider font-semibold">Companion Code</div>
           <a
             href={repoUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-1.5 text-xs text-[#111111] font-bold hover:text-[#2563EB]"
+            class="inline-flex items-center gap-1.5 text-xs text-[#1C1B19] font-bold hover:text-[#57534E]"
           >
-            <GitBranch className="w-3.5 h-3.5 text-[#2563EB]" />
+            <GitBranch className="w-3.5 h-3.5 text-[#1C1B19]" />
             <span>GitHub Repository</span>
           </a>
         </div>
@@ -145,21 +145,21 @@ const tocItems = [
 
       {/* Main Prose / MDX Slot */}
       <main class="lg:col-span-9 space-y-12">
-        <div class="prose max-w-none prose-headings:font-display prose-headings:uppercase prose-headings:tracking-tight prose-headings:text-[#111111] prose-p:text-[#3F3E3B] prose-p:leading-relaxed prose-code:font-mono prose-code:text-[#111111] prose-pre:border-2 prose-pre:border-[#111111] prose-pre:shadow-[4px_4px_0px_#111111]">
+        <div class="prose max-w-none prose-headings:font-display prose-headings:tracking-tight prose-headings:text-[#1C1B19] prose-p:text-[#3D3A36] prose-p:leading-relaxed prose-code:font-mono prose-code:text-[#1C1B19] prose-pre:rounded-2xl prose-pre:border prose-pre:border-[#1C1B19]/10 prose-pre:shadow-paper-sm">
           <slot />
         </div>
 
         {/* Section 5: Companion Engineering Proof */}
-        <section id="engineering-proof" class="scroll-mt-24 pt-8 border-t-[2px] border-[#111111] space-y-6">
-          <div class="bg-[#FFFDF9] rounded-md p-6 sm:p-8 border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+        <section id="engineering-proof" class="scroll-mt-24 pt-8 border-t border-[#1C1B19]/8 space-y-6">
+          <div class="bg-[#FDFBF7] rounded-3xl p-6 sm:p-8 border border-[#1C1B19]/8 shadow-paper-md flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div class="space-y-2">
-              <span class="text-xs font-mono uppercase tracking-wider text-[#FF3B30] font-bold">
-                // COMPANION REPO & BENCHMARK SUITE
+              <span class="text-xs font-mono uppercase tracking-wider text-[#1C1B19] font-bold">
+                // Companion Code & Tests
               </span>
-              <h3 class="text-xl font-black font-display uppercase tracking-tight text-[#111111]">
+              <h3 class="text-xl font-extrabold tracking-tight text-[#1C1B19]">
                 Inspect The Bare-Metal Codebase
               </h3>
-              <p class="text-[#4B4A47] text-xs sm:text-sm max-w-xl font-sans">
+              <p class="text-[#57534E] text-xs sm:text-sm max-w-xl font-sans font-medium">
                 Every claim, metric, and architecture diagram in this case study is accompanied by runnable tests and benchmark scripts in the GitHub repository.
               </p>
             </div>
@@ -168,23 +168,23 @@ const tocItems = [
               href={repoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="px-5 py-2.5 rounded-sm text-xs font-mono font-bold uppercase bg-[#111111] text-white hover:bg-[#FFE600] hover:text-[#111111] border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111] transition-all inline-flex items-center gap-2 shrink-0"
+              class="px-5 py-2.5 rounded-full text-xs font-sans font-bold bg-[#1C1B19] text-[#FDFBF7] hover:bg-[#3D3A36] shadow-paper-sm hover:shadow-paper-md hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 shrink-0"
             >
-              <GitBranch className="w-4 h-4 text-[#FFE600] group-hover:text-[#111111]" />
+              <GitBranch className="w-4 h-4 text-[#E3DEFA]" />
               <span>Clone & Test Locally</span>
             </a>
           </div>
 
           {/* Next Case Study Navigation */}
           {nextSlug && (
-            <div class="flex items-center justify-between pt-6 text-xs font-mono font-bold">
-              <span class="text-[#8E8D88] uppercase tracking-wider">Next Artifact:</span>
+            <div class="flex items-center justify-between pt-6 text-xs font-mono font-semibold">
+              <span class="text-[#8A857D] uppercase tracking-wider">Next Artifact:</span>
               <a
                 href={`/work/${nextSlug}`}
-                class="inline-flex items-center gap-2 text-[#111111] hover:text-[#FF3B30] transition-colors underline decoration-2 decoration-[#111111]"
+                class="inline-flex items-center gap-2 text-[#1C1B19] hover:text-[#57534E] transition-colors underline decoration-2 decoration-[#E3DEFA]"
               >
                 <span>{nextTitle}</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#FF3B30]" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#1C1B19]" />
               </a>
             </div>
           )}

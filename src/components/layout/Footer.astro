@@ -1,35 +1,41 @@
 ---
+import HandDrawnDoodles from '../ui/HandDrawnDoodles.astro';
 ---
 
-<footer class="w-full border-t-[2px] border-[#111111] bg-[#FAF8F3] mt-24">
-  <!-- Conversion Callout Index Card -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 border-b-[1.5px] border-[#111111]/20">
-    <div class="relative bg-[#FFFDF9] rounded-md border-[2px] border-[#111111] p-8 sm:p-12 shadow-[6px_6px_0px_#111111] overflow-hidden">
-      <!-- Washi tape at top -->
-      <div class="washi-tape washi-tape-red"></div>
+<footer class="w-full border-t border-[#1C1B19]/8 bg-[#ECE7DE]/50 mt-24">
+  <!-- Conversion Callout Paper Sheet -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 border-b border-[#1C1B19]/8">
+    <div class="relative bg-[#FDFBF7] rounded-3xl p-8 sm:p-12 border border-[#1C1B19]/8 shadow-paper-md overflow-hidden">
+      <!-- Translucent Masking Tape -->
+      <div class="masking-tape masking-tape-lavender"></div>
 
       <div class="max-w-2xl relative z-10 space-y-4">
-        <div class="inline-flex items-center gap-2 bg-[#FFE600] border-[1.5px] border-[#111111] px-2.5 py-0.5 rounded-sm shadow-[2px_2px_0px_#111111]">
-          <span class="w-2 h-2 rounded-full bg-[#FF3B30]"></span>
-          <span class="text-[10px] uppercase tracking-widest text-[#111111] font-mono font-black">
-            // ZERO FLUFF GUARANTEE
+        <div class="inline-flex items-center gap-2 bg-[#FADEC9] border border-[#1C1B19]/10 px-3 py-1 rounded-full">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#1C1B19]"></span>
+          <span class="text-[11px] tracking-wide text-[#1C1B19] font-mono font-semibold uppercase">
+            // Zero Fluff Guarantee
           </span>
         </div>
 
-        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#111111] font-display leading-tight">
-          Want a 2-minute video teardown of your developer homepage?
-        </h2>
+        <div class="relative inline-block">
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-[-0.03em] text-[#1C1B19] font-display leading-tight">
+            Want a 2-minute video teardown of your developer homepage?
+          </h2>
+          <div class="opacity-70 mt-1">
+            <HandDrawnDoodles type="squiggly-underline" width={110} height={10} color="#E3DEFA" />
+          </div>
+        </div>
 
-        <p class="text-[#4B4A47] text-sm sm:text-base leading-relaxed font-sans">
+        <p class="text-[#57534E] text-sm sm:text-base leading-relaxed font-sans font-medium">
           Send me your URL. I will record a private, hyper-specific Loom breaking down where your messaging leaks developer trust—and how an engineer would rewrite it. 100% free, no sales pitch.
         </p>
 
         <div class="flex flex-wrap items-center gap-3 pt-2">
           <a
             href="/contact?teardown=true"
-            class="px-5 py-3 rounded-sm text-xs font-mono font-black tracking-wider uppercase bg-[#FF3B30] text-white hover:bg-[#e03026] border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_#111111] transition-all inline-flex items-center gap-2"
+            class="px-5 py-3 rounded-full text-xs font-sans font-bold tracking-tight bg-[#1C1B19] text-[#FDFBF7] hover:bg-[#3D3A36] shadow-paper-sm hover:shadow-paper-md hover:-translate-y-0.5 active:translate-y-0 transition-all inline-flex items-center gap-2"
           >
-            <span>REQUEST FREE TEARDOWN</span>
+            <span>Request Free Teardown</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M5 12h14"></path>
               <path d="m12 5 7 7-7 7"></path>
@@ -38,7 +44,7 @@
 
           <a
             href="/work"
-            class="px-5 py-3 rounded-sm text-xs font-mono font-bold tracking-wider uppercase bg-[#FFFDF9] border-[1.5px] border-[#111111] text-[#111111] hover:bg-[#FFE600] shadow-[3px_3px_0px_#111111] transition-all"
+            class="px-5 py-3 rounded-full text-xs font-sans font-semibold bg-[#FDFBF7] border border-[#1C1B19]/12 text-[#1C1B19] hover:bg-[#EAE5DA] shadow-paper-sm transition-all"
           >
             Read Past Teardowns
           </a>
@@ -47,34 +53,34 @@
     </div>
   </div>
 
-  <!-- Bottom Links & Colophon -->
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#4B4A47] font-mono">
+  <!-- Bottom Links & Scrapbook Colophon -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-[#57534E] font-sans font-medium">
     <div class="flex flex-col sm:flex-row items-center gap-3">
       <div class="flex items-center gap-2">
-        <span class="w-2.5 h-2.5 bg-[#FF3B30] border border-[#111111]"></span>
-        <span class="text-[#111111] font-black font-display tracking-tight text-sm">JATIN BHANOT</span>
+        <span class="w-2.5 h-2.5 rounded-full bg-[#E3DEFA] border border-[#1C1B19]/20"></span>
+        <span class="text-[#1C1B19] font-bold text-sm">Jatin Bhanot</span>
       </div>
-      <span class="hidden sm:inline text-[#111111]/30">|</span>
+      <span class="hidden sm:inline text-[#1C1B19]/20">•</span>
       <span>Systems Engineer & Technical Copywriter</span>
     </div>
 
-    <div class="flex items-center gap-5 font-bold">
-      <a href="https://github.com/bhanot1054" target="_blank" rel="noopener noreferrer" class="hover:text-[#FF3B30] transition-colors underline decoration-2 decoration-[#111111]">
+    <div class="flex items-center gap-4 font-mono font-medium">
+      <a href="https://github.com/bhanot1054" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-[#FDFBF7] border border-[#1C1B19]/8 hover:border-[#1C1B19]/30 transition-colors">
         GitHub
       </a>
-      <a href="https://linkedin.com/in/jatin-bhanot" target="_blank" rel="noopener noreferrer" class="hover:text-[#2563EB] transition-colors underline decoration-2 decoration-[#111111]">
+      <a href="https://linkedin.com/in/jatin-bhanot" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-full bg-[#FDFBF7] border border-[#1C1B19]/8 hover:border-[#1C1B19]/30 transition-colors">
         LinkedIn
       </a>
-      <a href="mailto:bhanot1054@gmail.com" class="hover:text-[#16A34A] transition-colors underline decoration-2 decoration-[#111111]">
+      <a href="mailto:bhanot1054@gmail.com" class="px-2.5 py-1 rounded-full bg-[#E3DEFA] border border-[#1C1B19]/8 text-[#1C1B19] hover:bg-[#d8d1f7] transition-colors">
         bhanot1054@gmail.com
       </a>
-      <a href="/robots.txt" class="hover:text-[#111111] transition-colors">
+      <a href="/robots.txt" class="text-[#8A857D] hover:text-[#1C1B19]">
         robots.txt
       </a>
     </div>
 
-    <div class="text-[11px] text-[#8E8D88]">
-      Tactile Paper-Art Design • Astro 7 + Tailwind v4 • 0 KB bloat
+    <div class="text-[11px] text-[#8A857D] font-mono">
+      Warm Scrapbook Paper-Craft • Astro 7 + Tailwind v4
     </div>
   </div>
 </footer>

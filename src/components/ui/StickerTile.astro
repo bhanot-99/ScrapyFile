@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string;
+  color?: string;
+  rotate?: string;
+  class?: string;
+}
+
+const { name, color = '#E3DEFA', rotate = '0deg', class: className = '' } = Astro.props;
+---
+
+<div
+  class={`sticker-tile inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl cursor-default select-none ${className}`}
+  style={{ transform: `rotate(${rotate})`, backgroundColor: color }}
+>
+  <span class="w-2 h-2 rounded-full bg-[#1C1B19]/30"></span>
+  <span class="font-mono text-xs font-bold text-[#1C1B19] tracking-tight">{name}</span>
+</div>

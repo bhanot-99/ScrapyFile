@@ -24,19 +24,19 @@ export default function CopyEmailButton({ email = 'bhanot1054@gmail.com', label 
       type="button"
       onClick={handleCopy}
       aria-label="Copy email address"
-      className="group inline-flex items-center gap-2 px-3 py-1.5 rounded-sm bg-[#FFFDF9] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] hover:shadow-[3.5px_3.5px_0px_#FF3B30] hover:translate-x-[-1px] hover:translate-y-[-1px] active:translate-x-[1px] active:translate-y-[1px] text-xs font-mono font-bold text-[#111111] transition-all cursor-pointer"
+      className="group inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FDFBF7] border border-[#1C1B19]/10 shadow-paper-sm hover:shadow-paper-md hover:border-[#1C1B19]/20 hover:-translate-y-0.5 active:translate-y-0 text-xs font-mono font-medium text-[#1C1B19] transition-all cursor-pointer"
     >
       <span>{label || email}</span>
-      <span className="p-1 rounded-xs bg-[#F3F1EC] border border-[#111111] text-[#111111] group-hover:bg-[#FFE600] transition-colors">
+      <span className="p-1 rounded-full bg-[#E3DEFA] text-[#1C1B19] transition-colors">
         {copied ? (
           <Check className="w-3.5 h-3.5 text-[#16A34A]" />
         ) : (
-          <Copy className="w-3.5 h-3.5 text-[#111111]" />
+          <Copy className="w-3.5 h-3.5 text-[#1C1B19]" />
         )}
       </span>
       {copied && (
         <span className="text-[10px] text-[#16A34A] font-mono font-bold tracking-tight">
-          COPIED!
+          Copied!
         </span>
       )}
     </button>

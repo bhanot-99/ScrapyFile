@@ -49,22 +49,22 @@ const METRICS: MetricItem[] = [
 
 export default function BenchmarkBars() {
   return (
-    <div className="w-full bg-[#FFFDF9] rounded-sm border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] p-6 sm:p-8 my-8 font-mono space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b-[1.5px] border-[#111111] pb-4">
+    <div className="w-full bg-[#FDFBF7] rounded-2xl border border-[#1C1B19]/10 shadow-[0_12px_28px_rgba(28,27,25,0.08)] p-6 sm:p-8 my-8 font-sans space-y-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#1C1B19]/8 pb-4">
         <div>
-          <span className="text-xs text-[#111111] font-black tracking-wider uppercase bg-[#FFE600] px-2 py-0.5 border border-[#111111] shadow-[1.5px_1.5px_0px_#111111] inline-block mb-1">
-            // BARE-METAL BENCHMARK MATRIX (UBUNTU 24.04 LTS / AMD EPYC 8-CORE)
+          <span className="text-[11px] text-[#1C1B19] font-mono font-semibold tracking-wider uppercase bg-[#E3DEFA] px-2.5 py-1 rounded-full border border-[#1C1B19]/10 inline-block mb-1.5">
+            Bare-Metal Benchmark Matrix (Ubuntu 24.04 LTS / AMD EPYC 8-Core)
           </span>
-          <div className="text-xs text-[#4B4A47] font-bold">BitNet b1.58 (2B Params) vs. Llama.cpp Q4_K_M</div>
+          <div className="text-xs text-[#57534E] font-medium font-sans">BitNet b1.58 (2B Params) vs. Llama.cpp Q4_K_M</div>
         </div>
-        <div className="flex items-center gap-4 text-xs font-bold">
+        <div className="flex items-center gap-4 text-xs font-mono font-medium">
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 bg-[#16A34A] border border-[#111111]"></span>
-            <span className="text-[#111111]">BitNet b1.58</span>
+            <span className="w-3 h-3 bg-[#D7F0DE] rounded-full border border-[#1C1B19]/20"></span>
+            <span className="text-[#1C1B19]">BitNet b1.58</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 bg-[#111111]"></span>
-            <span className="text-[#4B4A47]">GGUF Q4_K_M</span>
+            <span className="w-3 h-3 bg-[#1C1B19] rounded-full"></span>
+            <span className="text-[#57534E]">GGUF Q4_K_M</span>
           </div>
         </div>
       </div>
@@ -78,54 +78,49 @@ export default function BenchmarkBars() {
 
           return (
             <div key={idx} className="space-y-2">
-              <div className="flex items-center justify-between text-xs font-bold">
-                <span className="text-[#111111]">{metric.name}</span>
-                <span className="text-[#8E8D88] text-[11px]">
+              <div className="flex items-center justify-between text-xs font-semibold">
+                <span className="text-[#1C1B19]">{metric.name}</span>
+                <span className="text-[#57534E]/70 text-[11px] font-mono">
                   {isHigherBetter ? '(Higher is better)' : '(Lower is better)'}
                 </span>
               </div>
 
               {/* BitNet Bar */}
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <div className="flex items-center gap-3">
-                  <div className="w-24 text-[11px] font-bold text-[#16A34A] shrink-0">BitNet b1.58</div>
-                  <div className="flex-1 bg-[#FAF8F3] rounded-xs h-5 overflow-hidden border-[1.5px] border-[#111111] p-0.5 shadow-[1.5px_1.5px_0px_#111111]">
+                  <div className="w-24 text-[11px] font-mono font-semibold text-[#1C1B19] shrink-0">BitNet b1.58</div>
+                  <div className="flex-1 bg-[#F4F1EA] rounded-full h-4 overflow-hidden border border-[#1C1B19]/10 p-0.5">
                     <div
-                      className="bg-[#16A34A] h-full rounded-xs transition-all duration-500"
+                      className="bg-[#D7F0DE] h-full rounded-full transition-all duration-500 border border-[#1C1B19]/15"
                       style={{ width: `${bitnetWidth}%` }}
                     ></div>
                   </div>
-                  <div className="w-20 text-right text-xs font-black text-[#16A34A]">
+                  <div className="w-20 text-right text-xs font-mono font-bold text-[#1C1B19]">
                     {metric.bitnetValue} {metric.unit}
                   </div>
                 </div>
-                <div className="text-[10px] text-[#4B4A47] font-medium pl-27">{metric.bitnetNote}</div>
+                <p className="text-[11px] text-[#57534E] pl-27 italic">{metric.bitnetNote}</p>
               </div>
 
               {/* GGUF Bar */}
-              <div className="space-y-1">
+              <div className="space-y-1.5">
                 <div className="flex items-center gap-3">
-                  <div className="w-24 text-[11px] font-bold text-[#4B4A47] shrink-0">GGUF Q4_K_M</div>
-                  <div className="flex-1 bg-[#FAF8F3] rounded-xs h-5 overflow-hidden border-[1.5px] border-[#111111] p-0.5 shadow-[1.5px_1.5px_0px_#111111]">
+                  <div className="w-24 text-[11px] font-mono text-[#57534E] shrink-0">GGUF Q4_K_M</div>
+                  <div className="flex-1 bg-[#F4F1EA] rounded-full h-4 overflow-hidden border border-[#1C1B19]/10 p-0.5">
                     <div
-                      className="bg-[#111111] h-full rounded-xs transition-all duration-500"
+                      className="bg-[#1C1B19]/60 h-full rounded-full transition-all duration-500"
                       style={{ width: `${ggufWidth}%` }}
                     ></div>
                   </div>
-                  <div className="w-20 text-right text-xs font-bold text-[#111111]">
+                  <div className="w-20 text-right text-xs font-mono text-[#57534E]">
                     {metric.ggufValue} {metric.unit}
                   </div>
                 </div>
-                <div className="text-[10px] text-[#8E8D88] font-medium pl-27">{metric.ggufNote}</div>
+                <p className="text-[11px] text-[#57534E]/80 pl-27 italic">{metric.ggufNote}</p>
               </div>
             </div>
           );
         })}
-      </div>
-
-      <div className="pt-4 border-t-[1.5px] border-[#111111]/20 text-[11px] text-[#111111] leading-relaxed bg-[#FAF8F3] p-3 rounded-xs border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
-        <strong className="text-[#FF3B30] uppercase font-bold">Copywriting Takeaway for Technical Buyers: </strong>
-        Don't just tell enterprise security architects that on-device models are "efficient." Show that BitNet's addition-only kernel uses <strong>66% less RAM</strong> and cuts memory bus saturation by <strong>75%</strong>, allowing air-gapped deployment on existing edge hardware without a $4,000 GPU upgrade.
       </div>
     </div>
   );

@@ -9,27 +9,27 @@ interface Props {
 const { source, quote, friction, authorHandle } = Astro.props;
 ---
 
-<div class="relative bg-[#FFFDF9] rounded-sm p-5 sm:p-6 border-[1.5px] border-[#111111] shadow-[4px_4px_0px_#111111] font-mono my-6">
-  <!-- Small Washi Tape at corner -->
-  <div class="absolute -top-2 left-6 w-16 h-4 bg-[#FFE600]/70 border-x border-[#111111]/30 rotate-[-2deg] pointer-events-none"></div>
+<div class="relative bg-[#E6E0D5] rounded-2xl p-6 sm:p-7 border border-[#1C1B19]/8 shadow-paper-md font-mono my-6">
+  <!-- Small Translucent Masking Tape -->
+  <div class="masking-tape -top-3 left-10"></div>
 
-  <div class="flex items-center justify-between text-xs text-[#4B4A47] border-b-[1.5px] border-[#111111]/15 pb-2.5 mb-3">
+  <div class="flex items-center justify-between text-xs text-[#57534E] border-b border-[#1C1B19]/10 pb-3 mb-3">
     <div class="flex items-center gap-2">
-      <span class="w-2.5 h-2.5 rounded-full bg-[#FF3B30] border border-[#111111]"></span>
-      <span class="text-[#111111] font-bold">{source}</span>
-      {authorHandle && <span class="text-[#8E8D88]">(@{authorHandle})</span>}
+      <span class="w-2.5 h-2.5 rounded-full bg-[#1C1B19]/30"></span>
+      <span class="text-[#1C1B19] font-bold font-sans">{source}</span>
+      {authorHandle && <span class="text-[#8A857D]">(@{authorHandle})</span>}
     </div>
-    <span class="text-[10px] font-bold text-white bg-[#FF3B30] px-2 py-0.5 rounded-xs border border-[#111111] shadow-[1px_1px_0px_#111111]">
-      UNFILTERED OBJECTION
+    <span class="text-[10px] font-bold text-[#1C1B19] bg-[#F7D6DE] px-2.5 py-0.5 rounded-full border border-[#1C1B19]/8 shadow-sm uppercase tracking-wider">
+      Developer Friction
     </span>
   </div>
 
-  <blockquote class="text-xs sm:text-sm text-[#111111] font-sans italic leading-relaxed pl-3 border-l-2 border-[#FF3B30] my-3">
+  <blockquote class="text-sm sm:text-base text-[#1C1B19] font-sans italic leading-relaxed pl-3.5 border-l-2 border-[#1C1B19]/30 my-3">
     "{quote}"
   </blockquote>
 
-  <div class="mt-3 text-xs text-[#111111] bg-[#FAF8F3] p-3 rounded-xs border border-[#111111]/20">
-    <strong class="text-[#FF3B30] font-mono uppercase tracking-wider font-bold">Conversion Leak: </strong>
-    <span class="font-sans text-[#4B4A47] font-medium">{friction}</span>
+  <div class="mt-4 text-xs text-[#1C1B19] bg-[#FDFBF7] p-3.5 rounded-xl border border-[#1C1B19]/8 shadow-paper-sm">
+    <strong class="text-[#1C1B19] font-mono uppercase tracking-wider font-bold">Conversion Bottleneck: </strong>
+    <span class="font-sans text-[#57534E] font-medium">{friction}</span>
   </div>
 </div>
