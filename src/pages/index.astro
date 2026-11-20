@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSpecTranslator from '../components/interactive/HeroSpecTranslator.tsx';
 import SectionHeader from '../components/ui/SectionHeader.astro';
+import TornPaperDivider from '../components/ui/TornPaperDivider.astro';
+import VectorBoundingBox from '../components/ui/VectorBoundingBox.astro';
+import PaperCard from '../components/ui/PaperCard.astro';
 import { getCollection } from 'astro:content';
 import { ArrowRight, ArrowUpRight, ShieldCheck } from 'lucide-react';
 
@@ -15,35 +18,33 @@ const featuredWork = allWork
   title="Jatin Bhanot // Technical Copywriter & Systems Engineer"
   description="Technical Copy That Skeptical Engineers Actually Trust. Translating Rust, C++20, and on-device AI architectures into high-converting developer marketing."
 >
-  <!-- Hero Section with Architectural Grid Mask -->
-  <section class="relative pt-6 pb-16 sm:pb-24 overflow-hidden border-b border-white/5">
-    <!-- Grid Mask Background -->
-    <div class="absolute inset-0 hero-grid-pattern pointer-events-none opacity-60"></div>
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-emerald-500/8 blur-[120px] pointer-events-none rounded-full"></div>
-
+  <!-- Hero Section with Graph-Paper Grid & Editorial Masthead -->
+  <section class="relative pt-8 pb-16 sm:pb-24 overflow-hidden border-b-[2px] border-[#111111]">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-      <!-- 2-Column Split Hero (10-Second Impression) -->
+      <!-- 2-Column Split Hero (The 10-Second Impression) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 items-center">
         <!-- Left Column: High-Stakes Positioning & Trust -->
         <div class="lg:col-span-6 space-y-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs tracking-wider uppercase">
-            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <!-- Monospace Stamped Eyebrow Pill -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#FFE600] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] text-[#111111] font-mono text-xs font-bold uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-[#FF3B30] animate-pulse"></span>
             SYSTEMS ENGINEER TURNED TECHNICAL COPYWRITER
           </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-[3.4rem] font-extrabold tracking-[-0.035em] text-white leading-[1.08]">
-            Technical Copy That <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-zinc-100 to-zinc-400">Skeptical Engineers</span> Actually Trust.
+          <!-- Chunky Ultra-Wide Poster Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-[3.5rem] font-black uppercase tracking-[-0.04em] text-[#111111] font-display leading-[1.02]">
+            Technical Copy That <span class="highlight-yellow">Skeptical Engineers</span> Actually Trust.
           </h1>
 
-          <p class="text-zinc-300 text-base sm:text-lg leading-relaxed max-w-xl">
-            I build <strong class="text-white font-semibold">Rust</strong>, <strong class="text-white font-semibold">C++20</strong>, and <strong class="text-white font-semibold">on-device AI systems</strong>—and translate complex architectures into high-converting landing pages, code-backed deep dives, and developer launches.
+          <p class="text-[#3F3E3B] text-base sm:text-lg leading-relaxed max-w-xl font-sans font-medium">
+            I build <strong class="text-[#111111] font-bold">Rust</strong>, <strong class="text-[#111111] font-bold">C++20</strong>, and <strong class="text-[#111111] font-bold">on-device AI systems</strong>—and translate complex architectures into high-converting landing pages, code-backed deep dives, and developer launches.
           </p>
 
-          <!-- CTAs -->
+          <!-- Tactile Neo-Editorial CTAs -->
           <div class="flex flex-wrap items-center gap-3 pt-2">
             <a
               href="/work"
-              class="px-5 py-3 rounded-lg text-xs font-mono font-semibold tracking-wide bg-emerald-500 text-black hover:bg-emerald-400 transition-all glow-tactical hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2"
+              class="px-5 py-3 rounded-xs text-xs font-mono font-black tracking-wider uppercase bg-[#FF3B30] text-white hover:bg-[#e03026] border-[1.5px] border-[#111111] shadow-[4px_4px_0px_#111111] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0px_#111111] active:translate-x-[1px] active:translate-y-[1px] transition-all inline-flex items-center gap-2"
             >
               <span>Explore Case Studies</span>
               <ArrowRight className="w-4 h-4" />
@@ -51,58 +52,65 @@ const featuredWork = allWork
 
             <a
               href="/contact?call=true"
-              class="px-5 py-3 rounded-lg text-xs font-mono font-medium tracking-wide bg-zinc-900/90 border border-white/10 text-zinc-200 hover:text-white hover:border-zinc-700 hover:bg-zinc-800 transition-all inline-flex items-center gap-2"
+              class="px-5 py-3 rounded-xs text-xs font-mono font-bold tracking-wider uppercase bg-[#FFFDF9] border-[1.5px] border-[#111111] text-[#111111] hover:bg-[#FFE600] shadow-[3px_3px_0px_#111111] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[5px_5px_0px_#111111] transition-all inline-flex items-center gap-2"
             >
               <span>Book 15-Min Intro</span>
             </a>
           </div>
 
-          <!-- Micro Trust Bullet -->
-          <div class="pt-2 flex items-center gap-2 text-xs font-mono text-zinc-500">
-            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+          <!-- Micro Trust Bullet with Hand-Drawn Arrow -->
+          <div class="pt-2 flex items-center gap-2 text-xs font-mono text-[#4B4A47] font-bold">
+            <ShieldCheck className="w-4 h-4 text-[#16A34A] shrink-0" />
             <span>Zero generic AI fluff • 100% code-verified & runnable architectures</span>
           </div>
         </div>
 
-        <!-- Right Column: Interactive "Spec-to-Copy" Live Demo Island (client:load) -->
+        <!-- Right Column: Interactive "Spec-to-Copy" Live Demo Island (client:load) wrapped in Vector Bounding Box -->
         <div class="lg:col-span-6 w-full">
-          <HeroSpecTranslator client:load />
+          <VectorBoundingBox color="red" label="SAMPLE #0 // INTERACTIVE TRANSLATOR">
+            <HeroSpecTranslator client:load />
+          </VectorBoundingBox>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Engineering Credibility Telemetry Strip -->
-  <section class="border-y border-white/8 bg-[#090b0c] py-4">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-wrap items-center justify-between gap-4 font-mono text-xs text-zinc-400 overflow-x-auto">
-        <div class="flex items-center gap-2 shrink-0">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-          <span class="text-zinc-200 font-semibold">RUST & C++20</span>
+  <!-- Signature Ripped-Paper Breakout Band: Deep Ink-Black Credibility Marquee -->
+  <TornPaperDivider>
+    <div class="py-4">
+      <div class="flex items-center justify-between gap-4 mb-4">
+        <span class="text-xs font-mono font-black uppercase tracking-widest text-[#FFE600] flex items-center gap-2">
+          <span>✦</span>
+          <span>BARE-METAL ENGINEERING TELEMETRY</span>
+          <span>✦</span>
+        </span>
+        <span class="text-xs font-mono text-[#F3F1EC]/70 hidden sm:inline">AUDITED CODEBASES // 2026 STANDARDS</span>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-6 font-display uppercase tracking-tight text-xl sm:text-2xl lg:text-3xl font-black text-[#F3F1EC]">
+        <div class="flex items-center gap-3">
+          <span class="text-[#FF3B30] font-mono text-lg">✸</span>
+          <span>RUST & C++20</span>
         </div>
-        <span class="text-zinc-700 hidden md:inline">•</span>
-        <div class="flex items-center gap-2 shrink-0">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-          <span class="text-zinc-200 font-semibold">LINUX KERNEL / LANDLOCK</span>
+        <span class="text-[#FFE600] font-mono hidden md:inline">✦</span>
+        <div class="flex items-center gap-3">
+          <span class="text-[#FF3B30] font-mono text-lg">✸</span>
+          <span>LINUX LANDLOCK LSM</span>
         </div>
-        <span class="text-zinc-700 hidden md:inline">•</span>
-        <div class="flex items-center gap-2 shrink-0">
-          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-          <span class="text-zinc-200 font-semibold">BITNET b1.58 & LLAMA.CPP</span>
+        <span class="text-[#FFE600] font-mono hidden md:inline">✦</span>
+        <div class="flex items-center gap-3">
+          <span class="text-[#16A34A] font-mono text-lg">✸</span>
+          <span class="text-[#FFE600]">BITNET b1.58</span>
         </div>
-        <span class="text-zinc-700 hidden md:inline">•</span>
-        <div class="flex items-center gap-2 shrink-0 text-emerald-400 font-bold">
-          28K+ LOC SHIPPED
-        </div>
-        <span class="text-zinc-700 hidden md:inline">•</span>
-        <div class="flex items-center gap-2 shrink-0 text-emerald-400 font-bold">
-          470+ AUTOMATED TESTS
+        <span class="text-[#FFE600] font-mono hidden md:inline">✦</span>
+        <div class="flex items-center gap-3 border-[1.5px] border-[#FF3B30] px-3 py-1 bg-[#FF3B30]/20 rounded-xs shadow-[2px_2px_0px_#FF3B30]">
+          <span class="text-white">28K+ LOC SHIPPED</span>
         </div>
       </div>
     </div>
-  </section>
+  </TornPaperDivider>
 
-  <!-- Featured Flagship Work (Bento / Editorial Grid) -->
+  <!-- Featured Flagship Work: Tilted Tactile Polaroid/Index Cards -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
     <SectionHeader
       eyebrow="FLAGSHIP PROOF // SAMPLE #0"
@@ -110,109 +118,118 @@ const featuredWork = allWork
       subtitle="Explore how low-level systems engineering (epoll, Landlock, ternary integer weights) translates directly into high-converting developer collateral."
     />
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-      {featuredWork.map((item, idx) => (
-        <article class="sheen-card rounded-2xl p-6 sm:p-7 flex flex-col justify-between group hover:border-emerald-500/40 transition-all border border-white/10 relative overflow-hidden">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between gap-2">
-              <span class="font-mono text-[10px] font-semibold px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 uppercase tracking-wider">
-                {item.data.deliverableType}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {featuredWork.map((item, idx) => {
+        const tilt = idx % 2 === 0 ? 'left' : 'right';
+        const tape = idx % 3 === 0 ? 'yellow' : idx % 3 === 1 ? 'red' : 'blue';
+        return (
+          <PaperCard
+            tilt={tilt}
+            hasTape={true}
+            tapeColor={tape}
+            class="p-6 sm:p-7 flex flex-col justify-between"
+          >
+            <div class="space-y-4">
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs bg-[#111111] text-[#FFE600] border border-[#111111] uppercase tracking-wider shadow-[1.5px_1.5px_0px_#FF3B30]">
+                  {item.data.deliverableType}
+                </span>
+                <span class="text-[11px] font-mono font-bold text-[#4B4A47]">
+                  {item.data.readTime}
+                </span>
+              </div>
+
+              <!-- Miniature Architectural SVG Preview -->
+              <div class="h-32 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] flex items-center justify-center p-3 relative overflow-hidden">
+                {idx === 0 && (
+                  <svg class="w-full h-full" viewBox="0 0 280 90" fill="none">
+                    <rect x="10" y="15" width="115" height="60" rx="3" fill="#FFFDF9" stroke="#FF3B30" stroke-width="1.5" stroke-dasharray="3 3"/>
+                    <text x="20" y="32" fill="#FF3B30" font-size="8" font-family="monospace" font-weight="bold">BEFORE: VAGUE</text>
+                    <text x="20" y="48" fill="#4B4A47" font-size="7" font-family="monospace">All-in-one platform...</text>
+                    <path d="M130 45 H 150" stroke="#111111" stroke-width="2.5"/>
+                    <rect x="155" y="15" width="115" height="60" rx="3" fill="#FFE600" stroke="#111111" stroke-width="1.5"/>
+                    <text x="165" y="32" fill="#111111" font-size="8" font-family="monospace" font-weight="bold">AFTER: CONVERTED</text>
+                    <text x="165" y="48" fill="#111111" font-size="7" font-family="monospace" font-weight="bold">12s MicroVMs (+41%)</text>
+                  </svg>
+                )}
+                {idx === 1 && (
+                  <svg class="w-full h-full" viewBox="0 0 280 90" fill="none">
+                    <rect x="10" y="20" width="70" height="50" rx="3" fill="#FFFDF9" stroke="#16A34A" stroke-width="1.5"/>
+                    <text x="18" y="38" fill="#16A34A" font-size="8" font-family="monospace" font-weight="bold">inotify</text>
+                    <path d="M85 45 H 105" stroke="#111111" stroke-width="2"/>
+                    <rect x="110" y="20" width="70" height="50" rx="3" fill="#FFFDF9" stroke="#2563EB" stroke-width="1.5"/>
+                    <text x="118" y="38" fill="#2563EB" font-size="8" font-family="monospace" font-weight="bold">epoll_wait</text>
+                    <path d="M185 45 H 205" stroke="#111111" stroke-width="2"/>
+                    <rect x="210" y="20" width="60" height="50" rx="3" fill="#16A34A" stroke="#111111" stroke-width="1.5"/>
+                    <text x="218" y="38" fill="#FFFDF9" font-size="8" font-family="monospace" font-weight="bold">0.00% CPU</text>
+                  </svg>
+                )}
+                {idx === 2 && (
+                  <svg class="w-full h-full" viewBox="0 0 280 90" fill="none">
+                    <rect x="15" y="15" width="250" height="60" rx="4" fill="#FFFDF9" stroke="#111111" stroke-width="1.5"/>
+                    <text x="25" y="32" fill="#111111" font-size="8" font-family="monospace" font-weight="bold">LANDLOCK LSM BOUNDARY</text>
+                    <rect x="25" y="40" width="105" height="25" rx="2" fill="#FAF8F3" stroke="#111111" stroke-width="1"/>
+                    <text x="32" y="55" fill="#111111" font-size="7" font-family="monospace" font-weight="bold">BitNet 1.58b</text>
+                    <rect x="145" y="40" width="110" height="25" rx="2" fill="#FF3B30" stroke="#111111" stroke-width="1"/>
+                    <text x="152" y="55" fill="#FFFDF9" font-size="7" font-family="monospace" font-weight="bold">AF_INET = EACCES</text>
+                  </svg>
+                )}
+              </div>
+
+              <div>
+                <h3 class="text-xl font-black font-display uppercase tracking-tight text-[#111111] group-hover:text-[#FF3B30] transition-colors leading-snug">
+                  {item.data.title}
+                </h3>
+                <p class="text-[#3F3E3B] text-xs mt-2 leading-relaxed font-sans font-medium line-clamp-3">
+                  {item.data.tagline}
+                </p>
+              </div>
+
+              <div class="text-[11px] font-mono text-[#111111] bg-[#FAF8F3] p-2.5 rounded-xs border-[1.5px] border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
+                <span class="text-[#8E8D88] uppercase font-bold">Target Buyer: </span>
+                <span class="text-[#111111] font-bold">{item.data.targetBuyer}</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2 font-mono text-xs pt-1">
+                {item.data.metrics.slice(0, 2).map(m => (
+                  <div class="bg-white p-2 rounded-xs border-[1.5px] border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
+                    <div class="text-[10px] text-[#8E8D88] uppercase font-bold">{m.label}</div>
+                    <div class="text-[#16A34A] font-black font-display text-xs mt-0.5">{m.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-6 mt-4 border-t-[1.5px] border-[#111111]/20 flex items-center justify-between">
+              <span class="text-[10px] font-mono font-bold text-[#4B4A47] uppercase">
+                {item.data.stack[0]} • {item.data.stack[1]}
               </span>
-              <span class="text-[11px] font-mono text-zinc-500">
-                {item.data.readTime}
-              </span>
+              <a
+                href={`/work/${item.id}`}
+                class="inline-flex items-center gap-1.5 text-xs font-mono font-black uppercase text-[#111111] hover:text-[#FF3B30] transition-colors underline decoration-2 decoration-[#111111]"
+              >
+                <span>Read Case Study</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#FF3B30]" />
+              </a>
             </div>
-
-            <!-- Custom Miniature SVG Preview Graphics -->
-            <div class="h-32 rounded-lg bg-zinc-950 border border-white/5 flex items-center justify-center p-3 relative overflow-hidden group-hover:border-emerald-500/20 transition-colors">
-              {idx === 0 && (
-                <svg class="w-full h-full opacity-80" viewBox="0 0 280 90" fill="none">
-                  <rect x="10" y="15" width="115" height="60" rx="4" fill="#14181B" stroke="#EF4444" stroke-width="1" stroke-dasharray="2 2"/>
-                  <text x="20" y="32" fill="#EF4444" font-size="8" font-family="monospace">BEFORE: VAGUE</text>
-                  <text x="20" y="48" fill="#71717A" font-size="7" font-family="monospace">All-in-one platform...</text>
-                  <path d="M130 45 H 150" stroke="#22C55E" stroke-width="2"/>
-                  <rect x="155" y="15" width="115" height="60" rx="4" fill="#111613" stroke="#22C55E" stroke-width="1"/>
-                  <text x="165" y="32" fill="#22C55E" font-size="8" font-family="monospace">AFTER: CONVERSION</text>
-                  <text x="165" y="48" fill="#E4E4E7" font-size="7" font-family="monospace">12s MicroVMs (+41%)</text>
-                </svg>
-              )}
-              {idx === 1 && (
-                <svg class="w-full h-full opacity-80" viewBox="0 0 280 90" fill="none">
-                  <rect x="10" y="20" width="70" height="50" rx="4" fill="#14181B" stroke="#22C55E" stroke-width="1"/>
-                  <text x="18" y="38" fill="#22C55E" font-size="8" font-family="monospace">inotify</text>
-                  <path d="M85 45 H 105" stroke="#22C55E" stroke-width="1.5"/>
-                  <rect x="110" y="20" width="70" height="50" rx="4" fill="#14181B" stroke="#38BDF8" stroke-width="1"/>
-                  <text x="118" y="38" fill="#38BDF8" font-size="8" font-family="monospace">epoll_wait</text>
-                  <path d="M185 45 H 205" stroke="#22C55E" stroke-width="1.5"/>
-                  <rect x="210" y="20" width="60" height="50" rx="4" fill="#111613" stroke="#22C55E" stroke-width="1"/>
-                  <text x="218" y="38" fill="#22C55E" font-size="8" font-family="monospace">0.00% CPU</text>
-                </svg>
-              )}
-              {idx === 2 && (
-                <svg class="w-full h-full opacity-80" viewBox="0 0 280 90" fill="none">
-                  <rect x="15" y="15" width="250" height="60" rx="6" fill="#111613" stroke="#22C55E" stroke-width="1"/>
-                  <text x="25" y="32" fill="#22C55E" font-size="8" font-family="monospace">LANDLOCK LSM BOUNDARY</text>
-                  <rect x="25" y="40" width="105" height="25" rx="3" fill="#181D1A" stroke="rgba(255,255,255,0.1)"/>
-                  <text x="32" y="55" fill="#E4E4E7" font-size="7" font-family="monospace">BitNet 1.58b</text>
-                  <rect x="145" y="40" width="110" height="25" rx="3" fill="#181D1A" stroke="#EF4444" stroke-width="0.8"/>
-                  <text x="152" y="55" fill="#EF4444" font-size="7" font-family="monospace">AF_INET = EACCES</text>
-                </svg>
-              )}
-            </div>
-
-            <div>
-              <h3 class="text-xl font-bold tracking-tight text-white group-hover:text-emerald-300 transition-colors leading-snug">
-                {item.data.title}
-              </h3>
-              <p class="text-zinc-400 text-xs mt-2 leading-relaxed line-clamp-3">
-                {item.data.tagline}
-              </p>
-            </div>
-
-            <div class="text-[11px] font-mono text-zinc-400 bg-zinc-950/70 p-2.5 rounded-lg border border-white/5">
-              <span class="text-zinc-500">Target Buyer: </span>
-              <span class="text-zinc-300">{item.data.targetBuyer}</span>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 font-mono text-xs pt-1">
-              {item.data.metrics.slice(0, 2).map(m => (
-                <div class="bg-zinc-900/40 p-2 rounded border border-white/5">
-                  <div class="text-[10px] text-zinc-500 uppercase">{m.label}</div>
-                  <div class="text-emerald-400 font-bold text-xs mt-0.5">{m.value}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div class="pt-6 mt-4 border-t border-white/8 flex items-center justify-between">
-            <span class="text-[10px] font-mono text-zinc-500 uppercase">
-              {item.data.stack[0]} • {item.data.stack[1]}
-            </span>
-            <a
-              href={`/work/${item.id}`}
-              class="inline-flex items-center gap-1.5 text-xs font-mono font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
-            >
-              <span>Read Case Study</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </article>
-      ))}
+          </PaperCard>
+        );
+      })}
     </div>
 
-    <div class="mt-10 text-center">
+    <div class="mt-12 text-center">
       <a
         href="/work"
-        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-zinc-900 border border-white/10 text-zinc-300 hover:text-white hover:border-emerald-500/40 transition-all"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xs text-xs font-mono font-black uppercase tracking-wider bg-[#FFFDF9] border-[2px] border-[#111111] text-[#111111] hover:bg-[#FFE600] shadow-[4px_4px_0px_#111111] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[6px_6px_0px_#111111] transition-all"
       >
         <span>View All 5 Production Artifacts</span>
-        <ArrowRight className="w-3.5 h-3.5 text-emerald-400" />
+        <ArrowRight className="w-3.5 h-3.5 text-[#FF3B30]" />
       </a>
     </div>
   </section>
 
-  <!-- The 70/30 Research-First Pipeline (Interactive 3-Step Horizontal Flow) -->
-  <section class="border-t border-white/8 bg-[#090A0B] py-20 sm:py-28">
+  <!-- The 70/30 Research-First Pipeline (3-Step Numbered Dossier Cards) -->
+  <section class="border-t-[2px] border-[#111111] bg-[#FAF8F3] py-20 sm:py-28">
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       <SectionHeader
         eyebrow="METHODOLOGY & RIGOUR"
@@ -222,65 +239,68 @@ const featuredWork = allWork
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
         {/* Step 1 */}
-        <div class="sheen-card rounded-2xl p-6 sm:p-7 border border-white/10 space-y-4 relative">
+        <div class="bg-[#FFFDF9] rounded-sm p-6 sm:p-7 border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] space-y-4 relative">
+          <div class="washi-tape washi-tape-red"></div>
           <div class="flex items-center justify-between">
-            <span class="text-2xl font-black font-mono text-emerald-500/30">01</span>
-            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            <span class="text-3xl font-black font-display text-[#111111]">01</span>
+            <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs bg-[#FF3B30] text-white border border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
               70% OF THE WORK
             </span>
           </div>
-          <h3 class="text-lg font-bold text-white">
+          <h3 class="text-lg font-black font-display uppercase tracking-tight text-[#111111]">
             Product Teardown & VoC Mining
           </h3>
-          <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
+          <p class="text-[#3F3E3B] text-xs sm:text-sm leading-relaxed font-sans font-medium">
             I clone your repo, run your CLI, inspect your AST, and mine 100+ raw developer objections across Hacker News, GitHub Issues, and Reddit to pinpoint exact conversion friction points.
           </p>
-          <div class="pt-2 text-xs font-mono text-zinc-500 border-t border-white/5 space-y-1">
-            <div class="text-zinc-400">• GitHub code inspection</div>
-            <div class="text-zinc-400">• VoC objection extraction</div>
-            <div class="text-zinc-400">• Competitor positioning gap audit</div>
+          <div class="pt-2 text-xs font-mono font-bold text-[#4B4A47] border-t border-[#111111]/15 space-y-1">
+            <div>• GitHub code inspection</div>
+            <div>• VoC objection extraction</div>
+            <div>• Competitor positioning gap audit</div>
           </div>
         </div>
 
         {/* Step 2 */}
-        <div class="sheen-card rounded-2xl p-6 sm:p-7 border border-white/10 space-y-4 relative">
+        <div class="bg-[#FFFDF9] rounded-sm p-6 sm:p-7 border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] space-y-4 relative">
+          <div class="washi-tape washi-tape-yellow"></div>
           <div class="flex items-center justify-between">
-            <span class="text-2xl font-black font-mono text-emerald-500/30">02</span>
-            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-white/10">
+            <span class="text-3xl font-black font-display text-[#111111]">02</span>
+            <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs bg-[#FFE600] text-[#111111] border border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
               ARCHITECTURE PHASE
             </span>
           </div>
-          <h3 class="text-lg font-bold text-white">
+          <h3 class="text-lg font-black font-display uppercase tracking-tight text-[#111111]">
             Mechanism-to-Benefit Translation
           </h3>
-          <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
+          <p class="text-[#3F3E3B] text-xs sm:text-sm leading-relaxed font-sans font-medium">
             We map each low-level engineering feature (e.g. Landlock LSM, AVX-512 addition-only kernels) directly into verifiable commercial value so senior technical buyers instantly "get it".
           </p>
-          <div class="pt-2 text-xs font-mono text-zinc-500 border-t border-white/5 space-y-1">
-            <div class="text-zinc-400">• 2-Column Mechanism Matrix</div>
-            <div class="text-zinc-400">• Proof-anchored headline drafts</div>
-            <div class="text-zinc-400">• P99 benchmark verification</div>
+          <div class="pt-2 text-xs font-mono font-bold text-[#4B4A47] border-t border-[#111111]/15 space-y-1">
+            <div>• 2-Column Mechanism Matrix</div>
+            <div>• Proof-anchored headline drafts</div>
+            <div>• P99 benchmark verification</div>
           </div>
         </div>
 
         {/* Step 3 */}
-        <div class="sheen-card rounded-2xl p-6 sm:p-7 border border-white/10 space-y-4 relative">
+        <div class="bg-[#FFFDF9] rounded-sm p-6 sm:p-7 border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] space-y-4 relative">
+          <div class="washi-tape washi-tape-blue"></div>
           <div class="flex items-center justify-between">
-            <span class="text-2xl font-black font-mono text-emerald-500/30">03</span>
-            <span class="font-mono text-[11px] px-2.5 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-white/10">
+            <span class="text-3xl font-black font-display text-[#111111]">03</span>
+            <span class="font-mono text-[10px] font-bold px-2 py-0.5 rounded-xs bg-[#2563EB] text-white border border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
               DELIVERY & LAUNCH
             </span>
           </div>
-          <h3 class="text-lg font-bold text-white">
+          <h3 class="text-lg font-black font-display uppercase tracking-tight text-[#111111]">
             Wireframed Mockup & Loom Walkthrough
           </h3>
-          <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
+          <p class="text-[#3F3E3B] text-xs sm:text-sm leading-relaxed font-sans font-medium">
             No messy docs. You receive publication-ready Figma wireframes or MDX components, complete with line-by-line video rationale explaining the buyer psychology behind every word.
           </p>
-          <div class="pt-2 text-xs font-mono text-zinc-500 border-t border-white/5 space-y-1">
-            <div class="text-zinc-400">• Structured wireframe layout</div>
-            <div class="text-zinc-400">• Video walkthrough of revisions</div>
-            <div class="text-zinc-400">• 2 rounds of code-level polish</div>
+          <div class="pt-2 text-xs font-mono font-bold text-[#4B4A47] border-t border-[#111111]/15 space-y-1">
+            <div>• Structured wireframe layout</div>
+            <div>• Video walkthrough of revisions</div>
+            <div>• 2 rounds of code-level polish</div>
           </div>
         </div>
       </div>

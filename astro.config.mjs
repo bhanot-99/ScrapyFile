@@ -10,16 +10,20 @@ export default defineConfig({
   site: 'https://jatinbhanot.com',
   integrations: [
     expressiveCode({
-      themes: ['github-dark-dimmed'],
+      themes: ['github-dark-dimmed', 'github-light'],
       defaultProps: {
         wrap: true,
       },
       styleOverrides: {
-        borderRadius: '0.5rem',
-        borderWidth: '1px',
-        borderColor: 'rgba(255, 255, 255, 0.08)',
+        borderRadius: '0.375rem',
+        borderWidth: '2px',
+        borderColor: '#111111',
         codeFontFamily: '"JetBrains Mono Variable", monospace',
         uiFontFamily: '"Inter Variable", sans-serif',
+        frames: {
+          shadowColor: '#111111',
+          editorActiveTabIndicatorBottomColor: '#FFE600',
+        },
       },
     }),
     mdx(),

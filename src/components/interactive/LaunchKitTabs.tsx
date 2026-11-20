@@ -111,9 +111,9 @@ Jatin`
   ];
 
   return (
-    <div className="w-full sheen-card rounded-xl overflow-hidden border border-white/10 my-8">
-      {/* Tab Navigation */}
-      <div className="bg-[#0b0d0e] p-2 border-b border-white/8 flex flex-wrap gap-1">
+    <div className="w-full bg-[#FFFDF9] rounded-sm border-[2px] border-[#111111] shadow-[6px_6px_0px_#111111] overflow-hidden my-8">
+      {/* Tab Navigation (File Folder Tabs) */}
+      <div className="bg-[#FAF8F3] p-2 border-b-[1.5px] border-[#111111] flex flex-wrap gap-1.5">
         {TABS.map(tab => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -122,10 +122,10 @@ Jatin`
               key={tab.id}
               type="button"
               onClick={() => setActiveTab(tab.id)}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 rounded-xs text-xs font-mono font-bold transition-all cursor-pointer border-[1.5px] ${
                 isActive
-                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 font-medium shadow-[0_0_15px_rgba(34,197,94,0.15)]'
-                  : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border border-transparent'
+                  ? 'bg-[#FFE600] text-[#111111] border-[#111111] shadow-[3px_3px_0px_#111111]'
+                  : 'bg-[#FFFDF9] text-[#4B4A47] hover:text-[#111111] border-[#111111] shadow-[1.5px_1.5px_0px_#111111]'
               }`}
             >
               <Icon className="w-3.5 h-3.5" />
@@ -136,7 +136,7 @@ Jatin`
       </div>
 
       {/* Tab Content Display */}
-      <div className="p-5 sm:p-8 bg-[#0d0f11]">
+      <div className="p-5 sm:p-8 bg-[#FFFDF9]">
         <AnimatePresence mode="wait">
           {activeTab === 'landing' && (
             <motion.div
@@ -147,55 +147,55 @@ Jatin`
               transition={{ duration: 0.2 }}
               className="space-y-6"
             >
-              <div className="border border-white/10 rounded-xl bg-black/60 p-6 sm:p-8 space-y-5">
-                <div className="flex items-center justify-between border-b border-white/8 pb-4">
-                  <div className="font-mono text-xs text-emerald-400">
+              <div className="border-[1.5px] border-[#111111] rounded-xs bg-[#FAF8F3] p-6 sm:p-8 space-y-5 shadow-[4px_4px_0px_#111111]">
+                <div className="flex items-center justify-between border-b-[1.5px] border-[#111111]/20 pb-4">
+                  <div className="font-mono text-xs font-bold text-[#FF3B30] uppercase">
                     // DELIVERABLE 1: CONVERSION LANDING PAGE WIREFRAME
                   </div>
-                  <span className="text-[11px] font-mono text-zinc-500">Full Copy Blueprint</span>
+                  <span className="text-[11px] font-mono font-bold text-[#111111] bg-[#FFE600] px-2 py-0.5 border border-[#111111]">Full Blueprint</span>
                 </div>
 
                 <div className="space-y-3">
-                  <span className="font-mono text-xs px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                  <span className="font-mono text-xs font-bold px-2.5 py-1 rounded-xs bg-[#16A34A] text-white border-[1.5px] border-[#111111] shadow-[1.5px_1.5px_0px_#111111]">
                     ZERO-PRIVILEGE LINUX KERNEL TELEMETRY
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                  <h3 className="text-2xl sm:text-3xl font-black font-display uppercase text-[#111111]">
                     Know Exactly What Your AI Coding Agents Touch on Linux.
                   </h3>
-                  <p className="text-zinc-300 text-sm sm:text-base max-w-2xl leading-relaxed">
+                  <p className="text-[#3F3E3B] text-sm sm:text-base max-w-2xl leading-relaxed font-sans font-medium">
                     Multiplexing epoll and inotify to track microsecond subshells, file writes, and outbound sockets—without root permissions and 0.00% idle CPU overhead.
                   </p>
                 </div>
 
                 {/* Simulated CLI Copy Box */}
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 pt-2">
-                  <div className="flex-1 bg-zinc-950 p-3 rounded-lg border border-white/10 font-mono text-xs text-zinc-300 flex items-center justify-between">
+                  <div className="flex-1 bg-[#111111] p-3 rounded-xs border-[1.5px] border-[#111111] font-mono text-xs text-[#F3F1EC] flex items-center justify-between shadow-[2px_2px_0px_#111111]">
                     <span>cargo install agent-radar && agent-radar --watch</span>
                     <button
                       type="button"
                       onClick={handleCopyCli}
-                      className="p-1 rounded bg-white/5 hover:bg-emerald-500/20 text-zinc-400 hover:text-emerald-400 cursor-pointer ml-2"
+                      className="p-1 rounded-xs bg-white/10 hover:bg-[#FFE600] hover:text-[#111111] text-[#F3F1EC] cursor-pointer ml-2 transition-colors"
                     >
-                      {copiedCli ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
+                      {copiedCli ? <Check className="w-3.5 h-3.5 text-[#16A34A]" /> : <Copy className="w-3.5 h-3.5" />}
                     </button>
                   </div>
-                  <div className="px-4 py-3 rounded-lg bg-emerald-500 text-black font-mono text-xs font-semibold glow-tactical text-center cursor-pointer">
-                    Inspect Architecture (GitHub)
+                  <div className="px-4 py-3 rounded-xs bg-[#FF3B30] text-white font-mono text-xs font-bold uppercase border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111] text-center cursor-pointer hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all">
+                    Inspect GitHub Repo
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t border-white/8 text-xs font-mono">
-                  <div className="p-3 rounded bg-zinc-900/60 border border-white/5">
-                    <div className="text-zinc-400">Memory Envelope</div>
-                    <div className="text-emerald-400 font-bold text-sm mt-0.5">4.2MB RSS Bounded</div>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 border-t-[1.5px] border-[#111111]/20 text-xs font-mono">
+                  <div className="p-3 rounded-xs bg-white border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
+                    <div className="text-[#8E8D88] font-bold">Memory Envelope</div>
+                    <div className="text-[#111111] font-black text-sm mt-0.5">4.2MB RSS Bounded</div>
                   </div>
-                  <div className="p-3 rounded bg-zinc-900/60 border border-white/5">
-                    <div className="text-zinc-400">Idle CPU Drain</div>
-                    <div className="text-emerald-400 font-bold text-sm mt-0.5">0.00% Flat</div>
+                  <div className="p-3 rounded-xs bg-white border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
+                    <div className="text-[#8E8D88] font-bold">Idle CPU Drain</div>
+                    <div className="text-[#16A34A] font-black text-sm mt-0.5">0.00% Flat</div>
                   </div>
-                  <div className="p-3 rounded bg-zinc-900/60 border border-white/5">
-                    <div className="text-zinc-400">Security Model</div>
-                    <div className="text-emerald-400 font-bold text-sm mt-0.5">Zero Root / Landlock</div>
+                  <div className="p-3 rounded-xs bg-white border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111]">
+                    <div className="text-[#8E8D88] font-bold">Security Model</div>
+                    <div className="text-[#2563EB] font-black text-sm mt-0.5">Zero Root / Landlock</div>
                   </div>
                 </div>
               </div>
@@ -211,29 +211,29 @@ Jatin`
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <div className="bg-[#121314] rounded-xl border border-white/10 p-5 sm:p-7 space-y-4 font-mono">
-                <div className="flex items-center justify-between text-xs border-b border-white/8 pb-3">
+              <div className="bg-[#FAF8F3] rounded-xs border-[1.5px] border-[#111111] p-5 sm:p-7 space-y-4 font-mono shadow-[4px_4px_0px_#111111]">
+                <div className="flex items-center justify-between text-xs border-b-[1.5px] border-[#111111]/20 pb-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded bg-[#FF6600] text-black font-bold flex items-center justify-center text-[11px]">
+                    <span className="w-5 h-5 rounded-xs bg-[#FF6600] text-white font-bold flex items-center justify-center text-[11px] border border-[#111111]">
                       Y
                     </span>
-                    <span className="text-zinc-200 font-bold">Hacker News Submission Copy</span>
+                    <span className="text-[#111111] font-bold">Hacker News Submission Copy</span>
                   </div>
-                  <span className="text-emerald-400 text-[11px]">Ranked #2 on Show HN</span>
+                  <span className="text-[#111111] font-bold bg-[#FFE600] px-2 py-0.5 border border-[#111111]">Ranked #2 on Show HN</span>
                 </div>
 
-                <div className="text-sm font-bold text-zinc-100">
+                <div className="text-sm font-bold text-[#111111]">
                   Show HN: Agent-Radar – Zero-overhead Linux telemetry for AI coding agents in Rust
                 </div>
 
-                <div className="text-xs text-zinc-300 leading-relaxed space-y-3 bg-black/40 p-4 rounded-lg border border-white/5">
+                <div className="text-xs text-[#111111] leading-relaxed space-y-3 bg-[#FFFDF9] p-4 rounded-xs border-[1.5px] border-[#111111]">
                   <p>
                     Hi HN, I’m Jatin. I’ve been running local AI coding agents (Claude Code, Aider, OpenHands) on my Linux workstation and noticed a glaring gap:
                   </p>
                   <p>
                     These agents run hundreds of short-lived subshells (e.g. <code>`bash -c "..."`</code>) to test commands, inspect git status, and generate patches. Traditional auditing tools either:
                   </p>
-                  <ul className="list-disc pl-5 space-y-1 text-zinc-400">
+                  <ul className="list-disc pl-5 space-y-1 text-[#4B4A47]">
                     <li>Rely on <code>auditd</code>, which floods dmesg and requires root privileges.</li>
                     <li>Poll <code>/proc</code> every 100ms, completely missing transient subshells that live under 20ms before PID reuse occurs.</li>
                   </ul>
@@ -264,7 +264,7 @@ Jatin`
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {/* Email Sidebar List */}
                 <div className="space-y-2">
-                  <span className="text-xs font-mono uppercase tracking-wider text-zinc-400 block mb-2">
+                  <span className="text-xs font-mono uppercase tracking-wider text-[#111111] font-bold block mb-2">
                     4-Part Drip Sequence:
                   </span>
                   {emails.map((email, idx) => (
@@ -272,34 +272,34 @@ Jatin`
                       key={idx}
                       type="button"
                       onClick={() => setActiveEmailIdx(idx)}
-                      className={`w-full text-left p-3 rounded-lg border font-mono text-xs transition-all cursor-pointer ${
+                      className={`w-full text-left p-3 rounded-xs border-[1.5px] font-mono text-xs transition-all cursor-pointer ${
                         activeEmailIdx === idx
-                          ? 'bg-emerald-500/10 border-emerald-500/40 text-emerald-300'
-                          : 'bg-zinc-900/60 border-white/5 text-zinc-400 hover:text-zinc-200'
+                          ? 'bg-[#FFE600] border-[#111111] text-[#111111] shadow-[2.5px_2.5px_0px_#111111] font-bold'
+                          : 'bg-[#FFFDF9] border-[#111111] text-[#4B4A47] hover:text-[#111111] shadow-[1px_1px_0px_#111111]'
                       }`}
                     >
-                      <div className="text-[10px] text-emerald-400 font-semibold mb-1">{email.day}</div>
-                      <div className="font-semibold text-zinc-200 truncate">{email.subject}</div>
-                      <div className="text-[11px] text-zinc-500 truncate mt-1">{email.preview}</div>
+                      <div className="text-[10px] text-[#FF3B30] font-black mb-1">{email.day}</div>
+                      <div className="font-bold text-[#111111] truncate">{email.subject}</div>
+                      <div className="text-[11px] text-[#4B4A47] truncate mt-1">{email.preview}</div>
                     </button>
                   ))}
                 </div>
 
                 {/* Email Body Preview */}
-                <div className="lg:col-span-2 bg-[#121314] rounded-xl border border-white/10 p-5 sm:p-6 font-mono text-xs">
-                  <div className="border-b border-white/8 pb-3 mb-4 space-y-1">
-                    <div className="text-zinc-400">
-                      <span className="text-zinc-600">Timing:</span> {emails[activeEmailIdx].day}
+                <div className="lg:col-span-2 bg-[#FFFDF9] rounded-xs border-[1.5px] border-[#111111] p-5 sm:p-6 font-mono text-xs shadow-[4px_4px_0px_#111111]">
+                  <div className="border-b-[1.5px] border-[#111111]/20 pb-3 mb-4 space-y-1">
+                    <div className="text-[#4B4A47]">
+                      <span className="text-[#8E8D88]">Timing:</span> {emails[activeEmailIdx].day}
                     </div>
-                    <div className="text-zinc-200 font-bold">
-                      <span className="text-zinc-600">Subject:</span> {emails[activeEmailIdx].subject}
+                    <div className="text-[#111111] font-bold">
+                      <span className="text-[#8E8D88]">Subject:</span> {emails[activeEmailIdx].subject}
                     </div>
-                    <div className="text-zinc-400">
-                      <span className="text-zinc-600">From:</span> Jatin Bhanot &lt;jatin@agentradar.dev&gt;
+                    <div className="text-[#4B4A47]">
+                      <span className="text-[#8E8D88]">From:</span> Jatin Bhanot &lt;jatin@agentradar.dev&gt;
                     </div>
                   </div>
 
-                  <pre className="whitespace-pre-wrap font-mono text-zinc-300 leading-relaxed text-xs">
+                  <pre className="whitespace-pre-wrap font-mono text-[#111111] leading-relaxed text-xs">
                     {emails[activeEmailIdx].body}
                   </pre>
                 </div>
@@ -316,16 +316,16 @@ Jatin`
               transition={{ duration: 0.2 }}
               className="space-y-4"
             >
-              <div className="bg-[#121314] rounded-xl border border-white/10 p-6 font-mono text-xs space-y-4">
-                <div className="flex items-center justify-between border-b border-white/8 pb-3">
-                  <span className="text-emerald-400 font-bold">agent-radar v0.4.0 — Zero-Egress Kernel Enforcement</span>
-                  <span className="text-zinc-500">Released 2026-10-14</span>
+              <div className="bg-[#FFFDF9] rounded-xs border-[1.5px] border-[#111111] p-6 font-mono text-xs space-y-4 shadow-[4px_4px_0px_#111111]">
+                <div className="flex items-center justify-between border-b-[1.5px] border-[#111111]/20 pb-3">
+                  <span className="text-[#16A34A] font-black uppercase text-sm">agent-radar v0.4.0 — Zero-Egress Kernel Enforcement</span>
+                  <span className="text-[#8E8D88] font-bold">Released 2026-10-14</span>
                 </div>
 
-                <div className="space-y-4 text-zinc-300">
+                <div className="space-y-4 text-[#111111]">
                   <div>
-                    <h4 className="text-white font-bold mb-2">🚀 Architectural Highlights</h4>
-                    <ul className="list-disc pl-5 space-y-1 text-zinc-300">
+                    <h4 className="text-[#111111] font-bold mb-2 uppercase tracking-wide">🚀 Architectural Highlights</h4>
+                    <ul className="list-disc pl-5 space-y-1 text-[#3F3E3B]">
                       <li><strong>Landlock LSM Integration:</strong> Added unprivileged network isolation flag <code>--deny-net</code>, mathematically blocking <code>socket(AF_INET, ...)</code> syscalls without root.</li>
                       <li><strong>PID Reuse Race Hardening:</strong> Replaced naive stat polling with atomic <code>btime</code> checks against Linux <code>/proc/sys/kernel/pid_max</code> bounds.</li>
                       <li><strong>Ring Buffer Slab Allocator:</strong> Memory overhead reduced by another 18% (down to 4.2MB RSS under heavy load).</li>
@@ -333,8 +333,8 @@ Jatin`
                   </div>
 
                   <div>
-                    <h4 className="text-white font-bold mb-2">⚡ Breaking Changes</h4>
-                    <p className="text-zinc-400">
+                    <h4 className="text-[#111111] font-bold mb-2 uppercase tracking-wide">⚡ Breaking Changes</h4>
+                    <p className="text-[#4B4A47]">
                       Config flag <code>--strict-proc</code> has been deprecated in favor of <code>--enforce-landlock</code>. Minimum supported Linux kernel is now 5.13+.
                     </p>
                   </div>

@@ -15,7 +15,7 @@ const { title, description, image, articleDate } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="light scroll-smooth">
   <head>
     <BaseHead
       title={title}
@@ -25,8 +25,11 @@ const { title, description, image, articleDate } = Astro.props;
     />
     <ClientRouter />
   </head>
-  <body class="min-h-screen bg-[#080808] text-zinc-100 antialiased selection:bg-emerald-500/20 selection:text-emerald-300 flex flex-col justify-between">
-    <div class="w-full">
+  <body class="min-h-screen bg-[#F3F1EC] text-[#111111] antialiased selection:bg-[#FFE600] selection:text-[#111111] flex flex-col justify-between relative">
+    <!-- Subtle Crumpled Paper Noise Grain Overlay -->
+    <div class="paper-grain-overlay" aria-hidden="true"></div>
+
+    <div class="w-full relative z-10">
       <Navbar />
       <slot />
     </div>

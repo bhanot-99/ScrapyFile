@@ -1,0 +1,45 @@
+---
+interface Props {
+  color?: 'red' | 'blue' | 'yellow' | 'ink';
+  class?: string;
+  label?: string;
+}
+
+const { color = 'red', class: className = '', label } = Astro.props;
+
+const borderColors = {
+  red: 'border-[#FF3B30]',
+  blue: 'border-[#2563EB]',
+  yellow: 'border-[#FFE600]',
+  ink: 'border-[#111111]',
+};
+
+const handleColors = {
+  red: 'border-[#FF3B30]',
+  blue: 'border-[#2563EB]',
+  yellow: 'border-[#FFE600]',
+  ink: 'border-[#111111]',
+};
+---
+
+<div class={`relative border-[1.5px] ${borderColors[color]} ${className}`}>
+  <!-- 4 Corner Square Anchor Handles -->
+  <span class={`absolute -top-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+  <span class={`absolute -top-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+  <span class={`absolute -bottom-1.5 -left-1.5 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+  <span class={`absolute -bottom-1.5 -right-1.5 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+
+  <!-- 4 Midpoint Anchor Handles -->
+  <span class={`absolute -top-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+  <span class={`absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+  <span class={`absolute top-1/2 -left-1.5 -translate-y-1/2 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+  <span class={`absolute top-1/2 -right-1.5 -translate-y-1/2 w-2.5 h-2.5 bg-white border-[1.5px] ${handleColors[color]} z-20 pointer-events-none`}></span>
+
+  {label && (
+    <div class="absolute -top-3 left-4 bg-white border border-[#111111] px-1.5 py-0.2 font-mono text-[9px] font-bold text-[#111111] uppercase tracking-widest z-30 shadow-[1px_1px_0px_#111111]">
+      {label}
+    </div>
+  )}
+
+  <slot />
+</div>

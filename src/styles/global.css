@@ -2,86 +2,187 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-canvas: #080808;
-  --color-surface: #0e1011;
-  --color-surface-elevated: #111314;
-  --color-tactical: #22c55e;
-  --color-tactical-glow: #39ff14;
+  --color-canvas: #F3F1EC;
+  --color-paper: #FFFDF9;
+  --color-paper-card: #FAF8F3;
+  --color-ink: #111111;
+  --color-ink-muted: #4B4A47;
+  --color-ink-faint: #8E8D88;
+  --color-vermilion: #FF3B30;
+  --color-yellow: #FFE600;
+  --color-blueprint: #2563EB;
+  --color-mint: #16A34A;
+  --color-violet: #7C3AED;
+  --color-coral: #FF6B4A;
+  --font-display: 'Archivo Black', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Inter Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-/* Custom Tactical Precision Utilities */
+/* Light Mode Tactile Paper & Graph System */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  background-color: #080808;
-  color: #f4f4f5;
+  background-color: #F3F1EC;
+  color: #111111;
   font-family: var(--font-sans);
   overflow-x: hidden;
-  selection-background-color: rgba(34, 197, 94, 0.25);
-  selection-color: #39ff14;
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(17, 17, 17, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(17, 17, 17, 0.055) 1px, transparent 1px);
 }
 
 ::selection {
-  background-color: rgba(34, 197, 94, 0.3);
-  color: #f4f4f5;
+  background-color: #FFE600;
+  color: #111111;
 }
 
-/* Matte Metal Radial Sheen */
-.sheen-card {
-  background: #0e1011;
-  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+/* Neo-Editorial Hard Shadows & Tactile Borders */
+.paper-box {
+  background-color: #FFFDF9;
+  border: 1.5px solid #111111;
+  box-shadow: 4px 4px 0px #111111;
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.sheen-card:hover {
-  border-color: rgba(57, 255, 20, 0.28);
-  box-shadow: 0 0 25px rgba(34, 197, 94, 0.08);
+.paper-box-hover:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #111111;
 }
 
-/* Frosted Glass Panels */
-.glass-panel {
-  background: rgba(17, 19, 20, 0.72);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.paper-box-sm {
+  background-color: #FFFDF9;
+  border: 1.5px solid #111111;
+  box-shadow: 2.5px 2.5px 0px #111111;
 }
 
-/* Architectural Grid Mask */
-.hero-grid-pattern {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  mask-image: radial-gradient(ellipse 65% 50% at 50% 15%, #000 60%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 65% 50% at 50% 15%, #000 60%, transparent 100%);
+.paper-box-yellow {
+  background-color: #FFFDF9;
+  border: 1.5px solid #111111;
+  box-shadow: 4px 4px 0px #FFE600;
 }
 
-/* Tactical Green Glow */
-.glow-tactical {
-  box-shadow: 0 0 20px rgba(34, 197, 94, 0.18);
+.paper-box-red {
+  background-color: #FFFDF9;
+  border: 1.5px solid #111111;
+  box-shadow: 4px 4px 0px #FF3B30;
 }
 
-.glow-tactical-lg {
-  box-shadow: 0 0 35px rgba(34, 197, 94, 0.25);
+.paper-box-blue {
+  background-color: #FFFDF9;
+  border: 1.5px solid #111111;
+  box-shadow: 4px 4px 0px #2563EB;
+}
+
+/* Editorial Highlighter Strips */
+.highlight-yellow {
+  background: linear-gradient(180deg, transparent 55%, #FFE600 55%);
+  padding: 0 4px;
+  display: inline;
+}
+
+.highlight-mint {
+  background: linear-gradient(180deg, transparent 55%, rgba(22, 163, 74, 0.25) 55%);
+  padding: 0 4px;
+  display: inline;
+}
+
+.highlight-vermilion {
+  background: linear-gradient(180deg, transparent 55%, rgba(255, 59, 48, 0.22) 55%);
+  padding: 0 4px;
+  display: inline;
+}
+
+/* Editorial Sticker Cutouts */
+.sticker-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 1.5px solid #111111;
+  box-shadow: 2px 2px 0px #111111;
+  letter-spacing: 0.06em;
+}
+
+/* Tilted Polaroid / Index Cards */
+.tilt-left {
+  transform: rotate(-1deg);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tilt-left:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #111111;
+}
+
+.tilt-right {
+  transform: rotate(1deg);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tilt-right:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #111111;
+}
+
+/* Frosted Warm Paper Glass */
+.paper-frosted {
+  background: rgba(243, 241, 236, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 2px solid #111111;
+}
+
+/* Washi Tape Strip */
+.washi-tape {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 90px;
+  height: 22px;
+  background-color: rgba(255, 230, 0, 0.55);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  border-left: 2px dashed rgba(17, 17, 17, 0.2);
+  border-right: 2px dashed rgba(17, 17, 17, 0.2);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.washi-tape-red {
+  background-color: rgba(255, 59, 48, 0.45);
+}
+
+.washi-tape-blue {
+  background-color: rgba(37, 99, 235, 0.4);
+}
+
+/* Subtle Crumpled Paper Texture Overlay (Pure CSS / SVG Noise) */
+.paper-grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  z-index: 999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #080808;
+  background: #F3F1EC;
+  border-left: 1.5px solid #111111;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
+  background: #111111;
+  border: 1.5px solid #F3F1EC;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(34, 197, 94, 0.5);
+  background: #FF3B30;
 }

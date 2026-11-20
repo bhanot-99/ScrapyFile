@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import CopyEmailButton from '../components/ui/CopyEmailButton.tsx';
+import PaperCard from '../components/ui/PaperCard.astro';
 import { GraduationCap, ArrowRight } from 'lucide-react';
 
 const techStack = {
@@ -50,9 +51,9 @@ const techStack = {
         title="Why A Systems Engineer Writes Sharper Developer Copy"
       />
 
-      <div class="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-5 font-sans">
+      <div class="text-[#3F3E3B] text-base sm:text-lg leading-relaxed space-y-5 font-sans font-medium">
         <p>
-          I am <strong>Jatin Bhanot</strong>, a Computer Science engineer specialising in <strong class="text-white">Rust, C++20, Linux kernel internals, and on-device AI architectures</strong>.
+          I am <strong>Jatin Bhanot</strong>, a Computer Science engineer specialising in <span class="highlight-yellow font-bold text-[#111111]">Rust, C++20, Linux kernel internals, and on-device AI architectures</span>.
         </p>
 
         <p>
@@ -68,79 +69,82 @@ const techStack = {
         <CopyEmailButton client:load email="bhanot1054@gmail.com" label="bhanot1054@gmail.com" />
         <a
           href="/work"
-          class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300"
+          class="inline-flex items-center gap-1.5 text-xs font-mono font-bold uppercase text-[#111111] hover:text-[#FF3B30] underline decoration-2 decoration-[#111111]"
         >
           <span>Inspect Case Studies</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5 text-[#FF3B30]" />
         </a>
       </div>
     </div>
 
     <!-- Educational & Research Pedigree -->
-    <div class="mb-20 sheen-card rounded-2xl p-6 sm:p-8 border border-white/10 space-y-6">
+    <div class="mb-20 bg-[#FFFDF9] rounded-sm p-6 sm:p-8 border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] space-y-6 relative">
+      <div class="washi-tape washi-tape-yellow"></div>
       <div class="flex items-center gap-2">
-        <GraduationCap className="w-5 h-5 text-emerald-400" />
-        <h3 class="text-lg font-bold text-white font-mono uppercase tracking-wide">
+        <GraduationCap className="w-5 h-5 text-[#2563EB]" />
+        <h3 class="text-lg font-black font-display uppercase tracking-tight text-[#111111]">
           Academic & International Research Pedigree
         </h3>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
-        <div class="p-4 rounded-xl bg-zinc-950/70 border border-white/5 space-y-2">
-          <div class="text-emerald-400 font-bold">Chitkara University</div>
-          <div class="text-zinc-200 font-medium">B.E. Computer Science Engineering</div>
-          <div class="text-zinc-500">Specialisation in Systems, Concurrency & Operating Systems Architecture</div>
+        <div class="p-4 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] space-y-2">
+          <div class="text-[#2563EB] font-bold text-sm">Chitkara University</div>
+          <div class="text-[#111111] font-bold">B.E. Computer Science Engineering</div>
+          <div class="text-[#4B4A47] font-medium font-sans">Specialisation in Systems, Concurrency & Operating Systems Architecture</div>
         </div>
 
-        <div class="p-4 rounded-xl bg-zinc-950/70 border border-white/5 space-y-2">
-          <div class="text-emerald-400 font-bold">National Formosa University (Taiwan)</div>
-          <div class="text-zinc-200 font-medium">UAV Edge AI & Computer Vision Internship</div>
-          <div class="text-zinc-500">Engineered sub-4ms real-time tracking pipelines on ARM Jetson avionics</div>
+        <div class="p-4 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] space-y-2">
+          <div class="text-[#FF3B30] font-bold text-sm">National Formosa University (Taiwan)</div>
+          <div class="text-[#111111] font-bold">UAV Edge AI & Computer Vision Internship</div>
+          <div class="text-[#4B4A47] font-medium font-sans">Engineered sub-4ms real-time tracking pipelines on ARM Jetson avionics</div>
         </div>
 
-        <div class="p-4 rounded-xl bg-zinc-950/70 border border-white/5 space-y-2">
-          <div class="text-emerald-400 font-bold">Astana IT University</div>
-          <div class="text-zinc-200 font-medium">Applied CS & Cloud Systems Exchange</div>
-          <div class="text-zinc-500">Distributed microservices, Linux namespaces, and low-latency networking</div>
+        <div class="p-4 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2.5px_2.5px_0px_#111111] space-y-2">
+          <div class="text-[#16A34A] font-bold text-sm">Astana IT University</div>
+          <div class="text-[#111111] font-bold">Applied CS & Cloud Systems Exchange</div>
+          <div class="text-[#4B4A47] font-medium font-sans">Distributed microservices, Linux namespaces, and low-latency networking</div>
         </div>
       </div>
     </div>
 
-    <!-- Structured Technical Stack Matrix (3 Clean Categories, No Messy Tag Clouds) -->
+    <!-- Structured Technical Stack Matrix -->
     <div class="space-y-8">
-      <div class="border-b border-white/8 pb-4">
-        <span class="text-xs font-mono uppercase tracking-[0.18em] text-emerald-400 font-semibold block mb-2">
+      <div class="border-b-[2px] border-[#111111] pb-4">
+        <span class="text-xs font-mono uppercase tracking-[0.16em] text-[#FF3B30] font-bold block mb-2">
           // AUDITED CAPABILITIES
         </span>
-        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+        <h2 class="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-[#111111]">
           Structured Technical Stack Matrix
         </h2>
-        <p class="text-zinc-400 text-sm mt-1">
+        <p class="text-[#4B4A47] text-sm mt-1 font-medium font-sans">
           Every skill listed is backed by shipped code, automated test suites, or live benchmarks.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {Object.values(techStack).map(cat => (
-          <div class="sheen-card rounded-2xl p-6 sm:p-7 border border-white/10 space-y-5">
+        {Object.values(techStack).map((cat) => (
+          <PaperCard
+            class="p-6 sm:p-7 space-y-5"
+          >
             <div>
-              <h3 class="text-lg font-bold text-white tracking-tight">
+              <h3 class="text-lg font-black font-display uppercase tracking-tight text-[#111111]">
                 {cat.category}
               </h3>
-              <p class="text-zinc-400 text-xs mt-1 leading-relaxed">
+              <p class="text-[#4B4A47] text-xs mt-1 leading-relaxed font-sans font-medium">
                 {cat.summary}
               </p>
             </div>
 
-            <div class="space-y-3 pt-2 border-t border-white/5 font-mono text-xs">
+            <div class="space-y-3 pt-2 border-t-[1.5px] border-[#111111]/20 font-mono text-xs">
               {cat.skills.map(skill => (
-                <div class="p-3 rounded-lg bg-zinc-950/60 border border-white/5 space-y-1">
-                  <div class="text-emerald-400 font-semibold">{skill.name}</div>
-                  <div class="text-[11px] text-zinc-400 leading-snug">{skill.proof}</div>
+                <div class="p-3 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[2px_2px_0px_#111111] space-y-1">
+                  <div class="text-[#111111] font-bold">{skill.name}</div>
+                  <div class="text-[11px] text-[#4B4A47] leading-snug font-sans">{skill.proof}</div>
                 </div>
               ))}
             </div>
-          </div>
+          </PaperCard>
         ))}
       </div>
     </div>

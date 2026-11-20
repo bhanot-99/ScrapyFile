@@ -21,76 +21,77 @@ import { Clock, Globe, ShieldCheck, GitBranch } from 'lucide-react';
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
       <!-- Left Column: Direct Contacts & SLAs -->
       <div class="lg:col-span-5 space-y-6">
-        <div class="sheen-card rounded-2xl p-6 sm:p-8 border border-white/10 space-y-6">
+        <div class="bg-[#FFFDF9] rounded-sm p-6 sm:p-8 border-[2px] border-[#111111] shadow-[6px_6px_0px_#111111] space-y-6 relative">
+          <div class="washi-tape washi-tape-yellow"></div>
           <div>
-            <span class="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold block mb-2">
+            <span class="text-xs font-mono uppercase tracking-wider text-[#FF3B30] font-bold block mb-2">
               // DIRECT TRANSMISSION
             </span>
-            <h3 class="text-xl font-bold text-white mb-2">
+            <h3 class="text-xl font-black font-display uppercase tracking-tight text-[#111111] mb-2">
               Direct Engineering Inquiries
             </h3>
-            <p class="text-zinc-400 text-xs sm:text-sm leading-relaxed">
+            <p class="text-[#4B4A47] text-xs sm:text-sm leading-relaxed font-sans font-medium">
               No sales intermediaries. Your message goes directly to Jatin's personal workstation inbox.
             </p>
           </div>
 
           <!-- Email Copy Card -->
-          <div class="p-4 rounded-xl bg-zinc-950 border border-white/8 space-y-2">
-            <span class="text-[11px] font-mono text-zinc-500 uppercase tracking-wider block">
+          <div class="p-4 rounded-xs bg-[#FAF8F3] border-[1.5px] border-[#111111] shadow-[3px_3px_0px_#111111] space-y-2">
+            <span class="text-[11px] font-mono text-[#8E8D88] uppercase tracking-wider font-bold block">
               Primary Work Email:
             </span>
             <div class="flex items-center justify-between">
-              <span class="font-mono text-sm text-white font-medium">bhanot1054@gmail.com</span>
+              <span class="font-mono text-sm text-[#111111] font-bold">bhanot1054@gmail.com</span>
               <CopyEmailButton client:load email="bhanot1054@gmail.com" label="Copy" />
             </div>
           </div>
 
           <!-- Operational SLAs -->
-          <div class="space-y-3 pt-2 border-t border-white/8 font-mono text-xs">
-            <div class="flex items-start gap-3 text-zinc-300">
-              <Clock className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+          <div class="space-y-3 pt-2 border-t-[1.5px] border-[#111111]/20 font-mono text-xs">
+            <div class="flex items-start gap-3 text-[#111111]">
+              <Clock className="w-4 h-4 text-[#FF3B30] shrink-0 mt-0.5" />
               <div>
-                <strong class="text-white">Response Time SLA: </strong>
+                <strong class="font-bold">Response Time SLA: </strong>
                 <span>Guaranteed &lt; 24 hours (usually under 4h).</span>
               </div>
             </div>
 
-            <div class="flex items-start gap-3 text-zinc-300">
-              <Globe className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <div class="flex items-start gap-3 text-[#111111]">
+              <Globe className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
               <div>
-                <strong class="text-white">Timezone Flexibility: </strong>
+                <strong class="font-bold">Timezone Flexibility: </strong>
                 <span>IST (UTC+5:30) • Seamless daily overlap with US East & EU business hours.</span>
               </div>
             </div>
 
-            <div class="flex items-start gap-3 text-zinc-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+            <div class="flex items-start gap-3 text-[#111111]">
+              <ShieldCheck className="w-4 h-4 text-[#16A34A] shrink-0 mt-0.5" />
               <div>
-                <strong class="text-white">Current Availability: </strong>
-                <span class="text-emerald-400 font-medium">Q4 / 2026: 2 Project Slots Open.</span>
+                <strong class="font-bold">Current Availability: </strong>
+                <span class="text-[#16A34A] font-bold">Q4 / 2026: 2 Project Slots Open.</span>
               </div>
             </div>
           </div>
 
           <!-- Links -->
-          <div class="pt-4 border-t border-white/8 flex items-center gap-4 text-xs font-mono">
+          <div class="pt-4 border-t-[1.5px] border-[#111111]/20 flex items-center gap-4 text-xs font-mono font-bold">
             <a
               href="https://github.com/bhanot1054"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors"
+              class="inline-flex items-center gap-1.5 text-[#111111] hover:text-[#FF3B30] transition-colors underline decoration-2 decoration-[#111111]"
             >
-              <GitBranch className="w-3.5 h-3.5 text-emerald-400" />
+              <GitBranch className="w-3.5 h-3.5 text-[#111111]" />
               <span>GitHub</span>
             </a>
-            <span class="text-zinc-700">•</span>
+            <span class="text-[#111111]/30">•</span>
             <a
               href="https://linkedin.com/in/jatin-bhanot"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-1.5 text-zinc-400 hover:text-white transition-colors"
+              class="inline-flex items-center gap-1.5 text-[#111111] hover:text-[#2563EB] transition-colors underline decoration-2 decoration-[#111111]"
             >
-              <svg class="w-3.5 h-3.5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+              <svg class="w-3.5 h-3.5 text-[#111111]" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.46 1.46 0 1 0 0-2.92 1.46 1.46 0 0 0 0 2.92m1.4 9.74v-8.37H5.06v8.37h2.8z"/>
               </svg>
               <span>LinkedIn</span>
@@ -99,11 +100,11 @@ import { Clock, Globe, ShieldCheck, GitBranch } from 'lucide-react';
         </div>
 
         {/* Free Teardown Banner */}
-        <div class="p-6 rounded-2xl bg-emerald-950/20 border border-emerald-500/30 text-xs font-mono space-y-2">
-          <span class="text-emerald-400 font-semibold uppercase tracking-wider block">
+        <div class="p-6 rounded-sm bg-[#FFE600] border-[2px] border-[#111111] shadow-[5px_5px_0px_#111111] text-xs font-mono space-y-2">
+          <span class="text-[#111111] font-black uppercase tracking-wider block text-sm">
             ⚡ Want a 2-Minute Homepage Teardown?
           </span>
-          <p class="text-zinc-300 leading-relaxed">
+          <p class="text-[#111111] leading-relaxed font-sans font-medium">
             Send your URL in the project brief on the right. I will record a private, hyper-specific Loom breaking down where your messaging leaks developer trust. Free, no spam.
           </p>
         </div>

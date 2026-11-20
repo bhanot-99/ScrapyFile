@@ -1,26 +1,28 @@
 ---
 interface Props {
   text: string;
-  variant?: 'tactical' | 'neutral' | 'accent' | 'warning' | 'danger';
+  variant?: 'tactical' | 'neutral' | 'accent' | 'warning' | 'danger' | 'yellow' | 'violet';
   size?: 'xs' | 'sm';
 }
 
 const { text, variant = 'tactical', size = 'xs' } = Astro.props;
 
 const variantStyles = {
-  tactical: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
-  neutral: 'bg-zinc-800/60 text-zinc-300 border-white/10',
-  accent: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-  warning: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-  danger: 'bg-red-500/10 text-red-400 border-red-500/30',
+  tactical: 'bg-[#16A34A] text-white border-[#111111]',
+  neutral: 'bg-white text-[#111111] border-[#111111]',
+  accent: 'bg-[#2563EB] text-white border-[#111111]',
+  warning: 'bg-[#FFE600] text-[#111111] border-[#111111]',
+  danger: 'bg-[#FF3B30] text-white border-[#111111]',
+  yellow: 'bg-[#FFE600] text-[#111111] border-[#111111]',
+  violet: 'bg-[#7C3AED] text-white border-[#111111]',
 };
 
 const sizeStyles = {
-  xs: 'text-[11px] px-2 py-0.5',
-  sm: 'text-xs px-2.5 py-1',
+  xs: 'text-[10px] px-2 py-0.5 shadow-[1.5px_1.5px_0px_#111111]',
+  sm: 'text-xs px-2.5 py-1 shadow-[2px_2px_0px_#111111]',
 };
 ---
 
-<span class={`inline-flex items-center font-mono font-medium rounded border ${variantStyles[variant]} ${sizeStyles[size]} tracking-wider uppercase`}>
+<span class={`inline-flex items-center font-mono font-bold rounded-sm border-[1.5px] ${variantStyles[variant]} ${sizeStyles[size]} tracking-wider uppercase`}>
   {text}
 </span>

@@ -1,0 +1,37 @@
+---
+interface Props {
+  tilt?: 'none' | 'left' | 'right';
+  hasTape?: boolean;
+  tapeColor?: 'yellow' | 'red' | 'blue';
+  shadowColor?: 'ink' | 'yellow' | 'red' | 'blue';
+  class?: string;
+}
+
+const {
+  tilt = 'none',
+  hasTape = false,
+  tapeColor = 'yellow',
+  shadowColor = 'ink',
+  class: className = '',
+} = Astro.props;
+
+const tiltClasses = {
+  none: '',
+  left: 'tilt-left',
+  right: 'tilt-right',
+};
+
+const shadowClasses = {
+  ink: 'paper-box paper-box-hover',
+  yellow: 'paper-box-yellow',
+  red: 'paper-box-red',
+  blue: 'paper-box-blue',
+};
+---
+
+<div class={`relative ${shadowClasses[shadowColor]} ${tiltClasses[tilt]} ${className}`}>
+  {hasTape && (
+    <div class={`washi-tape ${tapeColor === 'red' ? 'washi-tape-red' : tapeColor === 'blue' ? 'washi-tape-blue' : ''}`} />
+  )}
+  <slot />
+</div>

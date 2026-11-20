@@ -1,0 +1,28 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className = '' } = Astro.props;
+---
+
+<div class={`relative w-full bg-[#111111] text-[#F3F1EC] my-16 sm:my-24 py-12 sm:py-16 overflow-hidden ${className}`}>
+  <!-- Jagged Torn Top Edge (SVG Mask / Shape) -->
+  <div class="absolute -top-[14px] left-0 right-0 w-full overflow-hidden leading-none z-10">
+    <svg class="w-full h-4 text-[#F3F1EC] fill-current" preserveAspectRatio="none" viewBox="0 0 1200 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 L0,18 L30,4 L60,20 L95,6 L130,22 L170,5 L210,19 L255,3 L290,21 L330,7 L370,22 L410,4 L450,20 L490,6 L530,23 L570,5 L615,20 L660,4 L700,22 L740,6 L780,21 L820,3 L860,19 L900,5 L940,22 L980,4 L1020,20 L1060,5 L1100,23 L1140,4 L1175,20 L1200,8 L1200,0 Z" />
+    </svg>
+  </div>
+
+  <!-- Content Slot -->
+  <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+    <slot />
+  </div>
+
+  <!-- Jagged Torn Bottom Edge (SVG Mask / Shape) -->
+  <div class="absolute -bottom-[14px] left-0 right-0 w-full overflow-hidden leading-none z-10">
+    <svg class="w-full h-4 text-[#F3F1EC] fill-current" preserveAspectRatio="none" viewBox="0 0 1200 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,24 L0,6 L35,20 L70,4 L110,21 L150,5 L190,22 L230,4 L270,20 L310,6 L350,23 L390,5 L430,21 L470,4 L510,20 L550,6 L590,22 L630,4 L670,21 L710,5 L750,22 L790,4 L830,20 L870,5 L910,22 L950,4 L990,21 L1030,6 L1070,23 L1110,5 L1150,20 L1185,4 L1200,16 L1200,24 Z" />
+    </svg>
+  </div>
+</div>

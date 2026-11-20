@@ -56,7 +56,7 @@ export default function FaqAccordion() {
   };
 
   return (
-    <div className="w-full space-y-3">
+    <div className="w-full space-y-3 font-mono">
       {FAQS.map(faq => {
         const isOpen = openId === faq.id;
         const Icon = faq.icon;
@@ -64,8 +64,10 @@ export default function FaqAccordion() {
         return (
           <div
             key={faq.id}
-            className={`sheen-card rounded-xl border transition-all ${
-              isOpen ? 'border-emerald-500/40 bg-zinc-950/80 shadow-[0_0_20px_rgba(34,197,94,0.08)]' : 'border-white/10 bg-zinc-900/40'
+            className={`rounded-sm border-[2px] border-[#111111] transition-all ${
+              isOpen
+                ? 'bg-[#FFFDF9] shadow-[5px_5px_0px_#111111]'
+                : 'bg-[#FAF8F3] shadow-[2.5px_2.5px_0px_#111111] hover:shadow-[4px_4px_0px_#111111]'
             }`}
           >
             <button
@@ -74,17 +76,17 @@ export default function FaqAccordion() {
               className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
             >
               <div className="flex items-center gap-3">
-                <span className={`p-2 rounded-lg ${isOpen ? 'bg-emerald-500/10 text-emerald-400' : 'bg-white/5 text-zinc-400'}`}>
+                <span className={`p-2 rounded-xs border border-[#111111] ${isOpen ? 'bg-[#FFE600] text-[#111111] shadow-[1.5px_1.5px_0px_#111111]' : 'bg-[#FFFDF9] text-[#111111]'}`}>
                   <Icon className="w-4 h-4" />
                 </span>
-                <span className="font-semibold text-sm sm:text-base text-zinc-100">
+                <span className="font-black font-display uppercase tracking-tight text-sm sm:text-base text-[#111111]">
                   {faq.question}
                 </span>
               </div>
 
               <ChevronDown
-                className={`w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 ${
-                  isOpen ? 'rotate-180 text-emerald-400' : ''
+                className={`w-5 h-5 text-[#111111] shrink-0 transition-transform duration-200 ${
+                  isOpen ? 'rotate-180 text-[#FF3B30]' : ''
                 }`}
               />
             </button>
@@ -98,10 +100,10 @@ export default function FaqAccordion() {
                   transition={{ duration: 0.25, ease: 'easeInOut' }}
                   className="overflow-hidden"
                 >
-                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-zinc-300 leading-relaxed border-t border-white/5 mt-1 space-y-3">
+                  <div className="px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#3F3E3B] leading-relaxed border-t-[1.5px] border-[#111111]/15 mt-1 space-y-3 font-sans font-medium">
                     <p>{faq.answer}</p>
                     {faq.highlight && (
-                      <div className="font-mono text-[11px] text-emerald-400 bg-emerald-500/10 px-3 py-1.5 rounded border border-emerald-500/20 inline-block">
+                      <div className="font-mono font-bold text-[11px] text-[#111111] bg-[#FFE600] px-3 py-1.5 rounded-xs border border-[#111111] shadow-[1.5px_1.5px_0px_#111111] inline-block">
                         ⚡ {faq.highlight}
                       </div>
                     )}
