@@ -34,5 +34,27 @@ const { title, description, image, articleDate } = Astro.props;
       <slot />
     </div>
     <Footer />
+
+    <!-- Subtle Cursor Light-Source Tracker for Desktop -->
+    <script is:inline>
+      (() => {
+        if (!window.matchMedia('(hover: hover)').matches) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        
+        let ticking = false;
+        window.addEventListener('pointermove', (e) => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const xPercent = (e.clientX / window.innerWidth) * 100;
+              const yPercent = (e.clientY / window.innerHeight) * 100;
+              document.documentElement.style.setProperty('--light-x', `${xPercent.toFixed(1)}%`);
+              document.documentElement.style.setProperty('--light-y', `${yPercent.toFixed(1)}%`);
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      })();
+    </script>
   </body>
 </html>

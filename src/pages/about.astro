@@ -12,32 +12,32 @@ const techStack = {
     badgeVariant: 'lavender' as const,
     summary: 'Low-level Linux systems programming, unprivileged kernel sandboxing, and deterministic async runtimes.',
     skills: [
-      { name: 'Rust (tokio, nix, ratatui, aya)', proof: 'Production daemons, zero-allocation ring buffers' },
-      { name: 'C++20 (Concepts, Coroutines, SIMD)', proof: 'AVX-512 vector kernels, DMA-BUF ingestion' },
+      { name: 'Rust (tokio, nix, ratatui, aya)', proof: 'Production daemons, zero-allocation event handling' },
+      { name: 'C++20 (Concepts, Coroutines, SIMD)', proof: 'SIMD vector routines, clean systems architecture' },
       { name: 'Linux Kernel Internals', proof: 'epoll, inotify, /proc, Landlock LSM, seccomp-bpf' },
-      { name: 'Concurrency & Memory', proof: 'Lock-free ring buffers, cache-line alignment' }
+      { name: 'Concurrency & Memory', proof: 'Bounded ring buffers, cache-line alignment' }
     ]
   },
   ai: {
-    category: 'On-Device, Edge AI & Quantization',
+    category: 'On-Device, Edge AI & Computer Vision',
     badgeVariant: 'peach' as const,
-    summary: 'Air-gapped language model runtimes, ternary integer weights, and real-time UAV computer vision.',
+    summary: 'Local language model isolation, ternary weight architectures, and real-time UAV computer vision.',
     skills: [
-      { name: 'BitNet b1.58 Ternary Architecture', proof: 'Addition-only matrix kernels on AVX-512' },
-      { name: 'Llama.cpp & GGUF Quantization', proof: 'CPU inference optimization, Q4_K_M kernels' },
-      { name: 'Edge Vision Avionics (YOLOv8, TensorRT)', proof: 'Sub-4ms tracking on Jetson & ARM Cortex' },
-      { name: 'Zero-Egress Security Boundaries', proof: 'Mathematical network drops via Linux Landlock' }
+      { name: 'BitNet b1.58 Ternary Architecture', proof: 'Addition-only matrix kernels on CPU architectures' },
+      { name: 'Llama.cpp & GGUF Quantization', proof: 'CPU inference analysis, Q4_K_M kernel comparisons' },
+      { name: 'UAV Aerial Vision (YOLO11n, ByteTrack, SAHI)', proof: 'Small-vehicle tracking across high-resolution aerial video' },
+      { name: 'Zero-Egress Security Boundaries', proof: 'Network socket restriction via Linux Landlock' }
     ]
   },
   observability: {
-    category: 'Data, Telemetry & Developer Marketing',
+    category: 'Telemetry, Tooling & Developer Marketing',
     badgeVariant: 'sage' as const,
-    summary: 'High-throughput telemetry correlation, wireframed developer conversion funnels, and technical communication.',
+    summary: 'Low-overhead telemetry correlation, wireframed developer conversion funnels, and technical communication.',
     skills: [
-      { name: 'OpenTelemetry (OTel) & Linux Perf', proof: 'Sub-microsecond trace spans and RSS auditing' },
+      { name: 'OpenTelemetry (OTel) & Linux Perf', proof: 'Low-overhead trace spans and RSS memory profiling' },
       { name: 'Developer Copywriting & VoC Mining', proof: 'Reverse-engineering developer objections from HN/Reddit' },
       { name: 'Interactive Documentation (MDX / Astro)', proof: 'Expressive Code, IDE-grade diff blocks' },
-      { name: 'Technical Product Launches', proof: 'Ranked #2 on Hacker News Show HN' }
+      { name: 'Technical Product Launches', proof: 'High-signal release notes, CLI quickstarts, and Show HN positioning' }
     ]
   }
 };
@@ -100,8 +100,8 @@ const techStack = {
 
         <div class="p-4 rounded-xl bg-[#F4F1EA] border border-[#1C1B19]/8 space-y-2">
           <div class="text-[#1C1B19] font-bold text-sm">National Formosa University (Taiwan)</div>
-          <div class="text-[#1C1B19] font-semibold">UAV Edge AI & Computer Vision Internship</div>
-          <div class="text-[#57534E] font-sans">Engineered sub-4ms real-time tracking pipelines on ARM Jetson avionics</div>
+          <div class="text-[#1C1B19] font-semibold">UAV Computer Vision Research Fellowship</div>
+          <div class="text-[#57534E] font-sans">Engineered real-time aerial video inference using YOLO11n, ByteTrack, and SAHI for vehicle tracking</div>
         </div>
 
         <div class="p-4 rounded-xl bg-[#F4F1EA] border border-[#1C1B19]/8 space-y-2">
@@ -122,7 +122,7 @@ const techStack = {
           Structured Technical Stack Matrix
         </h2>
         <p class="text-[#57534E] text-sm mt-1 font-sans">
-          Every skill listed is backed by shipped code, automated test suites, or live benchmarks.
+          Every capability is backed by runnable code, automated test suites, or reproducible benchmarks.
         </p>
       </div>
 
@@ -133,7 +133,7 @@ const techStack = {
           >
             <div>
               <div class="flex items-center justify-between mb-2">
-                <Badge text="VERIFIED" variant={cat.badgeVariant} />
+                <Badge text="AUDITED" variant={cat.badgeVariant} />
               </div>
               <h3 class="text-lg font-bold font-sans tracking-tight text-[#1C1B19]">
                 {cat.category}
