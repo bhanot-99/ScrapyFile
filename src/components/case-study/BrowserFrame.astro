@@ -1,0 +1,33 @@
+---
+interface Props {
+  url?: string;
+  title?: string;
+}
+
+const { url = 'https://agentradar.dev', title = 'Live Production Architecture' } = Astro.props;
+---
+
+<div class="w-full sheen-card rounded-xl border border-white/10 overflow-hidden my-6 shadow-2xl">
+  <!-- Top Browser Header -->
+  <div class="bg-[#0b0d0e] px-4 py-2.5 border-b border-white/8 flex items-center justify-between gap-4">
+    <div class="flex items-center gap-1.5 shrink-0">
+      <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+    </div>
+
+    <!-- URL bar -->
+    <div class="flex-1 max-w-md mx-auto bg-black/60 rounded-md px-3 py-1 font-mono text-[11px] text-zinc-400 text-center border border-white/5 truncate">
+      <span class="text-emerald-400/80">https://</span>{url.replace('https://', '')}
+    </div>
+
+    <div class="text-[11px] font-mono text-zinc-600 hidden sm:block shrink-0">
+      {title}
+    </div>
+  </div>
+
+  <!-- Browser Content Slot -->
+  <div class="p-4 sm:p-6 bg-[#0e1011]">
+    <slot />
+  </div>
+</div>

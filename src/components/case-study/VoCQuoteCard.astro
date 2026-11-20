@@ -1,0 +1,32 @@
+---
+interface Props {
+  source: string;
+  quote: string;
+  friction: string;
+  authorHandle?: string;
+}
+
+const { source, quote, friction, authorHandle } = Astro.props;
+---
+
+<div class="sheen-card rounded-xl p-5 sm:p-6 border border-white/10 space-y-3 font-mono my-4">
+  <div class="flex items-center justify-between text-xs text-zinc-500 border-b border-white/5 pb-2.5">
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-red-400/80"></span>
+      <span class="text-zinc-300 font-semibold">{source}</span>
+      {authorHandle && <span class="text-zinc-600">(@{authorHandle})</span>}
+    </div>
+    <span class="text-[11px] text-red-400 bg-red-500/10 px-2 py-0.5 rounded border border-red-500/20">
+      Unfiltered Objection
+    </span>
+  </div>
+
+  <blockquote class="text-xs sm:text-sm text-zinc-300 italic leading-relaxed pl-3 border-l-2 border-zinc-700">
+    "{quote}"
+  </blockquote>
+
+  <div class="pt-2 text-xs text-zinc-400 bg-zinc-950/70 p-3 rounded-lg border border-white/5">
+    <strong class="text-emerald-400">Underlying Conversion Friction: </strong>
+    <span>{friction}</span>
+  </div>
+</div>

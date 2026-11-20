@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/ui/SectionHeader.astro';
+import WorkFilterGrid from '../../components/interactive/WorkFilterGrid.tsx';
+import { getCollection } from 'astro:content';
+
+const allWork = await getCollection('work');
+const sortedWork = allWork.sort((a, b) => a.data.order - b.data.order);
+
+const workItems = sortedWork.map(item => ({
+  slug: item.id,
+  title: item.data.title,
+  tagline: item.data.tagline,
+  category: item.data.category,
+  categoryLabel: item.data.categoryLabel,
+  deliverableType: item.data.deliverableType,
+  targetBuyer: item.data.targetBuyer,
+  stack: item.data.stack,
+  readTime: item.data.readTime,
+  metrics: item.data.metrics,
+  featured: item.data.featured,
+}));
+---
+
+<BaseLayout
+  title="Work Archive // Technical Copywriting & Developer Marketing"
+  description="Production case studies, interactive teardowns, code-backed deep dives, and whitepapers for developer tools, systems engineering, and on-device AI."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-24">
+    <SectionHeader
+      eyebrow="PRODUCTION PORTFOLIO // SAMPLE #0"
+      title="Verified Technical Case Studies"
+      subtitle="Filter across conversion copy, kernel-level deep dives, and full-funnel developer launch kits. Every artifact is accompanied by runnable code or production metrics."
+    />
+
+    <WorkFilterGrid items={workItems} client:load />
+  </div>
+</BaseLayout>

@@ -1,0 +1,35 @@
+---
+import BaseHead from '../components/layout/BaseHead.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  articleDate?: string;
+}
+
+const { title, description, image, articleDate } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <BaseHead
+      title={title}
+      description={description}
+      image={image}
+      articleDate={articleDate}
+    />
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-[#080808] text-zinc-100 antialiased selection:bg-emerald-500/20 selection:text-emerald-300 flex flex-col justify-between">
+    <div class="w-full">
+      <Navbar />
+      <slot />
+    </div>
+    <Footer />
+  </body>
+</html>

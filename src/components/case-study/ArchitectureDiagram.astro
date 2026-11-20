@@ -1,0 +1,125 @@
+---
+interface Props {
+  type: 'agent-radar' | 'landlock-sandbox' | 'teardown-funnel';
+}
+
+const { type } = Astro.props;
+---
+
+<div class="w-full sheen-card rounded-xl border border-white/10 p-5 sm:p-7 my-6 font-mono">
+  <div class="flex items-center justify-between border-b border-white/8 pb-3 mb-6">
+    <span class="text-xs text-emerald-400 font-semibold tracking-wider uppercase">
+      // INLINE ARCHITECTURE DIAGRAM (ZERO STOCK ASSETS)
+    </span>
+    <span class="text-[11px] text-zinc-500">Vector SVG • High-Precision Topology</span>
+  </div>
+
+  {type === 'agent-radar' && (
+    <div class="overflow-x-auto py-2">
+      <svg class="w-full min-w-[640px] h-auto" viewBox="0 0 760 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background Grid Bounds -->
+        <rect x="2" y="2" width="756" height="216" rx="8" fill="#0A0C0D" stroke="rgba(255,255,255,0.08)"/>
+
+        <!-- Stage 1: Linux Kernel Layer -->
+        <rect x="24" y="30" width="150" height="150" rx="8" fill="#111416" stroke="#22C55E" stroke-opacity="0.4" stroke-dasharray="3 3"/>
+        <text x="36" y="55" fill="#22C55E" font-size="11" font-weight="bold" font-family="monospace">01. LINUX KERNEL</text>
+        <text x="36" y="80" fill="#E4E4E7" font-size="12" font-family="monospace">inotify_init1()</text>
+        <text x="36" y="105" fill="#A1A1AA" font-size="11" font-family="monospace">IN_CLOSE_WRITE</text>
+        <text x="36" y="125" fill="#A1A1AA" font-size="11" font-family="monospace">IN_MOVED_TO</text>
+        <text x="36" y="155" fill="#71717A" font-size="10" font-family="monospace">epoll_wait(-1)</text>
+
+        <!-- Arrow 1 to 2 -->
+        <path d="M174 105 H 210" stroke="#22C55E" stroke-width="2" marker-end="url(#arrow)"/>
+        <text x="180" y="95" fill="#22C55E" font-size="9" font-family="monospace">0% CPU</text>
+
+        <!-- Stage 2: Event Multiplexer -->
+        <rect x="210" y="30" width="160" height="150" rx="8" fill="#14181B" stroke="rgba(255,255,255,0.15)"/>
+        <text x="222" y="55" fill="#38BDF8" font-size="11" font-weight="bold" font-family="monospace">02. EVENT REACTOR</text>
+        <text x="222" y="80" fill="#E4E4E7" font-size="12" font-family="monospace">epoll Multiplex</text>
+        <text x="222" y="105" fill="#A1A1AA" font-size="11" font-family="monospace">epoll_event[]</text>
+        <text x="222" y="125" fill="#A1A1AA" font-size="11" font-family="monospace">Atomic FD unmask</text>
+        <text x="222" y="155" fill="#71717A" font-size="10" font-family="monospace">Fixed Ring Slab</text>
+
+        <!-- Arrow 2 to 3 -->
+        <path d="M370 105 H 410" stroke="#38BDF8" stroke-width="2"/>
+
+        <!-- Stage 3: Proc Correlator -->
+        <rect x="410" y="30" width="160" height="150" rx="8" fill="#14181B" stroke="rgba(255,255,255,0.15)"/>
+        <text x="422" y="55" fill="#F59E0B" font-size="11" font-weight="bold" font-family="monospace">03. CORRELATOR</text>
+        <text x="422" y="80" fill="#E4E4E7" font-size="12" font-family="monospace">/proc/[pid]/stat</text>
+        <text x="422" y="105" fill="#A1A1AA" font-size="11" font-family="monospace">starttime check</text>
+        <text x="422" y="125" fill="#A1A1AA" font-size="11" font-family="monospace">Anti-PID reuse</text>
+        <text x="422" y="155" fill="#71717A" font-size="10" font-family="monospace">&lt;120ns Lookup</text>
+
+        <!-- Arrow 3 to 4 -->
+        <path d="M570 105 H 610" stroke="#22C55E" stroke-width="2"/>
+
+        <!-- Stage 4: TUI & Stream -->
+        <rect x="610" y="30" width="126" height="150" rx="8" fill="#0F1713" stroke="#22C55E" stroke-opacity="0.5"/>
+        <text x="622" y="55" fill="#22C55E" font-size="11" font-weight="bold" font-family="monospace">04. OUTPUT</text>
+        <text x="622" y="80" fill="#E4E4E7" font-size="12" font-family="monospace">Ratatui TUI</text>
+        <text x="622" y="105" fill="#A1A1AA" font-size="11" font-family="monospace">OpenTelemetry</text>
+        <text x="622" y="125" fill="#A1A1AA" font-size="11" font-family="monospace">JSON Lines</text>
+        <text x="622" y="155" fill="#22C55E" font-size="10" font-family="monospace">4.2MB RSS Max</text>
+      </svg>
+    </div>
+  )}
+
+  {type === 'landlock-sandbox' && (
+    <div class="overflow-x-auto py-2">
+      <svg class="w-full min-w-[640px] h-auto" viewBox="0 0 760 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="756" height="206" rx="8" fill="#0A0C0D" stroke="rgba(255,255,255,0.08)"/>
+        
+        {/* Outer host */}
+        <rect x="20" y="20" width="720" height="170" rx="8" fill="#0D1011" stroke="#EF4444" stroke-opacity="0.3" stroke-dasharray="4 4"/>
+        <text x="35" y="42" fill="#EF4444" font-size="11" font-weight="bold" font-family="monospace">HOST NETWORK & UNTRUSTED INTERNET (BLOCKED BY LANDLOCK)</text>
+
+        {/* Sandboxed Container */}
+        <rect x="40" y="60" width="680" height="110" rx="6" fill="#111613" stroke="#22C55E" stroke-opacity="0.6"/>
+        <text x="55" y="85" fill="#22C55E" font-size="11" font-weight="bold" font-family="monospace">AIR-GAPPED ZERO-EGRESS PROCESS BOUNDARY</text>
+
+        <rect x="60" y="100" width="180" height="55" rx="4" fill="#171D1A" stroke="rgba(255,255,255,0.1)"/>
+        <text x="75" y="122" fill="#E4E4E7" font-size="11" font-family="monospace">BitNet b1.58 SLM</text>
+        <text x="75" y="140" fill="#22C55E" font-size="10" font-family="monospace">Ternary Weights (1.58b)</text>
+
+        <rect x="270" y="100" width="200" height="55" rx="4" fill="#171D1A" stroke="rgba(255,255,255,0.1)"/>
+        <text x="285" y="122" fill="#E4E4E7" font-size="11" font-family="monospace">Landlock LSM Ruleset</text>
+        <text x="285" y="140" fill="#EF4444" font-size="10" font-family="monospace">AF_INET Sockets = EACCES</text>
+
+        <rect x="500" y="100" width="200" height="55" rx="4" fill="#171D1A" stroke="rgba(255,255,255,0.1)"/>
+        <text x="515" y="122" fill="#E4E4E7" font-size="11" font-family="monospace">IPC Unix Domain Socket</text>
+        <text x="515" y="140" fill="#22C55E" font-size="10" font-family="monospace">Local Prompt Ingest Only</text>
+      </svg>
+    </div>
+  )}
+
+  {type === 'teardown-funnel' && (
+    <div class="overflow-x-auto py-2">
+      <svg class="w-full min-w-[640px] h-auto" viewBox="0 0 760 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="756" height="176" rx="8" fill="#0A0C0D" stroke="rgba(255,255,255,0.08)"/>
+        
+        <rect x="30" y="30" width="200" height="120" rx="8" fill="#181213" stroke="#EF4444" stroke-opacity="0.4"/>
+        <text x="45" y="55" fill="#EF4444" font-size="11" font-weight="bold" font-family="monospace">WEAK HOMEPAGE</text>
+        <text x="45" y="80" fill="#E4E4E7" font-size="11" font-family="monospace">"All-in-one Platform"</text>
+        <text x="45" y="100" fill="#A1A1AA" font-size="10" font-family="monospace">CTA: "Book 30-min Demo"</text>
+        <text x="45" y="125" fill="#EF4444" font-size="11" font-bold font-family="monospace">78.4% Bounce Rate</text>
+
+        <path d="M245 90 H 280" stroke="#71717A" stroke-width="2"/>
+
+        <rect x="290" y="30" width="180" height="120" rx="8" fill="#14171A" stroke="rgba(255,255,255,0.1)"/>
+        <text x="305" y="55" fill="#38BDF8" font-size="11" font-weight="bold" font-family="monospace">70% RESEARCH FIRST</text>
+        <text x="305" y="80" fill="#E4E4E7" font-size="11" font-family="monospace">VoC Mining on HN</text>
+        <text x="305" y="100" fill="#A1A1AA" font-size="10" font-family="monospace">Architecture Teardown</text>
+        <text x="305" y="125" fill="#38BDF8" font-size="11" font-family="monospace">Mechanism Matrix</text>
+
+        <path d="M485 90 H 520" stroke="#22C55E" stroke-width="2"/>
+
+        <rect x="530" y="30" width="200" height="120" rx="8" fill="#0F1713" stroke="#22C55E" stroke-opacity="0.6"/>
+        <text x="545" y="55" fill="#22C55E" font-size="11" font-weight="bold" font-family="monospace">CONVERTED HOMEPAGE</text>
+        <text x="545" y="80" fill="#E4E4E7" font-size="11" font-family="monospace">Concrete 12s Outcome</text>
+        <text x="545" y="100" fill="#A1A1AA" font-size="10" font-family="monospace">CTA: Terminal Quickstart</text>
+        <text x="545" y="125" fill="#22C55E" font-size="11" font-weight="bold" font-family="monospace">+41% Pipeline Lift</text>
+      </svg>
+    </div>
+  )}
+</div>

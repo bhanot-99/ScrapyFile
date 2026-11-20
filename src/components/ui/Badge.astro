@@ -1,0 +1,26 @@
+---
+interface Props {
+  text: string;
+  variant?: 'tactical' | 'neutral' | 'accent' | 'warning' | 'danger';
+  size?: 'xs' | 'sm';
+}
+
+const { text, variant = 'tactical', size = 'xs' } = Astro.props;
+
+const variantStyles = {
+  tactical: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+  neutral: 'bg-zinc-800/60 text-zinc-300 border-white/10',
+  accent: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+  warning: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+  danger: 'bg-red-500/10 text-red-400 border-red-500/30',
+};
+
+const sizeStyles = {
+  xs: 'text-[11px] px-2 py-0.5',
+  sm: 'text-xs px-2.5 py-1',
+};
+---
+
+<span class={`inline-flex items-center font-mono font-medium rounded border ${variantStyles[variant]} ${sizeStyles[size]} tracking-wider uppercase`}>
+  {text}
+</span>

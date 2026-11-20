@@ -1,0 +1,51 @@
+---
+interface Row {
+  mechanism: string;
+  benefit: string;
+}
+
+interface Props {
+  rows: Row[];
+  title?: string;
+}
+
+const { rows, title = "Mechanism-to-Benefit Translation Matrix" } = Astro.props;
+---
+
+<div class="sheen-card rounded-xl border border-white/10 overflow-hidden my-6 font-mono">
+  <div class="bg-[#0b0d0e] px-5 py-3 border-b border-white/8 flex items-center justify-between">
+    <span class="text-xs uppercase tracking-wider text-emerald-400 font-semibold">
+      // {title}
+    </span>
+    <span class="text-[11px] text-zinc-500 hidden sm:inline">Engineering Rigour → Revenue Lift</span>
+  </div>
+
+  <div class="overflow-x-auto">
+    <table class="w-full text-left border-collapse text-xs">
+      <thead>
+        <tr class="bg-zinc-950/80 border-b border-white/8 text-zinc-400">
+          <th class="p-4 font-semibold w-1/2">Technical Mechanism (The "How It Works")</th>
+          <th class="p-4 font-semibold w-1/2 text-emerald-400">Commercial Benefit (What The Buyer Buys)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-white/5">
+        {rows.map((row, idx) => (
+          <tr class={idx % 2 === 0 ? 'bg-zinc-900/30' : 'bg-transparent'}>
+            <td class="p-4 text-zinc-300 align-top leading-relaxed font-mono">
+              <div class="flex items-start gap-2">
+                <span class="text-zinc-600 select-none">0{idx + 1}.</span>
+                <span>{row.mechanism}</span>
+              </div>
+            </td>
+            <td class="p-4 text-zinc-200 align-top leading-relaxed">
+              <div class="flex items-start gap-2">
+                <span class="text-emerald-400 select-none">→</span>
+                <span>{row.benefit}</span>
+              </div>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>

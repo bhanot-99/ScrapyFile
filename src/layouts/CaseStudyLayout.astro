@@ -1,0 +1,195 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Badge from '../components/ui/Badge.astro';
+import { ArrowLeft, Clock, GitBranch, ArrowRight } from 'lucide-react';
+
+interface Props {
+  title: string;
+  tagline: string;
+  categoryLabel: string;
+  deliverableType: string;
+  targetBuyer: string;
+  stack: string[];
+  readTime: string;
+  publishDate: string;
+  metrics: { label: string; value: string }[];
+  repoUrl?: string;
+  nextSlug?: string;
+  nextTitle?: string;
+}
+
+const {
+  title,
+  tagline,
+  categoryLabel,
+  deliverableType,
+  targetBuyer,
+  stack,
+  readTime,
+  publishDate,
+  metrics,
+  repoUrl = 'https://github.com/bhanot1054',
+  nextSlug,
+  nextTitle,
+} = Astro.props;
+
+const tocItems = [
+  { id: 'executive-summary', label: '1. Executive Metadata' },
+  { id: 'voc-research', label: '2. VoC Research & Objections' },
+  { id: 'mechanism-matrix', label: '3. Mechanism-to-Benefit Matrix' },
+  { id: 'deliverable-in-context', label: '4. The Deliverable in Context' },
+  { id: 'engineering-proof', label: '5. Engineering Proof & Verification' },
+];
+---
+
+<BaseLayout title={title} description={tagline} articleDate={publishDate}>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-20">
+    <!-- Breadcrumb -->
+    <div class="mb-8 flex items-center justify-between text-xs font-mono">
+      <a
+        href="/work"
+        class="inline-flex items-center gap-2 text-zinc-400 hover:text-emerald-400 transition-colors"
+      >
+        <ArrowLeft className="w-3.5 h-3.5" />
+        <span>Back to Work Archive</span>
+      </a>
+      <span class="text-zinc-600 hidden sm:inline">SAMPLE #0 VERIFIED</span>
+    </div>
+
+    {/* Section 1: Executive Metadata Header */}
+    <header id="executive-summary" class="mb-14 scroll-mt-24 sheen-card rounded-2xl p-6 sm:p-10 border border-white/10 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="relative z-10 space-y-6">
+        <div class="flex flex-wrap items-center gap-2.5">
+          <Badge text={deliverableType} variant="tactical" size="sm" />
+          <Badge text={categoryLabel} variant="neutral" size="sm" />
+          <span class="text-zinc-500 text-xs font-mono flex items-center gap-1.5 ml-auto">
+            <Clock className="w-3.5 h-3.5" />
+            {readTime}
+          </span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
+          {title}
+        </h1>
+
+        <p class="text-zinc-300 text-base sm:text-lg max-w-3xl leading-relaxed">
+          {tagline}
+        </p>
+
+        <!-- Metadata Attributes Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/8 text-xs font-mono">
+          <div class="p-3 rounded-lg bg-zinc-950/80 border border-white/5 space-y-1">
+            <div class="text-zinc-500 uppercase tracking-wider text-[10px]">Target Buyer Persona</div>
+            <div class="text-zinc-200 font-semibold">{targetBuyer}</div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-zinc-950/80 border border-white/5 space-y-1">
+            <div class="text-zinc-500 uppercase tracking-wider text-[10px]">Core Stack Covered</div>
+            <div class="text-emerald-400 font-medium truncate">{stack.join(' • ')}</div>
+          </div>
+
+          <div class="p-3 rounded-lg bg-zinc-950/80 border border-white/5 space-y-1">
+            <div class="text-zinc-500 uppercase tracking-wider text-[10px]">Production Status</div>
+            <div class="text-zinc-300 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>Code-Verified & Live</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Telemetry Metrics Bar -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 font-mono">
+          {metrics.map(m => (
+            <div class="bg-black/40 p-3 rounded-lg border border-emerald-500/20">
+              <div class="text-[10px] text-zinc-500 uppercase">{m.label}</div>
+              <div class="text-emerald-400 font-bold text-sm sm:text-base mt-0.5">{m.value}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Grid with Desktop Sticky Left Table of Contents -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      {/* Sticky Table of Contents (Desktop) */}
+      <aside class="hidden lg:block lg:col-span-3 sticky top-24 glass-panel rounded-xl p-5 border border-white/8 text-xs font-mono space-y-4">
+        <div class="text-emerald-400 font-bold tracking-wider uppercase text-[11px] pb-2 border-b border-white/8">
+          // CASE STUDY OUTLINE
+        </div>
+        <nav class="space-y-2">
+          {tocItems.map(item => (
+            <a
+              href={`#${item.id}`}
+              class="block text-zinc-400 hover:text-emerald-400 transition-colors py-1 pl-2 border-l border-white/10 hover:border-emerald-400"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        <div class="pt-4 border-t border-white/8 space-y-2">
+          <div class="text-[10px] text-zinc-500 uppercase tracking-wider">Companion Code</div>
+          <a
+            href={repoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 text-xs text-zinc-300 hover:text-white"
+          >
+            <GitBranch className="w-3.5 h-3.5 text-emerald-400" />
+            <span>GitHub Repository</span>
+          </a>
+        </div>
+      </aside>
+
+      {/* Main Prose / MDX Slot */}
+      <main class="lg:col-span-9 space-y-12">
+        <div class="prose prose-invert prose-emerald max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:text-zinc-300 prose-p:leading-relaxed prose-code:font-mono prose-pre:border prose-pre:border-white/10">
+          <slot />
+        </div>
+
+        {/* Section 5: Companion Engineering Proof */}
+        <section id="engineering-proof" class="scroll-mt-24 pt-8 border-t border-white/10 space-y-6">
+          <div class="sheen-card rounded-xl p-6 sm:p-8 border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+            <div class="space-y-2">
+              <span class="text-xs font-mono uppercase tracking-wider text-emerald-400 font-medium">
+                // COMPANION REPO & BENCHMARK SUITE
+              </span>
+              <h3 class="text-xl font-bold text-white">
+                Inspect The Bare-Metal Codebase
+              </h3>
+              <p class="text-zinc-400 text-xs sm:text-sm max-w-xl">
+                Every claim, metric, and architecture diagram in this case study is accompanied by runnable tests and benchmark scripts in the GitHub repository.
+              </p>
+            </div>
+
+            <a
+              href={repoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-5 py-2.5 rounded-lg text-xs font-mono font-medium bg-zinc-900 border border-white/10 text-white hover:border-emerald-500/50 hover:bg-zinc-800 transition-all inline-flex items-center gap-2 shrink-0"
+            >
+              <GitBranch className="w-4 h-4 text-emerald-400" />
+              <span>Clone & Test Locally</span>
+            </a>
+          </div>
+
+          {/* Next Case Study Navigation */}
+          {nextSlug && (
+            <div class="flex items-center justify-between pt-6 text-xs font-mono">
+              <span class="text-zinc-500 uppercase tracking-wider">Next Artifact:</span>
+              <a
+                href={`/work/${nextSlug}`}
+                class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
+              >
+                <span>{nextTitle}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          )}
+        </section>
+      </main>
+    </div>
+  </div>
+</BaseLayout>

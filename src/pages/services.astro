@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import FaqAccordion from '../components/interactive/FaqAccordion.tsx';
+import { ArrowRight, CheckCircle2, Clock, Terminal, FileCode, Rocket } from 'lucide-react';
+
+const services = [
+  {
+    id: 'landing-page',
+    title: 'Technical Landing Page & Messaging Rewrite',
+    tag: 'MOST POPULAR // DEVTOOLS & INFRA',
+    turnaround: '10–14 Business Days',
+    icon: Terminal,
+    description: 'Transform complex developer tooling mechanisms into a clear, high-converting homepage that skeptical Staff Engineers immediately understand and trust.',
+    deliverables: [
+      'Comprehensive Voice-of-Customer (VoC) research mined from Hacker News, Reddit & GitHub',
+      'Mechanism-to-Benefit architecture translation matrix',
+      'Hero section positioning with terminal quickstart commands & concrete P99 latency hooks',
+      'Full-page wireframed copy mockup in Figma or MDX',
+      '2 comprehensive revision rounds with zero hidden scope fees',
+      '15-minute private Loom walkthrough detailing the conversion psychology behind every line'
+    ],
+    idealFor: 'Series A/B DevTools, open-core infrastructure founders, and platforms with high bounce rates.'
+  },
+  {
+    id: 'deep-dive',
+    title: 'Code-Backed Technical Deep-Dive / Benchmark Guide',
+    tag: 'AUTHORITY & TOP-OF-FUNNEL',
+    turnaround: '2–3 Weeks',
+    icon: FileCode,
+    description: 'A 1,800 to 2,500-word authoritative, runnable technical deep-dive designed to rank on Hacker News frontpage and earn backlinks from principal engineers.',
+    deliverables: [
+      'Runnable companion GitHub repository with clean test suites & reproducible benchmarks',
+      'Custom inline SVG architecture and topology diagrams (zero stock graphics)',
+      'Line-by-line kernel or compiler mechanism breakdowns (epoll, Landlock, AVX-512)',
+      'Publication-ready MDX formatted with Expressive Code diffs and syntax highlighting',
+      'Social distribution kit: Twitter/X technical breakdown thread + Reddit strategy notes'
+    ],
+    idealFor: 'Engineering teams wanting to establish undisputed technical leadership in their category.'
+  },
+  {
+    id: 'launch-kit',
+    title: 'Full-Funnel Developer Product Launch Kit',
+    tag: 'MULTI-CHANNEL ACTIVATION',
+    turnaround: '2–3 Weeks',
+    icon: Rocket,
+    description: 'The end-to-end launch package for shipping a major version or new developer product across Hacker News, email, and landing pages.',
+    deliverables: [
+      'Product landing page wireframe engineered for instant CLI / SDK activation',
+      'Show HN launch post written engineer-to-engineer (vulnerability, benchmarks, zero fluff)',
+      '4-part technical onboarding email sequence inside an inbox drip architecture',
+      'Detailed technical release notes & breaking change migration guide for v1.0.0',
+      'Launch day real-time comment moderation guidance on community forums'
+    ],
+    idealFor: 'Companies launching new open-source libraries, CLI binaries, or major version overhauls.'
+  }
+];
+---
+
+<BaseLayout
+  title="Services & Pricing // Technical Copywriting"
+  description="Productised technical copywriting services for developer tools, systems engineering, and on-device AI. 100% human-engineered, code-verified copy."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-24">
+    <SectionHeader
+      eyebrow="PRODUCTISED OFFERINGS"
+      title="Engineering-Grade Copywriting Services"
+      subtitle="Transparent scopes, guaranteed turnarounds, and zero fluff. Every word is anchored in runnable code, verified benchmarks, and deep Voice-of-Customer research."
+    />
+
+    <!-- 3 Productised Offering Cards -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-24">
+      {services.map(service => {
+        const Icon = service.icon;
+        return (
+          <div class="sheen-card rounded-2xl p-7 sm:p-8 flex flex-col justify-between border border-white/10 hover:border-emerald-500/40 transition-all relative overflow-hidden group">
+            <div class="space-y-6">
+              <div class="flex items-center justify-between">
+                <span class="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 group-hover:scale-110 transition-transform">
+                  <Icon className="w-5 h-5" />
+                </span>
+                <span class="text-[11px] font-mono text-zinc-400 flex items-center gap-1.5 bg-zinc-950 px-2.5 py-1 rounded border border-white/5">
+                  <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                  {service.turnaround}
+                </span>
+              </div>
+
+              <div>
+                <span class="text-[10px] font-mono font-semibold text-emerald-400 tracking-wider uppercase block mb-1.5">
+                  {service.tag}
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-white group-hover:text-emerald-300 transition-colors">
+                  {service.title}
+                </h3>
+                <p class="text-zinc-400 text-xs sm:text-sm mt-3 leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+
+              <div class="space-y-3 pt-2 border-t border-white/8">
+                <span class="text-[11px] font-mono uppercase tracking-wider text-zinc-300 font-semibold block">
+                  Deliverables Included:
+                </span>
+                <ul class="space-y-2.5 text-xs text-zinc-300">
+                  {service.deliverables.map(del => (
+                    <li class="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+                      <span class="leading-relaxed">{del}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-8 mt-6 border-t border-white/8 space-y-4">
+              <div class="text-[11px] font-mono text-zinc-400 bg-zinc-950/70 p-3 rounded-lg border border-white/5">
+                <span class="text-zinc-500">Best For: </span>
+                <span class="text-zinc-300">{service.idealFor}</span>
+              </div>
+
+              <a
+                href={`/contact?service=${service.id}`}
+                class="w-full py-3 rounded-lg text-xs font-mono font-semibold tracking-wide bg-emerald-500 text-black hover:bg-emerald-400 transition-all glow-tactical flex items-center justify-center gap-2"
+              >
+                <span>Select Offering</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- FAQ Accordion Section -->
+    <div class="max-w-3xl mx-auto pt-10 border-t border-white/8">
+      <SectionHeader
+        eyebrow="OBJECTION HANDLING // TRANSPARENCY"
+        title="Frequently Answered Questions"
+        subtitle="Direct answers to real technical and commercial questions raised by CTOs, DevTools founders, and publications."
+        align="center"
+      />
+
+      <FaqAccordion client:visible />
+    </div>
+  </div>
+</BaseLayout>

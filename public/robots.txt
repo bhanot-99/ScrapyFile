@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jatinbhanot.com/sitemap-index.xml

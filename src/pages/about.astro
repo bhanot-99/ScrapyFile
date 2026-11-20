@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import CopyEmailButton from '../components/ui/CopyEmailButton.tsx';
+import { GraduationCap, ArrowRight } from 'lucide-react';
+
+const techStack = {
+  systems: {
+    category: 'Systems, Kernel & Concurrency',
+    summary: 'Low-level Linux systems programming, unprivileged kernel sandboxing, and deterministic async runtimes.',
+    skills: [
+      { name: 'Rust (tokio, nix, ratatui, aya)', proof: 'Production daemons, zero-allocation ring buffers' },
+      { name: 'C++20 (Concepts, Coroutines, SIMD)', proof: 'AVX-512 vector kernels, DMA-BUF ingestion' },
+      { name: 'Linux Kernel Internals', proof: 'epoll, inotify, /proc, Landlock LSM, seccomp-bpf' },
+      { name: 'Concurrency & Memory', proof: 'Lock-free ring buffers, cache-line alignment' }
+    ]
+  },
+  ai: {
+    category: 'On-Device, Edge AI & Quantization',
+    summary: 'Air-gapped language model runtimes, ternary integer weights, and real-time UAV computer vision.',
+    skills: [
+      { name: 'BitNet b1.58 Ternary Architecture', proof: 'Addition-only matrix kernels on AVX-512' },
+      { name: 'Llama.cpp & GGUF Quantization', proof: 'CPU inference optimization, Q4_K_M kernels' },
+      { name: 'Edge Vision Avionics (YOLOv8, TensorRT)', proof: 'Sub-4ms tracking on Jetson & ARM Cortex' },
+      { name: 'Zero-Egress Security Boundaries', proof: 'Mathematical network drops via Linux Landlock' }
+    ]
+  },
+  observability: {
+    category: 'Data, Telemetry & Developer Marketing',
+    summary: 'High-throughput telemetry correlation, wireframed developer conversion funnels, and technical communication.',
+    skills: [
+      { name: 'OpenTelemetry (OTel) & Linux Perf', proof: 'Sub-microsecond trace spans and RSS auditing' },
+      { name: 'Developer Copywriting & VoC Mining', proof: 'Reverse-engineering developer objections from HN/Reddit' },
+      { name: 'Interactive Documentation (MDX / Astro)', proof: 'Expressive Code, IDE-grade diff blocks' },
+      { name: 'Technical Product Launches', proof: 'Ranked #2 on Hacker News Show HN' }
+    ]
+  }
+};
+---
+
+<BaseLayout
+  title="About // Jatin Bhanot (Systems Engineer & Technical Copywriter)"
+  description="Background, engineering narrative, and technical stack matrix for Jatin Bhanot (Rust, C++20, Linux Kernel, Edge AI)."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-12 pb-24">
+    <!-- Header Narrative -->
+    <div class="max-w-3xl mb-16 space-y-6">
+      <SectionHeader
+        eyebrow="ENGINEERING NARRATIVE"
+        title="Why A Systems Engineer Writes Sharper Developer Copy"
+      />
+
+      <div class="text-zinc-300 text-base sm:text-lg leading-relaxed space-y-5 font-sans">
+        <p>
+          I am <strong>Jatin Bhanot</strong>, a Computer Science engineer specialising in <strong class="text-white">Rust, C++20, Linux kernel internals, and on-device AI architectures</strong>.
+        </p>
+
+        <p>
+          Most technical marketing fails because it is outsourced to freelance generalists or prompt-engineered LLMs. The result is bloated, superficial copy that says <em>"empower modern teams with seamless intelligent workflows."</em> Senior Staff Engineers and cynical CTOs see right through it. They don't want buzzwords—they want to know how your software handles PID-reuse races, memory bus contention, and cold-start latency.
+        </p>
+
+        <p>
+          Because I write production systems myself, I don't read marketing briefs; I read your <strong>source code, your GitHub PRs, and your benchmark suites</strong>. I translate low-level mechanisms into undeniable commercial value that engineers actually respect.
+        </p>
+      </div>
+
+      <div class="pt-4 flex flex-wrap items-center gap-4">
+        <CopyEmailButton client:load email="bhanot1054@gmail.com" label="bhanot1054@gmail.com" />
+        <a
+          href="/work"
+          class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400 hover:text-emerald-300"
+        >
+          <span>Inspect Case Studies</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </a>
+      </div>
+    </div>
+
+    <!-- Educational & Research Pedigree -->
+    <div class="mb-20 sheen-card rounded-2xl p-6 sm:p-8 border border-white/10 space-y-6">
+      <div class="flex items-center gap-2">
+        <GraduationCap className="w-5 h-5 text-emerald-400" />
+        <h3 class="text-lg font-bold text-white font-mono uppercase tracking-wide">
+          Academic & International Research Pedigree
+        </h3>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono text-xs">
+        <div class="p-4 rounded-xl bg-zinc-950/70 border border-white/5 space-y-2">
+          <div class="text-emerald-400 font-bold">Chitkara University</div>
+          <div class="text-zinc-200 font-medium">B.E. Computer Science Engineering</div>
+          <div class="text-zinc-500">Specialisation in Systems, Concurrency & Operating Systems Architecture</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-zinc-950/70 border border-white/5 space-y-2">
+          <div class="text-emerald-400 font-bold">National Formosa University (Taiwan)</div>
+          <div class="text-zinc-200 font-medium">UAV Edge AI & Computer Vision Internship</div>
+          <div class="text-zinc-500">Engineered sub-4ms real-time tracking pipelines on ARM Jetson avionics</div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-zinc-950/70 border border-white/5 space-y-2">
+          <div class="text-emerald-400 font-bold">Astana IT University</div>
+          <div class="text-zinc-200 font-medium">Applied CS & Cloud Systems Exchange</div>
+          <div class="text-zinc-500">Distributed microservices, Linux namespaces, and low-latency networking</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structured Technical Stack Matrix (3 Clean Categories, No Messy Tag Clouds) -->
+    <div class="space-y-8">
+      <div class="border-b border-white/8 pb-4">
+        <span class="text-xs font-mono uppercase tracking-[0.18em] text-emerald-400 font-semibold block mb-2">
+          // AUDITED CAPABILITIES
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+          Structured Technical Stack Matrix
+        </h2>
+        <p class="text-zinc-400 text-sm mt-1">
+          Every skill listed is backed by shipped code, automated test suites, or live benchmarks.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {Object.values(techStack).map(cat => (
+          <div class="sheen-card rounded-2xl p-6 sm:p-7 border border-white/10 space-y-5">
+            <div>
+              <h3 class="text-lg font-bold text-white tracking-tight">
+                {cat.category}
+              </h3>
+              <p class="text-zinc-400 text-xs mt-1 leading-relaxed">
+                {cat.summary}
+              </p>
+            </div>
+
+            <div class="space-y-3 pt-2 border-t border-white/5 font-mono text-xs">
+              {cat.skills.map(skill => (
+                <div class="p-3 rounded-lg bg-zinc-950/60 border border-white/5 space-y-1">
+                  <div class="text-emerald-400 font-semibold">{skill.name}</div>
+                  <div class="text-[11px] text-zinc-400 leading-snug">{skill.proof}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</BaseLayout>
