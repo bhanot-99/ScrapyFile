@@ -3,9 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSpecTranslator from '../components/interactive/HeroSpecTranslator.tsx';
 import HeroMarkupScrub from '../components/interactive/HeroMarkupScrub.tsx';
 import PinnedTeardown from '../components/interactive/PinnedTeardown.tsx';
+import BeforeAfterSlider from '../components/interactive/BeforeAfterSlider.tsx';
 import FannedProofCards from '../components/interactive/FannedProofCards.tsx';
+import DraggableStickyNotes from '../components/interactive/DraggableStickyNotes.tsx';
 import PinnedPipeline from '../components/interactive/PinnedPipeline.tsx';
 import CleanCtaSection from '../components/interactive/CleanCtaSection.tsx';
+import MagneticCta from '../components/interactive/MagneticCta.tsx';
 import ChapterRail from '../components/ui/ChapterRail.astro';
 import SectionHeader from '../components/ui/SectionHeader.astro';
 import SpiralNotebookCard from '../components/ui/SpiralNotebookCard.astro';
@@ -13,7 +16,7 @@ import TornPaperStrip from '../components/ui/TornPaperStrip.astro';
 import StickerTile from '../components/ui/StickerTile.astro';
 import HandDrawnDoodles from '../components/ui/HandDrawnDoodles.astro';
 import Badge from '../components/ui/Badge.astro';
-import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
+import { ShieldCheck, Terminal } from 'lucide-react';
 ---
 
 <BaseLayout
@@ -44,32 +47,32 @@ import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
         <!-- Left Column: High-Stakes Positioning & Trust -->
         <div class="lg:col-span-6 space-y-5">
           <!-- Monospace Stamped Eyebrow Pill -->
-          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#F4F1EA] rounded-full border border-[#1C1B19]/10 text-[#1C1B19] font-mono text-xs font-semibold">
+          <div class="hero-enter-1 inline-flex items-center gap-2 px-3 py-1 bg-[#F4F1EA] rounded-full border border-[#1C1B19]/10 text-[#1C1B19] font-mono text-xs font-semibold">
             <span class="w-2 h-2 rounded-full bg-[#1C1B19] animate-pulse"></span>
             SYSTEMS ENGINEER TURNED TECHNICAL COPYWRITER
           </div>
 
           <!-- Title Case Display Headline with Soft Lavender Highlighter -->
-          <h1 class="text-4xl sm:text-5xl lg:text-[3.35rem] font-bold tracking-tight text-[#1C1B19] font-sans leading-[1.1]">
+          <h1 class="hero-enter-2 text-4xl sm:text-5xl lg:text-[3.35rem] font-bold tracking-tight text-[#1C1B19] font-sans leading-[1.1]">
             Technical Copy That Skeptical Engineers <span class="inline-block bg-[#E3DEFA] px-3.5 py-0.5 rounded-2xl text-[#1C1B19] shadow-xs rotate-[-0.5deg]">Actually Trust.</span>
           </h1>
 
-          <p class="text-[#57534E] text-base sm:text-lg leading-relaxed max-w-xl font-sans">
-            I build <strong class="text-[#1C1B19] font-semibold">Rust</strong>, <strong class="text-[#1C1B19] font-semibold">C++20</strong>, and <strong class="text-[#1C1B19] font-semibold">on-device AI systems</strong>—and translate complex kernel & agent architectures into high-converting landing pages, code-backed deep dives, and developer launches.
+          <p class="hero-enter-3 text-[#57534E] text-base sm:text-lg leading-relaxed max-w-xl font-sans">
+            I help developer-tool, Linux infrastructure, and edge-AI startups turn raw kernel & systems specs into high-converting landing pages, teardowns, and launch kits that survive peer code review.
           </p>
 
           <!-- Interactive Scroll-Scrubbed Red-Pen Strikethrough Memo Scrap -->
-          <HeroMarkupScrub client:load />
+          <div class="hero-enter-4">
+            <HeroMarkupScrub client:load />
+          </div>
 
           <!-- Tactile CTAs: Primary & Secondary -->
-          <div class="flex flex-wrap items-center gap-3 pt-1">
-            <a
+          <div class="hero-enter-5 flex flex-wrap items-center gap-3 pt-1">
+            <MagneticCta
+              client:load
+              label="Get a Free 2-Minute Video Teardown"
               href="/contact?teardown=true"
-              class="cta-shine-btn px-6 py-3.5 rounded-full text-xs font-sans font-semibold tracking-wide bg-[#1C1B19] text-[#FDFBF7] hover:bg-[#3D3A36] shadow-paper-md hover:translate-y-[-1px] transition-all inline-flex items-center gap-2 cursor-pointer"
-            >
-              <span>Get a Free 2-Minute Video Teardown</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            />
 
             <a
               href="#chapter-3"
@@ -153,6 +156,11 @@ import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
 
   <!-- CHAPTER 02: TEARDOWN (Pinned Scroll Strikethrough & Assembly) -->
   <PinnedTeardown client:visible />
+
+  <!-- Interactive Before/After Tactile Teardown Slider -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    <BeforeAfterSlider client:visible />
+  </section>
 
   <!-- CHAPTER 03: PROOF (Blueprint Background Transition & Fanned-Out Cards) -->
   <FannedProofCards client:visible />
@@ -279,6 +287,11 @@ import { ArrowRight, ShieldCheck, Terminal } from 'lucide-react';
         </TornPaperStrip>
       </div>
     </div>
+  </section>
+
+  <!-- Interactive Draggable Sticky Notes: Engineering Copy Decisions -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+    <DraggableStickyNotes client:visible />
   </section>
 
   <!-- CHAPTER 04: PIPELINE (Pinned 70/30 Research-First Workflow) -->

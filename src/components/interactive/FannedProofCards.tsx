@@ -1,6 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowUpRight, GitBranch } from 'lucide-react';
+import VerificationTooltip from './VerificationTooltip';
+
+interface MetricProof {
+  label: string;
+  value: string;
+  command: string;
+  environment: string;
+  status: string;
+}
 
 interface ProjectProof {
   id: string;
@@ -10,7 +19,7 @@ interface ProjectProof {
   badgeVariant: string;
   badgeBg: string;
   repoUrl: string;
-  metrics: { label: string; value: string }[];
+  metrics: MetricProof[];
   howMeasured: string;
 }
 
@@ -24,8 +33,20 @@ const PROJECTS: ProjectProof[] = [
     badgeBg: 'bg-[#E3DEFA]',
     repoUrl: 'https://github.com/bhanot1054/agent-radar',
     metrics: [
-      { label: 'Idle CPU (epoll_wait)', value: 'Measurement Pending' },
-      { label: 'Memory Footprint (LRU Cache)', value: 'Measurement Pending' },
+      {
+        label: 'Idle CPU (epoll_wait)',
+        value: 'Measurement Pending',
+        command: 'cargo test --release -p agent-radar-core -- --nocapture',
+        environment: 'Linux 6.8+ (x86_64, unprivileged)',
+        status: 'Release benchmark pending hardware run'
+      },
+      {
+        label: 'Memory Footprint (LRU)',
+        value: 'Measurement Pending',
+        command: 'ps -o rss= -p $(pgrep agent-radar)',
+        environment: 'Linux 6.8+ (x86_64)',
+        status: 'Bounded via LRU cache TTL eviction'
+      },
     ],
     howMeasured: 'Release benchmark pending. Verified event-driven epoll_wait sleep via Linux /proc/[pid]/stat.'
   },
@@ -38,8 +59,20 @@ const PROJECTS: ProjectProof[] = [
     badgeBg: 'bg-[#FADEC9]',
     repoUrl: 'https://github.com/bhanot1054/neuroos-sandbox',
     metrics: [
-      { label: 'Network Egress Allowed', value: '0 Bytes (Hard Block)' },
-      { label: 'Sandbox Mechanism', value: 'Landlock LSM' },
+      {
+        label: 'Network Egress Allowed',
+        value: '0 Bytes (Hard Block)',
+        command: 'make test-landlock && ./bin/test_no_net',
+        environment: 'Linux 5.13+ (Landlock LSM ABI v1+)',
+        status: 'Verified: AF_INET socket calls return EACCES'
+      },
+      {
+        label: 'Sandbox Mechanism',
+        value: 'Landlock LSM',
+        command: 'cat /proc/sys/kernel/landlock/ruleset',
+        environment: 'Linux 5.13+ x86_64',
+        status: 'Kernel LSM enforced without hypervisor'
+      },
     ],
     howMeasured: 'Verified by asserting socket syscall restrictions (AF_INET/AF_INET6 return EACCES post-init).'
   },
@@ -52,8 +85,20 @@ const PROJECTS: ProjectProof[] = [
     badgeBg: 'bg-[#D7F0DE]',
     repoUrl: 'https://github.com/bhanot1054',
     metrics: [
-      { label: 'Small-Object Detection', value: 'SAHI Tiling' },
-      { label: 'Latency Benchmarking', value: 'Measurement Pending' },
+      {
+        label: 'Small-Object Detection',
+        value: 'SAHI Tiling',
+        command: 'python3 -m unittest discover tests/',
+        environment: 'Ubuntu 22.04 LTS (x86_64)',
+        status: 'Tiling slices aerial 4K frames for tiny targets'
+      },
+      {
+        label: 'Tracking Association',
+        value: 'ByteTrack Kalman',
+        command: 'python3 benchmarks/benchmark_tracking.py',
+        environment: 'Ubuntu 22.04 LTS (x86_64 / PyTorch)',
+        status: 'Motion association across consecutive frames'
+      },
     ],
     howMeasured: 'Benchmarking on high-resolution aerial footage in progress; ByteTrack association verified.'
   }
@@ -73,9 +118,9 @@ export default function FannedProofCards() {
   const card1X = useTransform(fanProgress, [0, 1], [0, -18]);
   const card1Rotate = useTransform(fanProgress, [0, 1], [0, -3.5]);
 
-  // Card 2: Centers
-  const card2Y = useTransform(fanProgress, [0, 1], [0, -8]);
-  const card2Rotate = useTransform(fanProgress, [0, 1], [0, 0]);
+  // Card 2: Center card lifts slightly
+  const card2Y = useTransform(fanProgress, [0, 1], [0, -10]);
+  const card2Rotate = useTransform(fanProgress, [0, 1], [0, 0.5]);
 
   // Card 3: Fans out to the right
   const card3X = useTransform(fanProgress, [0, 1], [0, 18]);
@@ -98,7 +143,7 @@ export default function FannedProofCards() {
             The Proof Is In The Source Code
           </h2>
           <p className="text-sm text-[#57534E] font-sans mt-2">
-            No mock agency slides. Every case study below is tied to real repositories with reproducible test commands and honest "how measured" annotations.
+            No mock agency slides. Every project below connects to real code with verification tooltips showing the exact reproduction command, target kernel, and GitHub link.
           </p>
         </div>
 
@@ -127,7 +172,7 @@ export default function FannedProofCards() {
   );
 }
 
-// Subcomponent with 3D Card Tilt & Glare on hover
+// Subcomponent with 3D Card Tilt, Hover Glare & Lift
 function InteractiveTiltCard({
   project,
   motionStyle
@@ -137,6 +182,7 @@ function InteractiveTiltCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+  const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -146,14 +192,19 @@ function InteractiveTiltCard({
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -6;
-    const rotateY = ((x - centerX) / centerX) * 6;
+    const rotateX = ((y - centerY) / centerY) * -7;
+    const rotateY = ((x - centerX) / centerX) * 7;
+    const glareX = Math.round((x / rect.width) * 100);
+    const glareY = Math.round((y / rect.height) * 100);
+
     setTilt({ rotateX, rotateY });
+    setGlare({ x: glareX, y: glareY, opacity: 0.35 });
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
     setTilt({ rotateX: 0, rotateY: 0 });
+    setGlare({ x: 50, y: 50, opacity: 0 });
   };
 
   return (
@@ -168,16 +219,26 @@ function InteractiveTiltCard({
         onMouseLeave={handleMouseLeave}
         style={{
           transform: isHovered
-            ? `perspective(800px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) translateY(-4px)`
+            ? `perspective(800px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg) translateY(-6px)`
             : 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)',
-          transition: isHovered ? 'transform 0.08s ease-out' : 'transform 0.3s ease-out'
+          transition: isHovered ? 'transform 0.08s ease-out' : 'transform 0.35s ease-out'
         }}
         className="relative bg-[#FDFBF7] rounded-3xl p-6 sm:p-7 border border-[#1C1B19]/10 shadow-paper-md hover:shadow-paper-lg flex flex-col justify-between flex-1 paper-fold overflow-hidden"
       >
+        {/* Dynamic Paper Glare Overlay */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300 z-10"
+          style={{
+            opacity: glare.opacity,
+            background: `radial-gradient(circle at ${glare.x}% ${glare.y}%, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0) 65%)`
+          }}
+        />
+
         {/* Top Washi Tape */}
         <div className="masking-tape masking-tape-lavender -top-3"></div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 relative z-0">
           {/* Header Row */}
           <div className="flex items-center justify-between gap-2">
             <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full border border-[#1C1B19]/10 text-[#1C1B19] ${project.badgeBg}`}>
@@ -197,12 +258,20 @@ function InteractiveTiltCard({
             </p>
           </div>
 
-          {/* Metrics Grid */}
+          {/* Metrics Grid with Verification Tooltips */}
           <div className="grid grid-cols-2 gap-2 pt-2 font-mono text-xs">
             {project.metrics.map(m => (
-              <div key={m.label} className="bg-[#FAF7F0] p-2.5 rounded-xl border border-[#1C1B19]/8">
-                <div className="text-[10px] text-[#57534E]">{m.label}</div>
-                <div className="text-[#1C1B19] font-bold text-xs mt-0.5">{m.value}</div>
+              <div key={m.label} className="bg-[#FAF7F0] p-2.5 rounded-xl border border-[#1C1B19]/8 flex flex-col justify-between">
+                <div>
+                  <VerificationTooltip
+                    label={m.label}
+                    command={m.command}
+                    environment={m.environment}
+                    repoUrl={project.repoUrl}
+                    status={m.status}
+                  />
+                </div>
+                <div className="text-[#1C1B19] font-bold text-xs mt-1">{m.value}</div>
               </div>
             ))}
           </div>
@@ -215,7 +284,7 @@ function InteractiveTiltCard({
         </div>
 
         {/* Footer Link to GitHub */}
-        <div className="pt-5 mt-4 border-t border-[#1C1B19]/8 flex items-center justify-between text-xs font-mono font-semibold">
+        <div className="pt-5 mt-4 border-t border-[#1C1B19]/8 flex items-center justify-between text-xs font-mono font-semibold relative z-0">
           <a
             href={project.repoUrl}
             target="_blank"

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { ArrowRight, CheckCircle2, GitBranch } from 'lucide-react';
+import { CheckCircle2, GitBranch } from 'lucide-react';
+import MagneticCta from './MagneticCta';
 
 export default function CleanCtaSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -102,13 +103,10 @@ export default function CleanCtaSection() {
 
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-3 pt-4">
-              <a
+              <MagneticCta
                 href="/contact?teardown=true"
-                className="cta-shine-btn px-7 py-3.5 rounded-full text-xs font-sans font-bold tracking-tight bg-[#1C1B19] text-[#FDFBF7] hover:bg-[#3D3A36] shadow-paper-md hover:translate-y-[-1px] transition-all inline-flex items-center gap-2 cursor-pointer"
-              >
-                <span>Get a Free 2-Minute Video Teardown</span>
-                <ArrowRight className="w-4 h-4" />
-              </a>
+                label="Get a Free 2-Minute Video Teardown"
+              />
 
               <a
                 href="https://github.com/bhanot1054"
