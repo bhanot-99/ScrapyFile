@@ -4,6 +4,7 @@ import Navbar from '../components/layout/Navbar.astro';
 import Footer from '../components/layout/Footer.astro';
 import LivingDeskBackground from '../components/ui/LivingDeskBackground.astro';
 import CommandPalette from '../components/interactive/CommandPalette';
+import PerfMonitor from '../components/ui/PerfMonitor.astro';
 import { ClientRouter } from 'astro:transitions';
 
 interface Props {
@@ -40,5 +41,6 @@ const { title, description, image, articleDate } = Astro.props;
     </div>
     <Footer />
     <CommandPalette client:idle />
+    <PerfMonitor />
   </body>
 </html>

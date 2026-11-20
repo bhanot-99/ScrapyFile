@@ -1,0 +1,70 @@
+---
+// Dev-only Performance & Long Animation Frame (LoAF) Monitor
+// Active strictly in development mode (import.meta.env.DEV)
+const isDev = import.meta.env.DEV;
+---
+
+{isDev && (
+  <div id="dev-perf-monitor" class="fixed bottom-2 right-2 z-50 bg-[#1C1B19]/90 text-white font-mono text-[10px] px-2 py-1 rounded shadow pointer-events-none opacity-60 hover:opacity-100 transition-opacity">
+    <span id="dev-perf-fps">60 FPS</span> | <span id="dev-perf-drops">0 drops</span>
+  </div>
+
+  <script is:inline>
+    (() => {
+      let lastTime = performance.now();
+      let frames = 0;
+      let drops = 0;
+      let fpsDisplay = document.getElementById('dev-perf-fps');
+      let dropsDisplay = document.getElementById('dev-perf-drops');
+
+      // 1. Long Animation Frame (LoAF) / Longtask Observer
+      try {
+        const supportedEntryTypes = PerformanceObserver.supportedEntryTypes || [];
+        const entryType = supportedEntryTypes.includes('long-animation-frame') 
+          ? 'long-animation-frame' 
+          : (supportedEntryTypes.includes('longtask') ? 'longtask' : null);
+
+        if (entryType) {
+          const loafObserver = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+              drops++;
+              if (dropsDisplay) dropsDisplay.textContent = `${drops} drops`;
+              console.warn(
+                `[Perf Warning] ${entryType} detected: ${entry.duration.toFixed(1)}ms (threshold 16.6ms)`,
+                entry
+              );
+            }
+          });
+          loafObserver.observe({ type: entryType, buffered: true });
+        }
+      } catch (e) {
+        // Observer not supported or blocked
+      }
+
+      // 2. rAF Loop for continuous FPS & Frame Budget Tracking
+      let frameBudgetExceeded = 0;
+      function checkFrame(now) {
+        const delta = now - lastTime;
+        lastTime = now;
+        frames++;
+
+        if (delta > 18.0) { // Missed 16.6ms deadline by > 1.4ms
+          frameBudgetExceeded++;
+        }
+
+        if (frames % 30 === 0 && fpsDisplay) {
+          const fps = Math.round(1000 / (delta || 16.6));
+          fpsDisplay.textContent = `${Math.min(60, fps)} FPS`;
+          if (fps < 55) {
+            fpsDisplay.style.color = '#E11D48';
+          } else {
+            fpsDisplay.style.color = '#4ADE80';
+          }
+        }
+
+        requestAnimationFrame(checkFrame);
+      }
+      requestAnimationFrame(checkFrame);
+    })();
+  </script>
+)}
